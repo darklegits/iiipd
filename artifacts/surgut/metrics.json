@@ -1,0 +1,624 @@
+{
+  "generated_at": "2026-10-21T00:45:38+05:00",
+  "app": {
+    "name": "Погодный оракул",
+    "target": "Дневной максимум температуры на 2 м",
+    "unit": "°C",
+    "leads": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "location": {
+    "name": "Сургут",
+    "name_genitive": "Сургута",
+    "latitude": 61.254,
+    "longitude": 73.3962,
+    "timezone": "Asia/Yekaterinburg",
+    "slug": "surgut"
+  },
+  "data": {
+    "actuals": {
+      "source": "Open-Meteo Archive API (ERA5 / best match)",
+      "source_url": "https://archive-api.open-meteo.com/v1/archive",
+      "downloaded_at": "2026-10-21T00:41:24.640433+05:00",
+      "requested_start": "2025-10-21",
+      "requested_end": "2026-10-20",
+      "first_date": "2025-10-21",
+      "last_date": "2026-10-20",
+      "rows": 365,
+      "latitude_requested": 61.254,
+      "longitude_requested": 73.3962,
+      "latitude_returned": 61.265377,
+      "longitude_returned": 73.438255,
+      "elevation_m": 41.0,
+      "timezone": "Asia/Yekaterinburg"
+    },
+    "official": {
+      "source": "Open-Meteo Previous Runs API (архив оперативных прогнозов)",
+      "source_url": "https://previous-runs-api.open-meteo.com/v1/forecast",
+      "downloaded_at": "2026-10-21T00:41:26.567668+05:00",
+      "first_date": "2026-07-21",
+      "last_date": "2026-10-20",
+      "rows": 92,
+      "past_days": 92,
+      "latitude_returned": 61.265377,
+      "longitude_returned": 73.438255,
+      "timezone": "Asia/Yekaterinburg",
+      "note": "Дневной максимум собран из почасовых значений previous_day1..7. Это архив прогнозов Open-Meteo, а не официальный прогноз Росгидромета."
+    },
+    "first_actual_date": "2025-10-21",
+    "last_actual_date": "2026-10-20",
+    "actual_days": 365,
+    "official_days": 92
+  },
+  "periods": {
+    "train": {
+      "start": "2025-11-05",
+      "end": "2026-08-06",
+      "days": 275
+    },
+    "validation": {
+      "start": "2026-08-07",
+      "end": "2026-09-05",
+      "days": 30
+    },
+    "test": {
+      "start": "2026-09-06",
+      "end": "2026-10-20",
+      "days": 45
+    },
+    "targets_per_lead": {
+      "lead_1": {
+        "train": 275,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_2": {
+        "train": 274,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_3": {
+        "train": 273,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_4": {
+        "train": 272,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_5": {
+        "train": 271,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_6": {
+        "train": 270,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_7": {
+        "train": 269,
+        "validation": 30,
+        "test": 45
+      }
+    }
+  },
+  "leads": {
+    "1": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.68,
+        "random_forest": 0.0,
+        "gradient_boosting": 0.32
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.204,
+        "inverse_mae": 5.187,
+        "optimized_mae": 4.953
+      },
+      "validation_mae_ensemble": 4.953,
+      "models": {
+        "linear": {
+          "mae": 3.413,
+          "rmse": 4.063,
+          "bias": -0.865,
+          "n": 45,
+          "r2": 0.703
+        },
+        "random_forest": {
+          "mae": 7.775,
+          "rmse": 9.18,
+          "bias": -7.525,
+          "n": 45,
+          "r2": -0.518
+        },
+        "gradient_boosting": {
+          "mae": 9.491,
+          "rmse": 10.713,
+          "bias": -9.347,
+          "n": 45,
+          "r2": -1.068
+        },
+        "ensemble": {
+          "mae": 4.526,
+          "rmse": 5.327,
+          "bias": -3.579,
+          "n": 45,
+          "r2": 0.489
+        },
+        "persistence": {
+          "mae": 3.54,
+          "rmse": 4.258,
+          "bias": 0.584,
+          "n": 45,
+          "r2": 0.673
+        },
+        "official": {
+          "mae": 0.471,
+          "rmse": 0.596,
+          "bias": -0.062,
+          "n": 45,
+          "r2": 0.994
+        }
+      },
+      "production_model": "artifacts\\models\\surgut\\lead_1.joblib"
+    },
+    "2": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.56,
+        "random_forest": 0.0,
+        "gradient_boosting": 0.44
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.632,
+        "inverse_mae": 5.632,
+        "optimized_mae": 5.574
+      },
+      "validation_mae_ensemble": 5.574,
+      "models": {
+        "linear": {
+          "mae": 3.886,
+          "rmse": 4.827,
+          "bias": -2.445,
+          "n": 45,
+          "r2": 0.58
+        },
+        "random_forest": {
+          "mae": 10.392,
+          "rmse": 11.718,
+          "bias": -10.353,
+          "n": 45,
+          "r2": -1.474
+        },
+        "gradient_boosting": {
+          "mae": 9.29,
+          "rmse": 10.659,
+          "bias": -9.29,
+          "n": 45,
+          "r2": -1.047
+        },
+        "ensemble": {
+          "mae": 5.596,
+          "rmse": 6.784,
+          "bias": -5.457,
+          "n": 45,
+          "r2": 0.171
+        },
+        "persistence": {
+          "mae": 4.342,
+          "rmse": 5.224,
+          "bias": 0.716,
+          "n": 45,
+          "r2": 0.508
+        },
+        "official": {
+          "mae": 0.704,
+          "rmse": 0.897,
+          "bias": -0.091,
+          "n": 45,
+          "r2": 0.986
+        }
+      },
+      "production_model": "artifacts\\models\\surgut\\lead_2.joblib"
+    },
+    "3": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.587,
+        "inverse_mae": 5.543,
+        "optimized_mae": 5.17
+      },
+      "validation_mae_ensemble": 5.17,
+      "models": {
+        "linear": {
+          "mae": 5.006,
+          "rmse": 6.311,
+          "bias": -4.101,
+          "n": 45,
+          "r2": 0.282
+        },
+        "random_forest": {
+          "mae": 10.577,
+          "rmse": 11.848,
+          "bias": -10.561,
+          "n": 45,
+          "r2": -1.529
+        },
+        "gradient_boosting": {
+          "mae": 9.42,
+          "rmse": 10.927,
+          "bias": -9.28,
+          "n": 45,
+          "r2": -1.151
+        },
+        "ensemble": {
+          "mae": 10.577,
+          "rmse": 11.848,
+          "bias": -10.561,
+          "n": 45,
+          "r2": -1.529
+        },
+        "persistence": {
+          "mae": 5.244,
+          "rmse": 6.028,
+          "bias": 0.893,
+          "n": 45,
+          "r2": 0.345
+        },
+        "official": {
+          "mae": 0.951,
+          "rmse": 1.168,
+          "bias": -0.004,
+          "n": 45,
+          "r2": 0.975
+        }
+      },
+      "production_model": "artifacts\\models\\surgut\\lead_3.joblib"
+    },
+    "4": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.53,
+        "inverse_mae": 5.426,
+        "optimized_mae": 4.812
+      },
+      "validation_mae_ensemble": 4.812,
+      "models": {
+        "linear": {
+          "mae": 5.787,
+          "rmse": 6.803,
+          "bias": -3.476,
+          "n": 45,
+          "r2": 0.166
+        },
+        "random_forest": {
+          "mae": 11.376,
+          "rmse": 12.536,
+          "bias": -11.36,
+          "n": 45,
+          "r2": -1.832
+        },
+        "gradient_boosting": {
+          "mae": 10.325,
+          "rmse": 11.405,
+          "bias": -10.019,
+          "n": 45,
+          "r2": -1.344
+        },
+        "ensemble": {
+          "mae": 11.376,
+          "rmse": 12.536,
+          "bias": -11.36,
+          "n": 45,
+          "r2": -1.832
+        },
+        "persistence": {
+          "mae": 5.456,
+          "rmse": 6.526,
+          "bias": 1.087,
+          "n": 45,
+          "r2": 0.233
+        },
+        "official": {
+          "mae": 1.236,
+          "rmse": 1.585,
+          "bias": -0.027,
+          "n": 45,
+          "r2": 0.955
+        }
+      },
+      "production_model": "artifacts\\models\\surgut\\lead_4.joblib"
+    },
+    "5": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.942,
+        "inverse_mae": 5.677,
+        "optimized_mae": 4.898
+      },
+      "validation_mae_ensemble": 4.898,
+      "models": {
+        "linear": {
+          "mae": 6.162,
+          "rmse": 7.071,
+          "bias": -2.578,
+          "n": 45,
+          "r2": 0.099
+        },
+        "random_forest": {
+          "mae": 11.321,
+          "rmse": 12.534,
+          "bias": -11.305,
+          "n": 45,
+          "r2": -1.83
+        },
+        "gradient_boosting": {
+          "mae": 10.923,
+          "rmse": 11.887,
+          "bias": -10.774,
+          "n": 45,
+          "r2": -1.546
+        },
+        "ensemble": {
+          "mae": 11.321,
+          "rmse": 12.534,
+          "bias": -11.305,
+          "n": 45,
+          "r2": -1.83
+        },
+        "persistence": {
+          "mae": 5.551,
+          "rmse": 7.066,
+          "bias": 1.244,
+          "n": 45,
+          "r2": 0.1
+        },
+        "official": {
+          "mae": 1.536,
+          "rmse": 2.023,
+          "bias": 0.504,
+          "n": 45,
+          "r2": 0.926
+        }
+      },
+      "production_model": "artifacts\\models\\surgut\\lead_5.joblib"
+    },
+    "6": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.279,
+        "inverse_mae": 4.756,
+        "optimized_mae": 4.145
+      },
+      "validation_mae_ensemble": 4.145,
+      "models": {
+        "linear": {
+          "mae": 5.921,
+          "rmse": 6.966,
+          "bias": 0.581,
+          "n": 45,
+          "r2": 0.126
+        },
+        "random_forest": {
+          "mae": 10.369,
+          "rmse": 11.669,
+          "bias": -10.292,
+          "n": 45,
+          "r2": -1.453
+        },
+        "gradient_boosting": {
+          "mae": 9.728,
+          "rmse": 11.24,
+          "bias": -9.542,
+          "n": 45,
+          "r2": -1.276
+        },
+        "ensemble": {
+          "mae": 10.369,
+          "rmse": 11.669,
+          "bias": -10.292,
+          "n": 45,
+          "r2": -1.453
+        },
+        "persistence": {
+          "mae": 6.084,
+          "rmse": 7.657,
+          "bias": 1.356,
+          "n": 45,
+          "r2": -0.056
+        },
+        "official": {
+          "mae": 1.931,
+          "rmse": 2.345,
+          "bias": -0.207,
+          "n": 45,
+          "r2": 0.901
+        }
+      },
+      "production_model": "artifacts\\models\\surgut\\lead_6.joblib"
+    },
+    "7": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.127,
+        "inverse_mae": 4.578,
+        "optimized_mae": 3.793
+      },
+      "validation_mae_ensemble": 3.793,
+      "models": {
+        "linear": {
+          "mae": 6.75,
+          "rmse": 7.751,
+          "bias": 2.207,
+          "n": 45,
+          "r2": -0.083
+        },
+        "random_forest": {
+          "mae": 10.81,
+          "rmse": 12.171,
+          "bias": -10.804,
+          "n": 45,
+          "r2": -1.669
+        },
+        "gradient_boosting": {
+          "mae": 10.015,
+          "rmse": 11.567,
+          "bias": -9.76,
+          "n": 45,
+          "r2": -1.411
+        },
+        "ensemble": {
+          "mae": 10.81,
+          "rmse": 12.171,
+          "bias": -10.804,
+          "n": 45,
+          "r2": -1.669
+        },
+        "persistence": {
+          "mae": 6.398,
+          "rmse": 8.061,
+          "bias": 1.504,
+          "n": 45,
+          "r2": -0.171
+        },
+        "official": {
+          "mae": 2.247,
+          "rmse": 2.697,
+          "bias": -0.26,
+          "n": 45,
+          "r2": 0.869
+        }
+      },
+      "production_model": "artifacts\\models\\surgut\\lead_7.joblib"
+    }
+  },
+  "overall": {
+    "linear": {
+      "mae": 5.275,
+      "rmse": 6.376,
+      "bias": -1.525,
+      "n": 315,
+      "r2": 0.268
+    },
+    "random_forest": {
+      "mae": 10.374,
+      "rmse": 11.714,
+      "bias": -10.314,
+      "n": 315,
+      "r2": -1.472
+    },
+    "gradient_boosting": {
+      "mae": 9.885,
+      "rmse": 11.208,
+      "bias": -9.716,
+      "n": 315,
+      "r2": -1.263
+    },
+    "ensemble": {
+      "mae": 9.225,
+      "rmse": 10.779,
+      "bias": -9.051,
+      "n": 315,
+      "r2": -1.093
+    },
+    "persistence": {
+      "mae": 5.231,
+      "rmse": 6.524,
+      "bias": 1.055,
+      "n": 315,
+      "r2": 0.233
+    },
+    "official": {
+      "mae": 1.297,
+      "rmse": 1.769,
+      "bias": -0.021,
+      "n": 315,
+      "r2": 0.944
+    }
+  },
+  "headline": {
+    "ensemble_mae": 9.225,
+    "official_mae": 1.297,
+    "delta_mae": 7.929,
+    "ci95_low": 6.486,
+    "ci95_high": 9.271,
+    "probability_better": 0.0,
+    "skill_vs_official_pct": -611.3,
+    "beats_official": false,
+    "best_model": "linear",
+    "n_dates": 45,
+    "n_rows": 315,
+    "bootstrap_iterations": 3000
+  },
+  "methodology": {
+    "split": "chronological holdout: train → validation → test",
+    "sample_weighting": "экспоненциальные веса свежести, период полураспада 365 дней",
+    "ensemble_weights": "способ и веса выбраны только по validation",
+    "test_usage": "тест не использовался для обучения и подбора весов",
+    "official_baseline": "Open-Meteo Previous Runs API: прогноз, выпущенный за 1–7 дней до целевой даты",
+    "fair_comparison": "метрики на общих датах, где доступен официальный прогноз",
+    "uncertainty": "парный cluster bootstrap по датам, 95% интервал"
+  }
+}

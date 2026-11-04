@@ -1,0 +1,13 @@
+{
+  "source": "Open-Meteo Previous Runs API (архив оперативных прогнозов)",
+  "source_url": "https://previous-runs-api.open-meteo.com/v1/forecast",
+  "downloaded_at": "2026-10-21T00:41:23.953140+05:00",
+  "first_date": "2026-07-21",
+  "last_date": "2026-10-20",
+  "rows": 92,
+  "past_days": 92,
+  "latitude_returned": 57.91253,
+  "longitude_returned": 60.013058,
+  "timezone": "Asia/Yekaterinburg",
+  "note": "Дневной максимум собран из почасовых значений previous_day1..7. Это архив прогнозов Open-Meteo, а не официальный прогноз Росгидромета."
+}

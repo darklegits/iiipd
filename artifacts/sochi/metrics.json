@@ -1,0 +1,624 @@
+{
+  "generated_at": "2026-10-21T00:47:33+05:00",
+  "app": {
+    "name": "Погодный оракул",
+    "target": "Дневной максимум температуры на 2 м",
+    "unit": "°C",
+    "leads": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "location": {
+    "name": "Сочи",
+    "name_genitive": "Сочи",
+    "latitude": 43.5855,
+    "longitude": 39.7231,
+    "timezone": "Europe/Moscow",
+    "slug": "sochi"
+  },
+  "data": {
+    "actuals": {
+      "source": "Open-Meteo Archive API (ERA5 / best match)",
+      "source_url": "https://archive-api.open-meteo.com/v1/archive",
+      "downloaded_at": "2026-10-20T22:41:34.183052+03:00",
+      "requested_start": "2025-10-20",
+      "requested_end": "2026-10-19",
+      "first_date": "2025-10-20",
+      "last_date": "2026-10-19",
+      "rows": 365,
+      "latitude_requested": 43.5855,
+      "longitude_requested": 39.7231,
+      "latitude_returned": 43.620384,
+      "longitude_returned": 39.713856,
+      "elevation_m": 5.0,
+      "timezone": "Europe/Moscow"
+    },
+    "official": {
+      "source": "Open-Meteo Previous Runs API (архив оперативных прогнозов)",
+      "source_url": "https://previous-runs-api.open-meteo.com/v1/forecast",
+      "downloaded_at": "2026-10-20T22:41:35.242662+03:00",
+      "first_date": "2026-07-20",
+      "last_date": "2026-10-19",
+      "rows": 92,
+      "past_days": 92,
+      "latitude_returned": 43.628204,
+      "longitude_returned": 39.69933,
+      "timezone": "Europe/Moscow",
+      "note": "Дневной максимум собран из почасовых значений previous_day1..7. Это архив прогнозов Open-Meteo, а не официальный прогноз Росгидромета."
+    },
+    "first_actual_date": "2025-10-20",
+    "last_actual_date": "2026-10-19",
+    "actual_days": 365,
+    "official_days": 92
+  },
+  "periods": {
+    "train": {
+      "start": "2025-11-04",
+      "end": "2026-08-05",
+      "days": 275
+    },
+    "validation": {
+      "start": "2026-08-06",
+      "end": "2026-09-04",
+      "days": 30
+    },
+    "test": {
+      "start": "2026-09-05",
+      "end": "2026-10-19",
+      "days": 45
+    },
+    "targets_per_lead": {
+      "lead_1": {
+        "train": 275,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_2": {
+        "train": 274,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_3": {
+        "train": 273,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_4": {
+        "train": 272,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_5": {
+        "train": 271,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_6": {
+        "train": 270,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_7": {
+        "train": 269,
+        "validation": 30,
+        "test": 45
+      }
+    }
+  },
+  "leads": {
+    "1": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-05",
+      "test_end": "2026-10-19",
+      "weights": {
+        "linear": 0.86,
+        "random_forest": 0.04,
+        "gradient_boosting": 0.1
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.188,
+        "inverse_mae": 1.74,
+        "optimized_mae": 1.228
+      },
+      "validation_mae_ensemble": 1.228,
+      "models": {
+        "linear": {
+          "mae": 2.328,
+          "rmse": 2.862,
+          "bias": 1.508,
+          "n": 45,
+          "r2": -0.097
+        },
+        "random_forest": {
+          "mae": 4.797,
+          "rmse": 5.4,
+          "bias": -4.797,
+          "n": 45,
+          "r2": -2.907
+        },
+        "gradient_boosting": {
+          "mae": 4.391,
+          "rmse": 5.077,
+          "bias": -4.333,
+          "n": 45,
+          "r2": -2.452
+        },
+        "ensemble": {
+          "mae": 1.994,
+          "rmse": 2.467,
+          "bias": 0.672,
+          "n": 45,
+          "r2": 0.185
+        },
+        "persistence": {
+          "mae": 2.449,
+          "rmse": 2.856,
+          "bias": 0.258,
+          "n": 45,
+          "r2": -0.093
+        },
+        "official": {
+          "mae": 0.871,
+          "rmse": 1.085,
+          "bias": -0.324,
+          "n": 45,
+          "r2": 0.842
+        }
+      },
+      "production_model": "artifacts\\models\\sochi\\lead_1.joblib"
+    },
+    "2": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-05",
+      "test_end": "2026-10-19",
+      "weights": {
+        "linear": 0.9,
+        "random_forest": 0.1,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.313,
+        "inverse_mae": 1.618,
+        "optimized_mae": 1.22
+      },
+      "validation_mae_ensemble": 1.22,
+      "models": {
+        "linear": {
+          "mae": 2.941,
+          "rmse": 3.629,
+          "bias": 2.253,
+          "n": 45,
+          "r2": -0.764
+        },
+        "random_forest": {
+          "mae": 5.112,
+          "rmse": 5.706,
+          "bias": -5.112,
+          "n": 45,
+          "r2": -3.361
+        },
+        "gradient_boosting": {
+          "mae": 5.024,
+          "rmse": 5.618,
+          "bias": -5.024,
+          "n": 45,
+          "r2": -3.228
+        },
+        "ensemble": {
+          "mae": 2.531,
+          "rmse": 3.145,
+          "bias": 1.517,
+          "n": 45,
+          "r2": -0.324
+        },
+        "persistence": {
+          "mae": 2.671,
+          "rmse": 3.19,
+          "bias": 0.333,
+          "n": 45,
+          "r2": -0.363
+        },
+        "official": {
+          "mae": 1.069,
+          "rmse": 1.362,
+          "bias": -0.318,
+          "n": 45,
+          "r2": 0.752
+        }
+      },
+      "production_model": "artifacts\\models\\sochi\\lead_2.joblib"
+    },
+    "3": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-05",
+      "test_end": "2026-10-19",
+      "weights": {
+        "linear": 0.86,
+        "random_forest": 0.14,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.615,
+        "inverse_mae": 1.576,
+        "optimized_mae": 1.104
+      },
+      "validation_mae_ensemble": 1.104,
+      "models": {
+        "linear": {
+          "mae": 3.501,
+          "rmse": 4.26,
+          "bias": 3.033,
+          "n": 45,
+          "r2": -1.431
+        },
+        "random_forest": {
+          "mae": 6.424,
+          "rmse": 6.974,
+          "bias": -6.424,
+          "n": 45,
+          "r2": -5.515
+        },
+        "gradient_boosting": {
+          "mae": 5.527,
+          "rmse": 6.203,
+          "bias": -5.527,
+          "n": 45,
+          "r2": -4.153
+        },
+        "ensemble": {
+          "mae": 2.729,
+          "rmse": 3.348,
+          "bias": 1.709,
+          "n": 45,
+          "r2": -0.501
+        },
+        "persistence": {
+          "mae": 2.918,
+          "rmse": 3.473,
+          "bias": 0.487,
+          "n": 45,
+          "r2": -0.616
+        },
+        "official": {
+          "mae": 1.1,
+          "rmse": 1.397,
+          "bias": -0.211,
+          "n": 45,
+          "r2": 0.739
+        }
+      },
+      "production_model": "artifacts\\models\\sochi\\lead_3.joblib"
+    },
+    "4": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-05",
+      "test_end": "2026-10-19",
+      "weights": {
+        "linear": 0.8,
+        "random_forest": 0.2,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.186,
+        "inverse_mae": 1.721,
+        "optimized_mae": 1.245
+      },
+      "validation_mae_ensemble": 1.245,
+      "models": {
+        "linear": {
+          "mae": 3.953,
+          "rmse": 4.683,
+          "bias": 3.542,
+          "n": 45,
+          "r2": -1.938
+        },
+        "random_forest": {
+          "mae": 6.364,
+          "rmse": 6.99,
+          "bias": -6.364,
+          "n": 45,
+          "r2": -5.545
+        },
+        "gradient_boosting": {
+          "mae": 5.303,
+          "rmse": 5.966,
+          "bias": -5.282,
+          "n": 45,
+          "r2": -3.767
+        },
+        "ensemble": {
+          "mae": 2.812,
+          "rmse": 3.337,
+          "bias": 1.561,
+          "n": 45,
+          "r2": -0.492
+        },
+        "persistence": {
+          "mae": 2.982,
+          "rmse": 3.623,
+          "bias": 0.582,
+          "n": 45,
+          "r2": -0.758
+        },
+        "official": {
+          "mae": 1.209,
+          "rmse": 1.632,
+          "bias": -0.222,
+          "n": 45,
+          "r2": 0.643
+        }
+      },
+      "production_model": "artifacts\\models\\sochi\\lead_4.joblib"
+    },
+    "5": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-05",
+      "test_end": "2026-10-19",
+      "weights": {
+        "linear": 0.78,
+        "random_forest": 0.22,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.183,
+        "inverse_mae": 1.892,
+        "optimized_mae": 1.368
+      },
+      "validation_mae_ensemble": 1.368,
+      "models": {
+        "linear": {
+          "mae": 3.924,
+          "rmse": 4.653,
+          "bias": 3.484,
+          "n": 45,
+          "r2": -1.9
+        },
+        "random_forest": {
+          "mae": 6.731,
+          "rmse": 7.371,
+          "bias": -6.731,
+          "n": 45,
+          "r2": -6.278
+        },
+        "gradient_boosting": {
+          "mae": 6.061,
+          "rmse": 6.71,
+          "bias": -6.061,
+          "n": 45,
+          "r2": -5.03
+        },
+        "ensemble": {
+          "mae": 2.709,
+          "rmse": 3.23,
+          "bias": 1.237,
+          "n": 45,
+          "r2": -0.397
+        },
+        "persistence": {
+          "mae": 3.056,
+          "rmse": 3.599,
+          "bias": 0.624,
+          "n": 45,
+          "r2": -0.735
+        },
+        "official": {
+          "mae": 1.693,
+          "rmse": 2.199,
+          "bias": 0.791,
+          "n": 45,
+          "r2": 0.352
+        }
+      },
+      "production_model": "artifacts\\models\\sochi\\lead_5.joblib"
+    },
+    "6": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-05",
+      "test_end": "2026-10-19",
+      "weights": {
+        "linear": 0.74,
+        "random_forest": 0.26,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 2.97,
+        "inverse_mae": 1.853,
+        "optimized_mae": 1.246
+      },
+      "validation_mae_ensemble": 1.246,
+      "models": {
+        "linear": {
+          "mae": 4.48,
+          "rmse": 5.313,
+          "bias": 4.024,
+          "n": 45,
+          "r2": -2.78
+        },
+        "random_forest": {
+          "mae": 7.03,
+          "rmse": 7.614,
+          "bias": -7.03,
+          "n": 45,
+          "r2": -6.765
+        },
+        "gradient_boosting": {
+          "mae": 6.335,
+          "rmse": 6.95,
+          "bias": -6.335,
+          "n": 45,
+          "r2": -5.471
+        },
+        "ensemble": {
+          "mae": 2.811,
+          "rmse": 3.432,
+          "bias": 1.15,
+          "n": 45,
+          "r2": -0.578
+        },
+        "persistence": {
+          "mae": 3.147,
+          "rmse": 3.798,
+          "bias": 0.64,
+          "n": 45,
+          "r2": -0.932
+        },
+        "official": {
+          "mae": 2.073,
+          "rmse": 2.708,
+          "bias": 1.549,
+          "n": 45,
+          "r2": 0.018
+        }
+      },
+      "production_model": "artifacts\\models\\sochi\\lead_6.joblib"
+    },
+    "7": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-05",
+      "test_end": "2026-10-19",
+      "weights": {
+        "linear": 0.78,
+        "random_forest": 0.22,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.167,
+        "inverse_mae": 1.917,
+        "optimized_mae": 1.192
+      },
+      "validation_mae_ensemble": 1.192,
+      "models": {
+        "linear": {
+          "mae": 4.295,
+          "rmse": 5.111,
+          "bias": 3.828,
+          "n": 45,
+          "r2": -2.499
+        },
+        "random_forest": {
+          "mae": 6.986,
+          "rmse": 7.549,
+          "bias": -6.986,
+          "n": 45,
+          "r2": -6.634
+        },
+        "gradient_boosting": {
+          "mae": 7.259,
+          "rmse": 7.917,
+          "bias": -7.259,
+          "n": 45,
+          "r2": -7.396
+        },
+        "ensemble": {
+          "mae": 2.96,
+          "rmse": 3.497,
+          "bias": 1.449,
+          "n": 45,
+          "r2": -0.638
+        },
+        "persistence": {
+          "mae": 3.044,
+          "rmse": 3.79,
+          "bias": 0.627,
+          "n": 45,
+          "r2": -0.924
+        },
+        "official": {
+          "mae": 1.76,
+          "rmse": 2.366,
+          "bias": 0.942,
+          "n": 45,
+          "r2": 0.25
+        }
+      },
+      "production_model": "artifacts\\models\\sochi\\lead_7.joblib"
+    }
+  },
+  "overall": {
+    "linear": {
+      "mae": 3.632,
+      "rmse": 4.431,
+      "bias": 3.096,
+      "n": 315,
+      "r2": -1.63
+    },
+    "random_forest": {
+      "mae": 6.206,
+      "rmse": 6.851,
+      "bias": -6.206,
+      "n": 315,
+      "r2": -5.286
+    },
+    "gradient_boosting": {
+      "mae": 5.7,
+      "rmse": 6.408,
+      "bias": -5.689,
+      "n": 315,
+      "r2": -4.5
+    },
+    "ensemble": {
+      "mae": 2.649,
+      "rmse": 3.224,
+      "bias": 1.328,
+      "n": 315,
+      "r2": -0.392
+    },
+    "persistence": {
+      "mae": 2.895,
+      "rmse": 3.49,
+      "bias": 0.507,
+      "n": 315,
+      "r2": -0.632
+    },
+    "official": {
+      "mae": 1.397,
+      "rmse": 1.905,
+      "bias": 0.315,
+      "n": 315,
+      "r2": 0.514
+    }
+  },
+  "headline": {
+    "ensemble_mae": 2.649,
+    "official_mae": 1.397,
+    "delta_mae": 1.253,
+    "ci95_low": 0.783,
+    "ci95_high": 1.727,
+    "probability_better": 0.0,
+    "skill_vs_official_pct": -89.6,
+    "beats_official": false,
+    "best_model": "ensemble",
+    "n_dates": 45,
+    "n_rows": 315,
+    "bootstrap_iterations": 3000
+  },
+  "methodology": {
+    "split": "chronological holdout: train → validation → test",
+    "sample_weighting": "экспоненциальные веса свежести, период полураспада 365 дней",
+    "ensemble_weights": "способ и веса выбраны только по validation",
+    "test_usage": "тест не использовался для обучения и подбора весов",
+    "official_baseline": "Open-Meteo Previous Runs API: прогноз, выпущенный за 1–7 дней до целевой даты",
+    "fair_comparison": "метрики на общих датах, где доступен официальный прогноз",
+    "uncertainty": "парный cluster bootstrap по датам, 95% интервал"
+  }
+}

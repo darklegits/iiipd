@@ -1,0 +1,624 @@
+{
+  "generated_at": "2026-10-21T00:43:21+05:00",
+  "app": {
+    "name": "Погодный оракул",
+    "target": "Дневной максимум температуры на 2 м",
+    "unit": "°C",
+    "leads": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "location": {
+    "name": "Тюмень",
+    "name_genitive": "Тюмени",
+    "latitude": 57.1522,
+    "longitude": 65.5272,
+    "timezone": "Asia/Yekaterinburg",
+    "slug": "tyumen"
+  },
+  "data": {
+    "actuals": {
+      "source": "Open-Meteo Archive API (ERA5 / best match)",
+      "source_url": "https://archive-api.open-meteo.com/v1/archive",
+      "downloaded_at": "2026-10-21T00:41:13.074184+05:00",
+      "requested_start": "2025-10-21",
+      "requested_end": "2026-10-20",
+      "first_date": "2025-10-21",
+      "last_date": "2026-10-20",
+      "rows": 365,
+      "latitude_requested": 57.1522,
+      "longitude_requested": 65.5272,
+      "latitude_returned": 57.18805,
+      "longitude_returned": 65.541405,
+      "elevation_m": 82.0,
+      "timezone": "Asia/Yekaterinburg"
+    },
+    "official": {
+      "source": "Open-Meteo Previous Runs API (архив оперативных прогнозов)",
+      "source_url": "https://previous-runs-api.open-meteo.com/v1/forecast",
+      "downloaded_at": "2026-10-21T00:41:14.535223+05:00",
+      "first_date": "2026-07-21",
+      "last_date": "2026-10-20",
+      "rows": 92,
+      "past_days": 92,
+      "latitude_returned": 57.18805,
+      "longitude_returned": 65.541405,
+      "timezone": "Asia/Yekaterinburg",
+      "note": "Дневной максимум собран из почасовых значений previous_day1..7. Это архив прогнозов Open-Meteo, а не официальный прогноз Росгидромета."
+    },
+    "first_actual_date": "2025-10-21",
+    "last_actual_date": "2026-10-20",
+    "actual_days": 365,
+    "official_days": 92
+  },
+  "periods": {
+    "train": {
+      "start": "2025-11-05",
+      "end": "2026-08-06",
+      "days": 275
+    },
+    "validation": {
+      "start": "2026-08-07",
+      "end": "2026-09-05",
+      "days": 30
+    },
+    "test": {
+      "start": "2026-09-06",
+      "end": "2026-10-20",
+      "days": 45
+    },
+    "targets_per_lead": {
+      "lead_1": {
+        "train": 275,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_2": {
+        "train": 274,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_3": {
+        "train": 273,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_4": {
+        "train": 272,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_5": {
+        "train": 271,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_6": {
+        "train": 270,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_7": {
+        "train": 269,
+        "validation": 30,
+        "test": 45
+      }
+    }
+  },
+  "leads": {
+    "1": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.04,
+        "random_forest": 0.96,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.302,
+        "inverse_mae": 4.299,
+        "optimized_mae": 4.207
+      },
+      "validation_mae_ensemble": 4.207,
+      "models": {
+        "linear": {
+          "mae": 2.935,
+          "rmse": 3.791,
+          "bias": 1.167,
+          "n": 45,
+          "r2": 0.602
+        },
+        "random_forest": {
+          "mae": 4.352,
+          "rmse": 5.61,
+          "bias": 0.074,
+          "n": 45,
+          "r2": 0.128
+        },
+        "gradient_boosting": {
+          "mae": 4.411,
+          "rmse": 5.795,
+          "bias": -0.659,
+          "n": 45,
+          "r2": 0.07
+        },
+        "ensemble": {
+          "mae": 4.266,
+          "rmse": 5.492,
+          "bias": 0.117,
+          "n": 45,
+          "r2": 0.164
+        },
+        "persistence": {
+          "mae": 3.604,
+          "rmse": 4.451,
+          "bias": 0.676,
+          "n": 45,
+          "r2": 0.451
+        },
+        "official": {
+          "mae": 0.42,
+          "rmse": 0.572,
+          "bias": -0.198,
+          "n": 45,
+          "r2": 0.991
+        }
+      },
+      "production_model": "artifacts\\models\\tyumen\\lead_1.joblib"
+    },
+    "2": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.641,
+        "inverse_mae": 4.622,
+        "optimized_mae": 4.454
+      },
+      "validation_mae_ensemble": 4.454,
+      "models": {
+        "linear": {
+          "mae": 3.698,
+          "rmse": 4.347,
+          "bias": 1.801,
+          "n": 45,
+          "r2": 0.476
+        },
+        "random_forest": {
+          "mae": 4.803,
+          "rmse": 6.227,
+          "bias": -0.734,
+          "n": 45,
+          "r2": -0.074
+        },
+        "gradient_boosting": {
+          "mae": 4.568,
+          "rmse": 5.577,
+          "bias": 0.08,
+          "n": 45,
+          "r2": 0.138
+        },
+        "ensemble": {
+          "mae": 4.803,
+          "rmse": 6.227,
+          "bias": -0.734,
+          "n": 45,
+          "r2": -0.074
+        },
+        "persistence": {
+          "mae": 4.144,
+          "rmse": 4.935,
+          "bias": 0.771,
+          "n": 45,
+          "r2": 0.325
+        },
+        "official": {
+          "mae": 0.751,
+          "rmse": 1.035,
+          "bias": -0.231,
+          "n": 45,
+          "r2": 0.97
+        }
+      },
+      "production_model": "artifacts\\models\\tyumen\\lead_2.joblib"
+    },
+    "3": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.522,
+        "inverse_mae": 4.489,
+        "optimized_mae": 4.315
+      },
+      "validation_mae_ensemble": 4.315,
+      "models": {
+        "linear": {
+          "mae": 4.048,
+          "rmse": 4.881,
+          "bias": 2.527,
+          "n": 45,
+          "r2": 0.34
+        },
+        "random_forest": {
+          "mae": 4.518,
+          "rmse": 5.823,
+          "bias": 0.322,
+          "n": 45,
+          "r2": 0.061
+        },
+        "gradient_boosting": {
+          "mae": 4.173,
+          "rmse": 5.425,
+          "bias": -0.793,
+          "n": 45,
+          "r2": 0.185
+        },
+        "ensemble": {
+          "mae": 4.518,
+          "rmse": 5.823,
+          "bias": 0.322,
+          "n": 45,
+          "r2": 0.061
+        },
+        "persistence": {
+          "mae": 4.573,
+          "rmse": 5.554,
+          "bias": 0.853,
+          "n": 45,
+          "r2": 0.145
+        },
+        "official": {
+          "mae": 0.873,
+          "rmse": 1.154,
+          "bias": -0.153,
+          "n": 45,
+          "r2": 0.963
+        }
+      },
+      "production_model": "artifacts\\models\\tyumen\\lead_3.joblib"
+    },
+    "4": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.1,
+        "random_forest": 0.9,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.733,
+        "inverse_mae": 4.702,
+        "optimized_mae": 4.389
+      },
+      "validation_mae_ensemble": 4.389,
+      "models": {
+        "linear": {
+          "mae": 5.056,
+          "rmse": 5.962,
+          "bias": 3.719,
+          "n": 45,
+          "r2": 0.015
+        },
+        "random_forest": {
+          "mae": 4.868,
+          "rmse": 6.097,
+          "bias": 0.536,
+          "n": 45,
+          "r2": -0.03
+        },
+        "gradient_boosting": {
+          "mae": 4.94,
+          "rmse": 6.035,
+          "bias": 1.211,
+          "n": 45,
+          "r2": -0.009
+        },
+        "ensemble": {
+          "mae": 4.779,
+          "rmse": 5.917,
+          "bias": 0.854,
+          "n": 45,
+          "r2": 0.03
+        },
+        "persistence": {
+          "mae": 4.891,
+          "rmse": 6.306,
+          "bias": 0.856,
+          "n": 45,
+          "r2": -0.102
+        },
+        "official": {
+          "mae": 1.202,
+          "rmse": 1.585,
+          "bias": 0.051,
+          "n": 45,
+          "r2": 0.93
+        }
+      },
+      "production_model": "artifacts\\models\\tyumen\\lead_4.joblib"
+    },
+    "5": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 5.236,
+        "inverse_mae": 5.222,
+        "optimized_mae": 5.088
+      },
+      "validation_mae_ensemble": 5.088,
+      "models": {
+        "linear": {
+          "mae": 5.363,
+          "rmse": 6.274,
+          "bias": 4.025,
+          "n": 45,
+          "r2": -0.091
+        },
+        "random_forest": {
+          "mae": 5.736,
+          "rmse": 6.835,
+          "bias": 1.5,
+          "n": 45,
+          "r2": -0.294
+        },
+        "gradient_boosting": {
+          "mae": 5.051,
+          "rmse": 6.27,
+          "bias": 0.259,
+          "n": 45,
+          "r2": -0.089
+        },
+        "ensemble": {
+          "mae": 5.736,
+          "rmse": 6.835,
+          "bias": 1.5,
+          "n": 45,
+          "r2": -0.294
+        },
+        "persistence": {
+          "mae": 5.193,
+          "rmse": 6.949,
+          "bias": 0.833,
+          "n": 45,
+          "r2": -0.338
+        },
+        "official": {
+          "mae": 1.64,
+          "rmse": 2.179,
+          "bias": -0.004,
+          "n": 45,
+          "r2": 0.868
+        }
+      },
+      "production_model": "artifacts\\models\\tyumen\\lead_5.joblib"
+    },
+    "6": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.3,
+        "random_forest": 0.7,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.923,
+        "inverse_mae": 4.913,
+        "optimized_mae": 4.803
+      },
+      "validation_mae_ensemble": 4.803,
+      "models": {
+        "linear": {
+          "mae": 5.294,
+          "rmse": 6.297,
+          "bias": 3.946,
+          "n": 45,
+          "r2": -0.099
+        },
+        "random_forest": {
+          "mae": 5.955,
+          "rmse": 7.057,
+          "bias": 1.298,
+          "n": 45,
+          "r2": -0.38
+        },
+        "gradient_boosting": {
+          "mae": 5.57,
+          "rmse": 6.736,
+          "bias": 1.867,
+          "n": 45,
+          "r2": -0.257
+        },
+        "ensemble": {
+          "mae": 5.356,
+          "rmse": 6.382,
+          "bias": 2.093,
+          "n": 45,
+          "r2": -0.128
+        },
+        "persistence": {
+          "mae": 5.276,
+          "rmse": 7.238,
+          "bias": 0.889,
+          "n": 45,
+          "r2": -0.451
+        },
+        "official": {
+          "mae": 2.216,
+          "rmse": 2.813,
+          "bias": -0.58,
+          "n": 45,
+          "r2": 0.781
+        }
+      },
+      "production_model": "artifacts\\models\\tyumen\\lead_6.joblib"
+    },
+    "7": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.0,
+        "random_forest": 1.0,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.884,
+        "inverse_mae": 4.874,
+        "optimized_mae": 4.743
+      },
+      "validation_mae_ensemble": 4.743,
+      "models": {
+        "linear": {
+          "mae": 6.216,
+          "rmse": 7.357,
+          "bias": 5.381,
+          "n": 45,
+          "r2": -0.5
+        },
+        "random_forest": {
+          "mae": 5.825,
+          "rmse": 6.873,
+          "bias": 1.393,
+          "n": 45,
+          "r2": -0.309
+        },
+        "gradient_boosting": {
+          "mae": 5.511,
+          "rmse": 6.648,
+          "bias": 0.32,
+          "n": 45,
+          "r2": -0.224
+        },
+        "ensemble": {
+          "mae": 5.825,
+          "rmse": 6.873,
+          "bias": 1.393,
+          "n": 45,
+          "r2": -0.309
+        },
+        "persistence": {
+          "mae": 5.711,
+          "rmse": 7.444,
+          "bias": 0.973,
+          "n": 45,
+          "r2": -0.535
+        },
+        "official": {
+          "mae": 2.38,
+          "rmse": 2.984,
+          "bias": -0.278,
+          "n": 45,
+          "r2": 0.753
+        }
+      },
+      "production_model": "artifacts\\models\\tyumen\\lead_7.joblib"
+    }
+  },
+  "overall": {
+    "linear": {
+      "mae": 4.659,
+      "rmse": 5.68,
+      "bias": 3.224,
+      "n": 315,
+      "r2": 0.106
+    },
+    "random_forest": {
+      "mae": 5.151,
+      "rmse": 6.382,
+      "bias": 0.627,
+      "n": 315,
+      "r2": -0.128
+    },
+    "gradient_boosting": {
+      "mae": 4.889,
+      "rmse": 6.088,
+      "bias": 0.326,
+      "n": 315,
+      "r2": -0.027
+    },
+    "ensemble": {
+      "mae": 5.04,
+      "rmse": 6.24,
+      "bias": 0.792,
+      "n": 315,
+      "r2": -0.079
+    },
+    "persistence": {
+      "mae": 4.77,
+      "rmse": 6.221,
+      "bias": 0.836,
+      "n": 315,
+      "r2": -0.072
+    },
+    "official": {
+      "mae": 1.355,
+      "rmse": 1.957,
+      "bias": -0.199,
+      "n": 315,
+      "r2": 0.894
+    }
+  },
+  "headline": {
+    "ensemble_mae": 5.04,
+    "official_mae": 1.355,
+    "delta_mae": 3.686,
+    "ci95_low": 2.758,
+    "ci95_high": 4.712,
+    "probability_better": 0.0,
+    "skill_vs_official_pct": -272.0,
+    "beats_official": false,
+    "best_model": "linear",
+    "n_dates": 45,
+    "n_rows": 315,
+    "bootstrap_iterations": 3000
+  },
+  "methodology": {
+    "split": "chronological holdout: train → validation → test",
+    "sample_weighting": "экспоненциальные веса свежести, период полураспада 365 дней",
+    "ensemble_weights": "способ и веса выбраны только по validation",
+    "test_usage": "тест не использовался для обучения и подбора весов",
+    "official_baseline": "Open-Meteo Previous Runs API: прогноз, выпущенный за 1–7 дней до целевой даты",
+    "fair_comparison": "метрики на общих датах, где доступен официальный прогноз",
+    "uncertainty": "парный cluster bootstrap по датам, 95% интервал"
+  }
+}

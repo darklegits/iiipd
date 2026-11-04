@@ -1,0 +1,16 @@
+{
+  "source": "Open-Meteo Archive API (ERA5 / best match)",
+  "source_url": "https://archive-api.open-meteo.com/v1/archive",
+  "downloaded_at": "2026-10-21T02:41:30.751628+07:00",
+  "requested_start": "2025-10-21",
+  "requested_end": "2026-10-20",
+  "first_date": "2025-10-21",
+  "last_date": "2026-10-20",
+  "rows": 365,
+  "latitude_requested": 55.0084,
+  "longitude_requested": 82.9357,
+  "latitude_returned": 55.008785,
+  "longitude_returned": 83.00797,
+  "elevation_m": 117.0,
+  "timezone": "Asia/Novosibirsk"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "/",
+  "name": "Погодный оракул — прогноз до 14 дней",
+  "short_name": "Оракул",
+  "description": "Ансамбль ML-моделей для прогноза температуры в 14 городах России. Честные метрики и сравнение с официальным прогнозом.",
+  "lang": "ru",
+  "dir": "ltr",
+  "start_url": "/forecast",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "theme_color": "#101114",
+  "background_color": "#f6f7f9",
+  "categories": ["weather", "utilities"],
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Прогноз до 14 дней",
+      "short_name": "Прогноз",
+      "url": "/forecast",
+      "icons": [{"src": "/static/icons/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Сравнение моделей",
+      "short_name": "Метрики",
+      "url": "/compare",
+      "icons": [{"src": "/static/icons/icon-192.png", "sizes": "192x192"}]
+    }
+  ]
+}

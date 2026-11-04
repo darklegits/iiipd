@@ -1,0 +1,624 @@
+{
+  "generated_at": "2026-10-21T00:42:34+05:00",
+  "app": {
+    "name": "Погодный оракул",
+    "target": "Дневной максимум температуры на 2 м",
+    "unit": "°C",
+    "leads": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "location": {
+    "name": "Екатеринбург",
+    "name_genitive": "Екатеринбурга",
+    "latitude": 56.8389,
+    "longitude": 60.6057,
+    "timezone": "Asia/Yekaterinburg",
+    "slug": "ekaterinburg"
+  },
+  "data": {
+    "actuals": {
+      "source": "Open-Meteo Archive API (ERA5 / best match)",
+      "source_url": "https://archive-api.open-meteo.com/v1/archive",
+      "downloaded_at": "2026-10-21T00:41:09.083347+05:00",
+      "requested_start": "2025-10-21",
+      "requested_end": "2026-10-20",
+      "first_date": "2025-10-21",
+      "last_date": "2026-10-20",
+      "rows": 365,
+      "latitude_requested": 56.8389,
+      "longitude_requested": 60.6057,
+      "latitude_returned": 56.906853,
+      "longitude_returned": 60.63158,
+      "elevation_m": 244.0,
+      "timezone": "Asia/Yekaterinburg"
+    },
+    "official": {
+      "source": "Open-Meteo Previous Runs API (архив оперативных прогнозов)",
+      "source_url": "https://previous-runs-api.open-meteo.com/v1/forecast",
+      "downloaded_at": "2026-10-21T00:41:10.240163+05:00",
+      "first_date": "2026-07-21",
+      "last_date": "2026-10-20",
+      "rows": 92,
+      "past_days": 92,
+      "latitude_returned": 56.856808,
+      "longitude_returned": 60.56482,
+      "timezone": "Asia/Yekaterinburg",
+      "note": "Дневной максимум собран из почасовых значений previous_day1..7. Это архив прогнозов Open-Meteo, а не официальный прогноз Росгидромета."
+    },
+    "first_actual_date": "2025-10-21",
+    "last_actual_date": "2026-10-20",
+    "actual_days": 365,
+    "official_days": 92
+  },
+  "periods": {
+    "train": {
+      "start": "2025-11-05",
+      "end": "2026-08-06",
+      "days": 275
+    },
+    "validation": {
+      "start": "2026-08-07",
+      "end": "2026-09-05",
+      "days": 30
+    },
+    "test": {
+      "start": "2026-09-06",
+      "end": "2026-10-20",
+      "days": 45
+    },
+    "targets_per_lead": {
+      "lead_1": {
+        "train": 275,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_2": {
+        "train": 274,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_3": {
+        "train": 273,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_4": {
+        "train": 272,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_5": {
+        "train": 271,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_6": {
+        "train": 270,
+        "validation": 30,
+        "test": 45
+      },
+      "lead_7": {
+        "train": 269,
+        "validation": 30,
+        "test": 45
+      }
+    }
+  },
+  "leads": {
+    "1": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.16,
+        "random_forest": 0.84,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.449,
+        "inverse_mae": 3.446,
+        "optimized_mae": 3.376
+      },
+      "validation_mae_ensemble": 3.376,
+      "models": {
+        "linear": {
+          "mae": 3.41,
+          "rmse": 4.528,
+          "bias": 2.449,
+          "n": 45,
+          "r2": 0.292
+        },
+        "random_forest": {
+          "mae": 3.224,
+          "rmse": 4.425,
+          "bias": 0.244,
+          "n": 45,
+          "r2": 0.324
+        },
+        "gradient_boosting": {
+          "mae": 3.42,
+          "rmse": 4.411,
+          "bias": -0.211,
+          "n": 45,
+          "r2": 0.329
+        },
+        "ensemble": {
+          "mae": 3.079,
+          "rmse": 4.267,
+          "bias": 0.597,
+          "n": 45,
+          "r2": 0.371
+        },
+        "persistence": {
+          "mae": 3.387,
+          "rmse": 4.179,
+          "bias": 0.6,
+          "n": 45,
+          "r2": 0.397
+        },
+        "official": {
+          "mae": 0.891,
+          "rmse": 1.13,
+          "bias": 0.14,
+          "n": 45,
+          "r2": 0.956
+        }
+      },
+      "production_model": "artifacts\\models\\ekaterinburg\\lead_1.joblib"
+    },
+    "2": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.02,
+        "random_forest": 0.5,
+        "gradient_boosting": 0.48
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.809,
+        "inverse_mae": 3.748,
+        "optimized_mae": 3.58
+      },
+      "validation_mae_ensemble": 3.58,
+      "models": {
+        "linear": {
+          "mae": 4.678,
+          "rmse": 5.681,
+          "bias": 3.958,
+          "n": 45,
+          "r2": -0.114
+        },
+        "random_forest": {
+          "mae": 3.796,
+          "rmse": 4.876,
+          "bias": -0.463,
+          "n": 45,
+          "r2": 0.18
+        },
+        "gradient_boosting": {
+          "mae": 4.134,
+          "rmse": 4.951,
+          "bias": -1.273,
+          "n": 45,
+          "r2": 0.154
+        },
+        "ensemble": {
+          "mae": 3.897,
+          "rmse": 4.816,
+          "bias": -0.764,
+          "n": 45,
+          "r2": 0.199
+        },
+        "persistence": {
+          "mae": 3.893,
+          "rmse": 4.984,
+          "bias": 0.742,
+          "n": 45,
+          "r2": 0.143
+        },
+        "official": {
+          "mae": 1.033,
+          "rmse": 1.267,
+          "bias": -0.113,
+          "n": 45,
+          "r2": 0.945
+        }
+      },
+      "production_model": "artifacts\\models\\ekaterinburg\\lead_2.joblib"
+    },
+    "3": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.04,
+        "random_forest": 0.0,
+        "gradient_boosting": 0.96
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 3.706,
+        "inverse_mae": 3.499,
+        "optimized_mae": 3.182
+      },
+      "validation_mae_ensemble": 3.182,
+      "models": {
+        "linear": {
+          "mae": 5.635,
+          "rmse": 6.856,
+          "bias": 5.345,
+          "n": 45,
+          "r2": -0.622
+        },
+        "random_forest": {
+          "mae": 3.955,
+          "rmse": 5.17,
+          "bias": 0.1,
+          "n": 45,
+          "r2": 0.077
+        },
+        "gradient_boosting": {
+          "mae": 4.446,
+          "rmse": 5.232,
+          "bias": -1.136,
+          "n": 45,
+          "r2": 0.055
+        },
+        "ensemble": {
+          "mae": 4.318,
+          "rmse": 5.122,
+          "bias": -0.877,
+          "n": 45,
+          "r2": 0.094
+        },
+        "persistence": {
+          "mae": 4.396,
+          "rmse": 5.526,
+          "bias": 0.711,
+          "n": 45,
+          "r2": -0.054
+        },
+        "official": {
+          "mae": 1.222,
+          "rmse": 1.635,
+          "bias": -0.004,
+          "n": 45,
+          "r2": 0.908
+        }
+      },
+      "production_model": "artifacts\\models\\ekaterinburg\\lead_3.joblib"
+    },
+    "4": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.44,
+        "random_forest": 0.56,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.256,
+        "inverse_mae": 4.256,
+        "optimized_mae": 4.166
+      },
+      "validation_mae_ensemble": 4.166,
+      "models": {
+        "linear": {
+          "mae": 4.745,
+          "rmse": 6.015,
+          "bias": 4.03,
+          "n": 45,
+          "r2": -0.249
+        },
+        "random_forest": {
+          "mae": 3.948,
+          "rmse": 5.209,
+          "bias": -0.043,
+          "n": 45,
+          "r2": 0.063
+        },
+        "gradient_boosting": {
+          "mae": 4.051,
+          "rmse": 5.094,
+          "bias": -0.264,
+          "n": 45,
+          "r2": 0.104
+        },
+        "ensemble": {
+          "mae": 3.689,
+          "rmse": 5.031,
+          "bias": 1.749,
+          "n": 45,
+          "r2": 0.126
+        },
+        "persistence": {
+          "mae": 4.849,
+          "rmse": 6.118,
+          "bias": 0.702,
+          "n": 45,
+          "r2": -0.292
+        },
+        "official": {
+          "mae": 1.433,
+          "rmse": 1.956,
+          "bias": 0.184,
+          "n": 45,
+          "r2": 0.868
+        }
+      },
+      "production_model": "artifacts\\models\\ekaterinburg\\lead_4.joblib"
+    },
+    "5": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.62,
+        "random_forest": 0.38,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.304,
+        "inverse_mae": 4.304,
+        "optimized_mae": 4.228
+      },
+      "validation_mae_ensemble": 4.228,
+      "models": {
+        "linear": {
+          "mae": 4.947,
+          "rmse": 6.048,
+          "bias": 3.896,
+          "n": 45,
+          "r2": -0.262
+        },
+        "random_forest": {
+          "mae": 4.242,
+          "rmse": 5.286,
+          "bias": -0.482,
+          "n": 45,
+          "r2": 0.036
+        },
+        "gradient_boosting": {
+          "mae": 4.291,
+          "rmse": 5.273,
+          "bias": -0.74,
+          "n": 45,
+          "r2": 0.04
+        },
+        "ensemble": {
+          "mae": 3.89,
+          "rmse": 5.231,
+          "bias": 2.232,
+          "n": 45,
+          "r2": 0.056
+        },
+        "persistence": {
+          "mae": 5.356,
+          "rmse": 6.759,
+          "bias": 0.604,
+          "n": 45,
+          "r2": -0.577
+        },
+        "official": {
+          "mae": 1.818,
+          "rmse": 2.411,
+          "bias": -0.156,
+          "n": 45,
+          "r2": 0.799
+        }
+      },
+      "production_model": "artifacts\\models\\ekaterinburg\\lead_5.joblib"
+    },
+    "6": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.74,
+        "random_forest": 0.26,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.588,
+        "inverse_mae": 4.546,
+        "optimized_mae": 4.135
+      },
+      "validation_mae_ensemble": 4.135,
+      "models": {
+        "linear": {
+          "mae": 5.086,
+          "rmse": 6.139,
+          "bias": 4.087,
+          "n": 45,
+          "r2": -0.301
+        },
+        "random_forest": {
+          "mae": 4.203,
+          "rmse": 5.273,
+          "bias": -0.22,
+          "n": 45,
+          "r2": 0.04
+        },
+        "gradient_boosting": {
+          "mae": 4.39,
+          "rmse": 5.7,
+          "bias": -0.042,
+          "n": 45,
+          "r2": -0.122
+        },
+        "ensemble": {
+          "mae": 4.371,
+          "rmse": 5.523,
+          "bias": 2.968,
+          "n": 45,
+          "r2": -0.053
+        },
+        "persistence": {
+          "mae": 5.698,
+          "rmse": 7.176,
+          "bias": 0.653,
+          "n": 45,
+          "r2": -0.777
+        },
+        "official": {
+          "mae": 2.069,
+          "rmse": 2.84,
+          "bias": 0.336,
+          "n": 45,
+          "r2": 0.722
+        }
+      },
+      "production_model": "artifacts\\models\\ekaterinburg\\lead_6.joblib"
+    },
+    "7": {
+      "n_test": 45,
+      "n_common_with_official": 45,
+      "test_start": "2026-09-06",
+      "test_end": "2026-10-20",
+      "weights": {
+        "linear": 0.96,
+        "random_forest": 0.04,
+        "gradient_boosting": 0.0
+      },
+      "ensemble_method": "optimized_mae",
+      "ensemble_validation_scores": {
+        "equal": 4.496,
+        "inverse_mae": 4.435,
+        "optimized_mae": 3.912
+      },
+      "validation_mae_ensemble": 3.912,
+      "models": {
+        "linear": {
+          "mae": 4.603,
+          "rmse": 5.677,
+          "bias": 3.145,
+          "n": 45,
+          "r2": -0.112
+        },
+        "random_forest": {
+          "mae": 4.09,
+          "rmse": 5.436,
+          "bias": 0.335,
+          "n": 45,
+          "r2": -0.02
+        },
+        "gradient_boosting": {
+          "mae": 4.126,
+          "rmse": 5.541,
+          "bias": 1.429,
+          "n": 45,
+          "r2": -0.06
+        },
+        "ensemble": {
+          "mae": 4.525,
+          "rmse": 5.619,
+          "bias": 3.033,
+          "n": 45,
+          "r2": -0.09
+        },
+        "persistence": {
+          "mae": 6.191,
+          "rmse": 7.509,
+          "bias": 0.573,
+          "n": 45,
+          "r2": -0.946
+        },
+        "official": {
+          "mae": 2.467,
+          "rmse": 3.135,
+          "bias": 0.24,
+          "n": 45,
+          "r2": 0.661
+        }
+      },
+      "production_model": "artifacts\\models\\ekaterinburg\\lead_7.joblib"
+    }
+  },
+  "overall": {
+    "linear": {
+      "mae": 4.729,
+      "rmse": 5.885,
+      "bias": 3.844,
+      "n": 315,
+      "r2": -0.196
+    },
+    "random_forest": {
+      "mae": 3.923,
+      "rmse": 5.106,
+      "bias": -0.076,
+      "n": 315,
+      "r2": 0.1
+    },
+    "gradient_boosting": {
+      "mae": 4.123,
+      "rmse": 5.186,
+      "bias": -0.32,
+      "n": 315,
+      "r2": 0.072
+    },
+    "ensemble": {
+      "mae": 3.967,
+      "rmse": 5.105,
+      "bias": 1.277,
+      "n": 315,
+      "r2": 0.101
+    },
+    "persistence": {
+      "mae": 4.824,
+      "rmse": 6.139,
+      "bias": 0.655,
+      "n": 315,
+      "r2": -0.301
+    },
+    "official": {
+      "mae": 1.562,
+      "rmse": 2.174,
+      "bias": 0.09,
+      "n": 315,
+      "r2": 0.837
+    }
+  },
+  "headline": {
+    "ensemble_mae": 3.967,
+    "official_mae": 1.562,
+    "delta_mae": 2.405,
+    "ci95_low": 1.633,
+    "ci95_high": 3.288,
+    "probability_better": 0.0,
+    "skill_vs_official_pct": -154.0,
+    "beats_official": false,
+    "best_model": "random_forest",
+    "n_dates": 45,
+    "n_rows": 315,
+    "bootstrap_iterations": 3000
+  },
+  "methodology": {
+    "split": "chronological holdout: train → validation → test",
+    "sample_weighting": "экспоненциальные веса свежести, период полураспада 365 дней",
+    "ensemble_weights": "способ и веса выбраны только по validation",
+    "test_usage": "тест не использовался для обучения и подбора весов",
+    "official_baseline": "Open-Meteo Previous Runs API: прогноз, выпущенный за 1–7 дней до целевой даты",
+    "fair_comparison": "метрики на общих датах, где доступен официальный прогноз",
+    "uncertainty": "парный cluster bootstrap по датам, 95% интервал"
+  }
+}

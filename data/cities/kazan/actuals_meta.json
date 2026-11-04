@@ -1,0 +1,16 @@
+{
+  "source": "Open-Meteo Archive API (ERA5 / best match)",
+  "source_url": "https://archive-api.open-meteo.com/v1/archive",
+  "downloaded_at": "2026-10-20T22:41:32.554059+03:00",
+  "requested_start": "2025-10-20",
+  "requested_end": "2026-10-19",
+  "first_date": "2025-10-20",
+  "last_date": "2026-10-19",
+  "rows": 365,
+  "latitude_requested": 55.7961,
+  "longitude_requested": 49.1064,
+  "latitude_returned": 55.782074,
+  "longitude_returned": 49.124237,
+  "elevation_m": 75.0,
+  "timezone": "Europe/Moscow"
+}

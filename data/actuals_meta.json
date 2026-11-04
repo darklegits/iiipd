@@ -1,0 +1,16 @@
+{
+  "source": "Open-Meteo Archive API (ERA5 / best match)",
+  "source_url": "https://archive-api.open-meteo.com/v1/archive",
+  "downloaded_at": "2026-10-20T11:32:32.266925+05:00",
+  "requested_start": "2025-10-20",
+  "requested_end": "2026-10-19",
+  "first_date": "2025-10-20",
+  "last_date": "2026-10-19",
+  "rows": 365,
+  "latitude_requested": 56.8389,
+  "longitude_requested": 60.6057,
+  "latitude_returned": 56.906853,
+  "longitude_returned": 60.63158,
+  "elevation_m": 244.0,
+  "timezone": "Asia/Yekaterinburg"
+}

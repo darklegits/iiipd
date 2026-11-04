@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="Погодный оракул — ансамбль ML-моделей для прогноза температуры в {{ city.name }} до 14 дней. Честные метрики, сравнение с официальным прогнозом, установка как приложение.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Оракул">
+  <title>{{ app_name }} — {{ city.name }} · {{ page_label }}</title>
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/static/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  <link rel="preload" href="/static/fonts/manrope-cyrillic-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/manrope-cyrillic-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/prata-cyrillic-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body data-city="{{ city.slug }}" data-page="{{ page }}">
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/forecast?city={{ city.slug }}" aria-label="Погодный оракул — на главную">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <circle cx="29" cy="18" r="9" fill="#ffcf5c"/>
+            <path d="M11 34h25a7 7 0 0 0 0-14 10 10 0 0 0-18.6 2.8A6.2 6.2 0 0 0 11 34Z" fill="#fff"/>
+          </svg>
+        </span>
+        <span class="logo-word">Погодный<br><strong>оракул</strong></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a class="{% if page == 'forecast' %}is-active{% endif %}" href="/forecast?city={{ city.slug }}">Прогноз</a>
+        <a class="{% if page == 'compare' %}is-active{% endif %}" href="/compare?city={{ city.slug }}">Сравнение</a>
+        <a class="{% if page == 'models' %}is-active{% endif %}" href="/models?city={{ city.slug }}">Модели</a>
+        <a class="{% if page == 'method' %}is-active{% endif %}" href="/method?city={{ city.slug }}">Методика</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="city-picker" id="city-picker">
+          <button class="city-trigger" id="city-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="city-menu">
+            <svg class="city-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            <span class="city-trigger-label" id="city-trigger-label">{{ city.name }}</span>
+            <svg class="city-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+          </button>
+          <div class="city-menu" id="city-menu" role="listbox" aria-label="Выбор города" hidden>
+            <div class="city-menu-head">
+              <span>Выберите город</span>
+              <small>{{ cities|length }} точек</small>
+            </div>
+            <button class="city-geo" id="geo-city" type="button">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.2 6-9.4A6 6 0 1 0 4 8.6C4 12.8 10 18 10 18Z"/><circle cx="10" cy="8.5" r="2"/></svg>
+              Мой город
+            </button>
+            <label class="city-search">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.2"/><path d="m12.4 12.4 4 4"/></svg>
+              <input id="city-search" type="search" placeholder="Найти город" autocomplete="off" spellcheck="false" aria-label="Поиск города">
+            </label>
+            <div class="city-empty" id="city-empty" hidden>Город не найден</div>
+            {% for group in city_groups %}
+            <div class="city-group" data-city-group>
+              <span class="city-group-label">{{ group.label }}</span>
+              {% for item in group.cities %}
+              <button class="city-option{% if item.selected %} is-selected{% endif %}" type="button" role="option" data-city="{{ item.slug }}" data-city-name="{{ item.name|lower }}" data-lat="{{ item.latitude }}" data-lon="{{ item.longitude }}" aria-selected="{{ 'true' if item.selected else 'false' }}">
+                <span>{{ item.name }}</span>
+                <span class="city-check" aria-hidden="true"></span>
+              </button>
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <span class="network-pill" id="network-status"><i></i><span>онлайн</span></span>
+        <button class="btn btn-sm btn-outline install-btn" id="install-app" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+          Установить
+        </button>
+        <a class="btn btn-sm btn-primary header-cta" href="/forecast?city={{ city.slug }}">Смотреть прогноз</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    {% if page == "forecast" %}
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-slides" id="hero-slides" aria-hidden="true">
+        <div class="hero-slide is-active" style="background-image:url('/static/images/hero.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('/static/images/hero-2.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('/static/images/hero-3.jpg')"></div>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="hero-badge"><i></i> ЧЕСТНЫЙ ПРОГНОЗ · {{ test_days }} ДНЕЙ ПРОВЕРКИ</span>
+          <h1 id="hero-title">Погода<br><span class="accent">без сюрпризов</span><br>и лишних обещаний</h1>
+          <p class="hero-lead" id="hero-lede">
+            Ансамбль из трёх ML-моделей предсказывает температуру для {{ city.name_genitive }}
+            до 14 дней. Мы показываем не только прогноз, но и ошибку — включая
+            честное сравнение с официальным.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#forecast">Смотреть прогноз <span aria-hidden="true">→</span></a>
+            <button class="btn btn-ghost-light" id="install-app-hero" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+              Установить приложение
+            </button>
+          </div>
+          <div class="hero-trust">
+            <span><i class="dot-green"></i> работает офлайн</span>
+            <span><i class="dot-red"></i> Open-Meteo</span>
+            <span>PWA · без магазина приложений</span>
+          </div>
+          <dl class="hero-stats">
+            <div><dt>{{ headline.ensemble_mae|ru(2) }}°</dt><dd>MAE ансамбля</dd></div>
+            <div><dt>{{ improvement_sign }}{{ improvement_abs|ru(1) }}%</dt><dd>{{ improvement_label }}</dd></div>
+            <div><dt>{{ test_days }}</dt><dd>дней теста</dd></div>
+            <div><dt>14</dt><dd>дней вперёд</dd></div>
+          </dl>
+        </div>
+
+        <aside class="now-card" aria-label="Живой прогноз на завтра">
+          <div class="now-card-top">
+            <span id="hero-panel-label">ПРОГНОЗ НА ЗАВТРА</span>
+            <span class="live-pill"><i></i> LIVE</span>
+          </div>
+          <div class="now-main">
+            <div class="now-icon" id="hero-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><circle cx="42" cy="20" r="12" fill="#ffcf5c"/><path d="M13 47h38a9 9 0 0 0 0-18 13 13 0 0 0-24 3.6A8 8 0 0 0 13 47Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <div class="now-temp-wrap">
+              <span class="now-date" id="hero-date">загрузка…</span>
+              <strong class="now-temp" id="hero-temp">—</strong>
+              <span class="now-condition" id="hero-condition">данные Open-Meteo</span>
+            </div>
+          </div>
+          <div class="now-grid">
+            <div><span>Официальный</span><strong id="hero-official">—</strong></div>
+            <div><span>Разница</span><strong id="hero-delta">—</strong></div>
+            <div><span>Разброс</span><strong id="hero-spread">—</strong></div>
+          </div>
+          <div class="now-footer">
+            <span class="confidence-dot" id="hero-confidence"><i></i> согласованность</span>
+            <span id="hero-issued">обновляется</span>
+          </div>
+        </aside>
+      </div>
+      <div class="hero-slide-dots" role="group" aria-label="Фоновые кадры">
+        <button class="is-active" type="button" data-slide="0" aria-label="Кадр 1"></button>
+        <button type="button" data-slide="1" aria-label="Кадр 2"></button>
+        <button type="button" data-slide="2" aria-label="Кадр 3"></button>
+      </div>
+    </section>
+
+    {% if current %}
+    <section class="now-strip" aria-labelledby="now-strip-title">
+      <div class="container now-strip-inner">
+        <div class="now-strip-main">
+          <span class="kicker" id="now-strip-title">ПОСЛЕДНИЕ НАБЛЮДЕНИЯ · {{ current.label }}</span>
+          <div class="now-strip-temp">
+            <strong>{{ current.tmax|ru(1) }}°</strong>
+            <span>максимум<br>за день</span>
+          </div>
+          <p>Фактические данные Open-Meteo. Прогноз — ниже.</p>
+        </div>
+        <div class="now-strip-grid">
+          <div><span>Ощущалось</span><b>{{ current.feels|ru(1) }}°</b></div>
+          <div><span>Ветер</span><b>{{ current.wind|ru(1) }} м/с</b></div>
+          <div><span>Влажность</span><b>{{ current.humidity|ru(0) }}%</b></div>
+          <div><span>Давление</span><b>{{ current.pressure_mmhg|ru(0) }} мм</b></div>
+          <div><span>Осадки</span><b>{{ current.precip|ru(1) }} мм</b></div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="section why-section" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">ПОЧЕМУ ЭТОМУ МОЖНО ВЕРИТЬ</span>
+            <h2>Прозрачный прогноз вместо «примерно тепло»</h2>
+            <p class="section-sub">Вы заранее видите не только температуру, но и то, насколько модели уверены, где они расходятся и как мы это проверили.</p>
+          </div>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg>
+            </span>
+            <h3>Честные метрики</h3>
+            <p>MAE и RMSE на отложенном периоде, а не «на глаз». Итог: {{ headline.ensemble_mae|ru(2) }} °C средней ошибки.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
+            <h3>Без утечек</h3>
+            <p>Хронология train → validation → test. Для горизонта h модель видит погоду только до дня t−h−1.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="m8.2 10.9 7.4-3.8M8.2 13.1l7.4 3.8"/></svg>
+            </span>
+            <h3>Прозрачный ансамбль</h3>
+            <p>Видно, как голосуют линейная регрессия, лес и бустинг. Веса подобраны только на validation.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon">
+              <svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4"/></svg>
+            </span>
+            <h3>Работает как приложение</h3>
+            <p>Устанавливается на телефон и компьютер, открывается в отдельном окне и хранит последний прогноз офлайн.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section forecast-section" id="forecast">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <span class="kicker">ПРОГНОЗ</span>
+            <h2>Прогноз до 14 дней</h2>
+            <p class="section-sub" id="forecast-sub">Выберите период и посмотрите, как голосовали модели, что говорит официальный прогноз и насколько велик разброс.</p>
+          </div>
+          <a class="text-link" href="/compare?city={{ city.slug }}">Как мы считаем ошибку <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="period-control">
+            <span class="period-label">Период</span>
+            <div class="period-switch" role="group" aria-label="Период прогноза">
+              <button class="period-btn" type="button" data-period="7">7 дней</button>
+              <button class="period-btn" type="button" data-period="10">10 дней</button>
+              <button class="period-btn is-active" type="button" data-period="14">14 дней</button>
+            </div>
+          </div>
+          <div class="toolbar-right">
+            <div class="view-switch" role="group" aria-label="Вид прогноза">
+              <button class="is-active" type="button" data-view="cards">Карточки</button>
+              <button type="button" data-view="list">Список</button>
+            </div>
+            <div class="unit-toggle" role="group" aria-label="Единицы температуры">
+              <button type="button" data-unit="c" class="is-active">°C</button>
+              <button type="button" data-unit="f">°F</button>
+            </div>
+            <button class="icon-button" id="refresh-forecast" type="button" aria-label="Обновить прогноз" title="Обновить прогноз">
+              <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="period-note" id="period-note">Дни 1–14 — ML-ансамбль. Официальный baseline доступен до 7 дней.</div>
+
+        <div class="live-meta">
+          <span id="live-status"><i class="dot-pulse"></i> Загружаю свежий прогноз…</span>
+          <span id="live-issued"></span>
+        </div>
+
+        <div class="forecast-grid" id="forecast-grid" aria-live="polite">
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+          <div class="forecast-skeleton"></div>
+        </div>
+
+        <div class="forecast-list" id="forecast-list" hidden></div>
+
+        <div class="forecast-error" id="forecast-error" hidden>
+          <div>
+            <strong>Живой прогноз временно недоступен.</strong>
+            <span id="forecast-error-text">Проверьте соединение и попробуйте ещё раз.</span>
+          </div>
+          <button class="btn btn-sm btn-outline" type="button" id="retry-forecast">Повторить</button>
+        </div>
+
+        <p class="catalog-note">
+          Данные обновляются каждые 15 минут. Карточки показывают ансамбль, официальный
+          прогноз и разброс между базовыми моделями. Нажмите «Подробнее», чтобы увидеть состав.
+        </p>
+
+        <div class="trend-panel" id="trend-panel">
+          <div class="trend-head">
+            <div>
+              <span class="chart-label">ДИНАМИКА</span>
+              <h3>Температура на выбранном периоде</h3>
+            </div>
+            <div class="trend-actions">
+              <span class="trend-hint">Наведите на точку</span>
+              <button class="btn btn-sm btn-outline" id="download-csv" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+                Скачать CSV
+              </button>
+            </div>
+          </div>
+          <div class="trend-legend">
+            <span><i class="trend-dot is-ensemble"></i><span id="trend-ensemble-label">Ансамбль</span></span>
+            <span id="trend-official-legend"><i class="trend-dot is-official"></i>Официальный прогноз</span>
+          </div>
+          <div class="trend-chart-wrap">
+            <svg id="trend-chart" viewBox="0 0 1000 320" role="img" aria-label="График прогноза температуры"></svg>
+            <div class="trend-tooltip" id="trend-tooltip" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% elif page == "compare" %}
+    <section class="section compare-section" id="compare">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <span class="kicker">СРАВНЕНИЕ</span>
+            <h2>Не просто прогноз, а проверяемый результат</h2>
+            <p class="section-sub">Мы не обещаем побить суперкомпьютер. Мы показываем, где ансамбль сильнее базовых моделей, а где официальный прогноз точнее.</p>
+          </div>
+          <span class="period-badge">Тест · {{ split.test }}</span>
+        </div>
+
+        <div class="compare-grid">
+          <figure class="chart-panel">
+            <div class="chart-head">
+              <div>
+                <span class="chart-label">ПРОГНОЗ VS ФАКТ · h=1</span>
+                <h3>Дневной максимум температуры</h3>
+              </div>
+              <div class="chart-key" aria-hidden="true">
+                <span><i class="k-fact"></i>факт</span>
+                <span><i class="k-ens"></i>ансамбль</span>
+                <span><i class="k-off"></i>официальный</span>
+              </div>
+            </div>
+            <img src="{{ chart_url }}" alt="График фактической температуры, прогноза ансамбля и официального прогноза">
+            <figcaption>Сравнение на одних и тех же {{ n_dates }} датах. Официальный прогноз — архив Open-Meteo Previous Runs, не Росгидромет.</figcaption>
+          </figure>
+
+          <aside class="compare-aside">
+            <div class="compare-score">
+              <span class="compare-score-label">MAE АНСАМБЛЯ</span>
+              <strong>{{ headline.ensemble_mae|ru(2) }}<small>°C</small></strong>
+              <span class="compare-score-delta">{{ improvement_sign }}{{ improvement_abs|ru(1) }}% {{ improvement_label }}</span>
+            </div>
+            <div class="compare-list">
+              <div><span>Лучшая базовая</span><b>{{ best_base_mae|ru(2) }}°</b></div>
+              <div><span>Официальный Open-Meteo</span><b class="official">{{ official_mae|ru(2) }}°</b></div>
+              <div><span>Разница с официальным</span><b>{{ headline.delta_mae|ru(2) }}°</b></div>
+            </div>
+            <div class="compare-callout">
+              <strong>Почему официальный точнее</strong>
+              <p>Он опирается на глобальную численную модель, которая усваивает станции, спутники и радиозонды. Наши модели видят только локальную историю. Это ограничение, а не повод прятать цифры.</p>
+            </div>
+            <a class="btn btn-outline btn-block" href="/method?city={{ city.slug }}">Как мы считаем ошибку <span aria-hidden="true">→</span></a>
+          </aside>
+        </div>
+
+        <div class="table-card">
+          <div class="table-head">
+            <div>
+              <span class="chart-label">ИТОГОВАЯ ТАБЛИЦА</span>
+              <h3>Все модели на тесте · {{ n_rows }} прогнозов</h3>
+            </div>
+            <span class="table-hint">меньше — лучше</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr><th>Модель</th><th>MAE, °C</th><th>RMSE, °C</th><th>Смещение</th><th>n</th><th></th></tr>
+              </thead>
+              <tbody>
+                {% for row in overall_rows %}
+                <tr class="{% if row.is_ensemble %}row-ensemble{% elif row.is_official %}row-official{% endif %}">
+                  <td>
+                    <span class="model-name">{{ row.label }}</span>
+                    {% if row.is_ensemble %}<span class="tag tag-red">наш</span>{% endif %}
+                    {% if row.is_official %}<span class="tag tag-gray">референс</span>{% endif %}
+                    {% if row.is_best %}<span class="tag tag-green">лучший из наших</span>{% endif %}
+                  </td>
+                  <td class="num strong">{{ row.mae|ru(2) }}</td>
+                  <td class="num">{{ row.rmse|ru(2) }}</td>
+                  <td class="num">{{ row.bias|ru(1) }}</td>
+                  <td class="num muted">{{ row.n }}</td>
+                  <td>{% if row.is_best %}<span class="row-mark" aria-hidden="true">→</span>{% endif %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% elif page == "models" %}
+    <section class="section models-section" id="models">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <span class="kicker">АНСАМБЛЬ</span>
+            <h2>Как голосуют модели</h2>
+            <p class="section-sub">Веса зависят от горизонта. Всё выбрано только на validation — тест не участвовал в настройке.</p>
+          </div>
+        </div>
+
+        <div class="lead-grid">
+          {% for lead in leads %}
+          <article class="lead-card">
+            <div class="lead-head">
+              <span class="lead-number">h={{ lead.lead }}</span>
+              <div>
+                <h3>{% if lead.lead == 1 %}Завтра{% elif lead.lead in (2, 3, 4) %}Через {{ lead.lead }} дня{% else %}Через {{ lead.lead }} дней{% endif %}</h3>
+                <p>{{ lead.n }} прогнозов в тесте</p>
+              </div>
+              <span class="lead-best">{{ lead.best_label }}</span>
+            </div>
+
+            <div class="weight-bar" aria-label="Веса моделей">
+              {% for weight in lead.weights %}
+              <span class="weight-seg w{{ loop.index0 }}" style="width: {{ weight.pct }}%" title="{{ weight.label }}: {{ weight.pct }}%"></span>
+              {% endfor %}
+            </div>
+            <div class="weight-legend">
+              {% for weight in lead.weights %}
+              <span><i class="w{{ loop.index0 }}"></i>{{ weight.label }} <b>{{ weight.pct|int }}%</b></span>
+              {% endfor %}
+            </div>
+
+            <table class="mini-table">
+              <thead><tr><th>Модель</th><th>MAE</th><th>RMSE</th></tr></thead>
+              <tbody>
+                {% for row in lead.rows %}
+                <tr class="{% if row.is_ensemble %}row-ensemble{% elif row.is_official %}row-official{% endif %}">
+                  <td>{{ row.label }}{% if row.is_best %} <span class="tag tag-green">наш лучший</span>{% endif %}</td>
+                  <td class="num">{{ row.mae|ru(2) }}</td>
+                  <td class="num">{{ row.rmse|ru(2) }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    {% elif page == "method" %}
+    <section class="section method-section" id="method">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">МЕТОДИКА</span>
+          <h2>Почему этим цифрам можно верить</h2>
+          <p class="section-sub">Никакого случайного перемешивания. Только прошлое предсказывает будущее.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <h3>Собираем данные</h3>
+            <p>365 дней фактической погоды: температура, осадки, давление, влажность, облачность, ветер. Плюс 92 дня архива оперативных прогнозов.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <h3>Считаем признаки</h3>
+            <p>40 признаков: лаги, скользящие средние, тренды, давление, точка росы, ветер и сезонные синусоиды. Для h — только погода до t−h−1.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <h3>Учим и проверяем</h3>
+            <p>Train → validation → test. Веса ансамбля выбираются на validation, финальные метрики считаются один раз на тесте.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">04</span>
+            <h3>Показываем результат</h3>
+            <p>Сервис отдаёт прогноз, разброс моделей и сравнение с официальным. Приложение работает офлайн и устанавливается на устройство.</p>
+          </article>
+        </div>
+
+        <div class="method-details">
+          <div class="method-note">
+            <span class="chart-label">ХРОНОЛОГИЯ</span>
+            <div class="timeline">
+              <div><span>train</span><b>{{ split.train }}</b><small>обучение</small></div>
+              <div><span>validation</span><b>{{ split.validation }}</b><small>выбор весов</small></div>
+              <div><span>test</span><b>{{ split.test }}</b><small>финальные метрики</small></div>
+            </div>
+            <p class="muted-note">Первый месяц истории нужен для расчёта лагов. Тест не использовался ни для обучения, ни для выбора весов.</p>
+          </div>
+          <div class="metric-guide">
+            <span class="chart-label">КАК ЧИТАТЬ ЦИФРЫ</span>
+            <div class="metric-guide-grid">
+              <div>
+                <span>MAE</span>
+                <strong>{{ headline.ensemble_mae|ru(2) }}°</strong>
+                <small>типичная ошибка прогноза</small>
+              </div>
+              <div>
+                <span>RMSE</span>
+                <strong>{{ metrics.overall.ensemble.rmse|ru(2) }}°</strong>
+                <small>сильнее штрафует крупные промахи</small>
+              </div>
+              <div>
+                <span>Смещение</span>
+                <strong>{{ metrics.overall.ensemble.bias|ru(1) }}°</strong>
+                <small>систематический перегрев или холод</small>
+              </div>
+            </div>
+            <p>Чем ниже MAE и RMSE, тем ближе прогноз к факту. Смещение около нуля означает, что модель не завышает и не занижает температуру постоянно — ошибается в обе стороны.</p>
+          </div>
+        </div>
+
+        <div class="caveat">
+          <strong>Границы интерпретации</strong>
+          <p>Это локальная модель для выбранного города, а не замена оперативному прогнозу. Тест длиной {{ test_days }} дней короткий: один режим погоды может заметно сдвинуть MAE. 95% интервал разницы с официальным прогнозом — {{ headline.ci95_low|ru(2) }}…{{ headline.ci95_high|ru(2) }} °C по парному bootstrap. Open-Meteo — сильный ориентир, но не Росгидромет.</p>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo footer-logo" href="/forecast?city={{ city.slug }}">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="29" cy="18" r="9" fill="#ffcf5c"/><path d="M11 34h25a7 7 0 0 0 0-14 10 10 0 0 0-18.6 2.8A6.2 6.2 0 0 0 11 34Z" fill="#fff"/></svg>
+          </span>
+          <span class="logo-word">Погодный<br><strong>оракул</strong></span>
+        </a>
+        <p>Учебный ML-проект. Не является оперативным прогнозом погоды.</p>
+      </div>
+      <div class="footer-col">
+        <span>Разделы</span>
+        <a href="/forecast?city={{ city.slug }}">Прогноз</a>
+        <a href="/compare?city={{ city.slug }}">Сравнение</a>
+        <a href="/models?city={{ city.slug }}">Модели</a>
+        <a href="/method?city={{ city.slug }}">Методика</a>
+      </div>
+      <div class="footer-col">
+        <span>Данные</span>
+        <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a>
+        <a href="https://unsplash.com/" target="_blank" rel="noreferrer">Фото: Unsplash</a>
+      </div>
+      <div class="footer-col footer-meta">
+        <span>{{ city.name }}</span>
+        <p>{{ location.latitude|ru(4) }}, {{ location.longitude|ru(4) }}</p>
+        <p>История {{ actuals_range }}</p>
+        <p>Обучено {{ generated_at }}</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© Погодный оракул. Все права защищены.</span>
+      <span>Данные Open-Meteo · PWA · {{ n_rows }} прогнозов в тесте</span>
+    </div>
+  </footer>
+
+  <nav class="mobile-tabbar" aria-label="Мобильная навигация">
+    <a class="{% if page == 'forecast' %}is-active{% endif %}" href="/forecast?city={{ city.slug }}">
+      <svg viewBox="0 0 24 24"><path d="M4 17h16M6 14a6 6 0 0 1 12 0M9 10V7m3 3V6m3 4V7"/></svg>
+      <span>Прогноз</span>
+    </a>
+    <a class="{% if page == 'compare' %}is-active{% endif %}" href="/compare?city={{ city.slug }}">
+      <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg>
+      <span>Сравнение</span>
+    </a>
+    <a class="{% if page == 'models' %}is-active{% endif %}" href="/models?city={{ city.slug }}">
+      <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="m8.2 10.9 7.4-3.8M8.2 13.1l7.4 3.8"/></svg>
+      <span>Модели</span>
+    </a>
+    <button type="button" id="install-tab">
+      <svg viewBox="0 0 24 24"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+      <span>Установить</span>
+    </button>
+  </nav>
+
+  <dialog class="modal" id="forecast-modal" aria-labelledby="modal-title">
+    <div class="modal-panel">
+      <button class="modal-close" type="button" data-close aria-label="Закрыть">
+        <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+      <div id="modal-body"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>window.ORACLE_CITY = "{{ city.slug }}";</script>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
