@@ -1,0 +1,81 @@
+name: Собрать portable EXE
+
+# Собирает Windows-приложение и прикладывает архив к релизу.
+# Запускается при пуше тега v* или вручную из вкладки Actions.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - name: Забрать код
+        uses: actions/checkout@v4
+
+      - name: Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Зависимости
+        shell: powershell
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Собрать EXE
+        shell: powershell
+        run: .\build.ps1
+
+      - name: Проверить сборку
+        shell: powershell
+        run: |
+          $exe = "dist\WeatherOracle\WeatherOracle.exe"
+          $dll = "dist\WeatherOracle\_internal\python313.dll"
+          if (-not (Test-Path $exe)) { throw "Нет EXE" }
+          if (-not (Test-Path $dll)) { throw "Нет python313.dll" }
+          Get-Item $exe, $dll | Select-Object Name, Length
+
+      - name: Упаковать portable-папку
+        shell: powershell
+        run: |
+          $sevenZip = "C:\Program Files\7-Zip\7z.exe"
+          if (Test-Path $sevenZip) {
+            & $sevenZip a -tzip -mx=5 "WeatherOracle-portable.zip" ".\dist\WeatherOracle\*" "-xr!userdata"
+          } else {
+            Compress-Archive -Path ".\dist\WeatherOracle\*" -DestinationPath "WeatherOracle-portable.zip"
+          }
+          Get-Item "WeatherOracle-portable.zip" | Select-Object Name, Length
+
+      - name: Сохранить архив как артефакт
+        uses: actions/upload-artifact@v4
+        with:
+          name: WeatherOracle-portable
+          path: WeatherOracle-portable.zip
+          retention-days: 14
+
+      - name: Приложить архив к релизу
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: WeatherOracle-portable.zip
+          generate_release_notes: true
+          body: |
+            **Портативная сборка «Погодного оракула» для Windows 10/11 (x64).**
+
+            Как запустить:
+            1. Скачайте `WeatherOracle-portable.zip` и распакуйте в любую папку.
+            2. Запустите `WeatherOracle.exe`.
+            3. Если Windows покажет предупреждение — «Подробнее» → «Выполнить в любом случае».
+            4. Первый запуск 15–60 секунд, откроется отдельное окно приложения.
+
+            Внутри: 65 городов (14 с ML-моделями + 51 с прогнозом Яндекса),
+            страница «Спорт», личный кабинет, музыка с регулятором громкости.
