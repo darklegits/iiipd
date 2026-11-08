@@ -80,6 +80,8 @@ public class OracleWindowCloser {
 }
 "@ -ErrorAction SilentlyContinue
     try { [OracleWindowCloser]::CloseAppWindows() } catch { }
+    # Само приложение тоже останавливаем: иначе оно держит Chrome и профиль.
+    Get-Process WeatherOracle -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
     Start-Sleep -Seconds 2
     # Chrome в режиме приложения может остаться фоновыми процессами и держать
     # профиль. Останавливаем только те процессы, чей путь ведёт в userdata.
@@ -88,9 +90,9 @@ public class OracleWindowCloser {
             Where-Object { $_.CommandLine -and $_.CommandLine -like "*$userdata*" } |
             ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
     } catch { }
-    Start-Sleep -Seconds 2
+    Start-Sleep -Seconds 3
     Get-ChildItem $userdata -Directory -Filter "ChromeProfile-*" -ErrorAction SilentlyContinue | ForEach-Object {
-        for ($attempt = 0; $attempt -lt 10; $attempt++) {
+        for ($attempt = 0; $attempt -lt 30; $attempt++) {
             Remove-Item $_.FullName -Recurse -Force -ErrorAction SilentlyContinue
             if (-not (Test-Path $_.FullName)) { break }
             Start-Sleep -Milliseconds 500
