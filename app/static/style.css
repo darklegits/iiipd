@@ -2285,9 +2285,9 @@ td.muted { color: #a4a9b2; }
 .profile-field select:focus { outline: 2px solid var(--red-soft); border-color: var(--red); }
 .profile-field-light > span { color: rgba(255, 255, 255, 0.66); }
 .profile-field-light input {
-  max-width: 300px;
-  border-color: rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.08);
+  max-width: 340px;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(8, 10, 16, 0.55);
   color: #fff;
 }
 .profile-field-light input::placeholder { color: rgba(255, 255, 255, 0.45); }

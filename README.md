@@ -16,6 +16,11 @@
 > точнее — **1,56 °C**. Это не скрывается: проект показывает и сильные стороны
 > ансамбля, и предел локальных моделей.
 
+**Что нового:** страница «Спорт» с рекомендациями по погоде, личный кабинет
+с любимыми видами и планом на неделю, браузерные напоминания о тренировке,
+спортивное оформление и исправления живого прогноза. Подробно — в
+[CHANGELOG.md](CHANGELOG.md).
+
 ---
 
 ## Что внутри
@@ -95,9 +100,9 @@ baseline, MAE, график и веса ансамбля.
 Установка: откройте сайт в Chrome/Edge и нажмите «Установить приложение».
 На iPhone — «Поделиться» → «На экран „Домой“».
 
-![Главный экран приложения](artifacts/app-cities.png)
+![Спорт по погоде](artifacts/app-sport.png)
 
-![Выбор города](artifacts/app-city-menu.png)
+![Личный кабинет](artifacts/app-profile.png)
 
 ---
 
@@ -434,11 +439,12 @@ Service worker сохраняет оболочку и последний усп�
 │   │   ├── predictions.csv
 │   │   └── forecast_vs_fact.png
 │   ├── models/<город>/lead_1..3.joblib
-│   └── app-overview.png
+│   └── app-*.png          скриншоты интерфейса для README
 ├── build_assets/
 │   ├── splash.png         экран загрузки EXE
 │   └── README-dist.txt    инструкция внутри папки с EXE
 ├── desktop.py             запуск как Windows-приложение
+├── CHANGELOG.md           что добавлялось и исправлялось
 ├── WeatherOracle.spec     конфигурация PyInstaller
 ├── build.ps1 / build.cmd  сборка EXE
 ├── dist/WeatherOracle/    готовая portable-версия
