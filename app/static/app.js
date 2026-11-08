@@ -12,6 +12,7 @@
     installPrompt: null,
     lastFocus: null,
     city: window.ORACLE_CITY || document.body.dataset.city || "ekaterinburg",
+    sport: null,
   };
   state.period = [7, 10, 14].includes(state.period) ? state.period : 14;
 
@@ -51,12 +52,12 @@
   }
 
   function temp(value, digits = 1) {
-    if (value === null || value === undefined || Number.isNaN(Number(value))) return "—";
+    if (value === null || value === undefined || value === "" || Number.isNaN(Number(value))) return "—";
     return number(convert(value), digits) + "°";
   }
 
   function delta(value) {
-    if (value === null || value === undefined || Number.isNaN(Number(value))) return "—";
+    if (value === null || value === undefined || value === "" || Number.isNaN(Number(value))) return "—";
     const converted = state.unit === "f" ? (Number(value) * 9) / 5 : Number(value);
     const sign = converted > 0 ? "+" : converted < 0 ? "−" : "";
     return sign + number(Math.abs(converted), 1) + "°";
@@ -113,7 +114,9 @@
     setText("hero-condition", visual.label);
     setText(
       "hero-panel-label",
-      row.provider_label ? "ПРОГНОЗ НА СЕГОДНЯ" : "ПРОГНОЗ НА ЗАВТРА"
+      state.payload && row.date === state.payload.issue_date
+        ? "ПРОГНОЗ НА СЕГОДНЯ"
+        : "ПРОГНОЗ НА ЗАВТРА"
     );
 
     const icon = $("#hero-icon");
@@ -125,7 +128,7 @@
         ? "—"
         : delta(Number(row.ensemble_tmax) - Number(row.official_tmax))
     );
-    setText("hero-spread", row.model_spread === undefined ? "—" : "±" + number(row.model_spread) + "°");
+    setText("hero-spread", row.model_spread == null ? "—" : "±" + number(row.model_spread) + "°");
 
     const confidenceBox = $("#hero-confidence");
     if (confidenceBox) {
@@ -175,7 +178,7 @@
         <div class="forecast-compare">
           ${
             sourceLabel
-              ? `<div><span>Источник</span><b>${sourceLabel}</b></div><div><span>Горизонт</span><b>14 дней</b></div>`
+              ? `<div><span>Источник</span><b>${sourceLabel}</b></div><div><span>Горизонт</span><b>${row.lead} дн.</b></div>`
               : officialOnly
               ? `<div><span>Ансамбль</span><b>—</b></div><div><span>Источник</span><b>Open-Meteo</b></div>`
               : `<div><span>Официальный</span><b class="official-value">${official}</b></div><div><span>Разница</span><b>${difference}</b></div>`
@@ -187,7 +190,7 @@
               ? `<span>Данные ${sourceLabel}</span><span class="confidence-badge"><i></i>живой прогноз</span>`
               : officialOnly
               ? `<span>Дни 8–14</span><span class="confidence-badge"><i></i>без ансамбля</span>`
-              : `<span>Разброс моделей ${row.model_spread === undefined ? "—" : "±" + number(row.model_spread) + "°"}</span><span class="confidence-badge ${info.className}"><i></i>${info.label}</span>`
+              : `<span>Разброс моделей ${row.model_spread == null ? "—" : "±" + number(row.model_spread) + "°"}</span><span class="confidence-badge ${info.className}"><i></i>${info.label}</span>`
           }
         </div>
         <button class="forecast-btn" type="button" data-open="${row.lead}">Подробнее <span aria-hidden="true">→</span></button>
@@ -317,7 +320,7 @@
     if (source) {
       setText(
         "hero-lede",
-        "Живой прогноз " + source + " на 14 дней. ML-ансамбль, честные метрики и сравнение с официальным baseline — на страницах «Сравнение» и «Модели»."
+        "Живой прогноз " + source + " до 14 дней вперёд. ML-ансамбль, честные метрики и сравнение с официальным baseline — на страницах «Сравнение» и «Модели»."
       );
       setText(
         "forecast-sub",
@@ -503,6 +506,7 @@
     localStorage.setItem("oracle-unit", unit);
     updateUnitButtons();
     if (state.payload) render();
+    if (state.sport) renderSport();
     const modal = $("#forecast-modal");
     if (modal && modal.open) {
       const lead = modal.dataset.lead;
@@ -581,7 +585,7 @@
           : `<div class="modal-stats">
                <div class="modal-stat"><span>Официальный</span><b>${official}</b></div>
                <div class="modal-stat"><span>Разница</span><b>${difference}</b></div>
-               <div class="modal-stat"><span>Разброс</span><b>${row.model_spread === undefined ? "—" : "±" + number(row.model_spread) + "°"}</b></div>
+               <div class="modal-stat"><span>Разброс</span><b>${row.model_spread == null ? "—" : "±" + number(row.model_spread) + "°"}</b></div>
              </div>
              <div class="modal-section-label">КАК ГОЛОСОВАЛИ МОДЕЛИ</div>
              <div class="model-bars">${modelBarsMarkup(row)}</div>
@@ -678,6 +682,169 @@
     } finally {
       window.clearTimeout(timeout);
       if (refresh) refresh.classList.remove("is-spinning");
+    }
+  }
+
+  /* ---------- спорт ---------- */
+
+  function sportListMarkup(day, limit) {
+    const ready = day.sports.filter((item) => item.status !== "no");
+    const shown = ready.length ? ready.slice(0, limit) : day.sports.slice(0, limit);
+    return shown
+      .map(
+        (item) =>
+          `<li class="sport-item is-${item.status}"><span class="sport-item-name">${item.name}</span><span class="sport-item-label">${item.label}</span></li>`
+      )
+      .join("");
+  }
+
+  function renderSportHero(payload) {
+    const hero = $("#sport-hero");
+    if (!hero) return;
+    const day = payload.days && payload.days[0];
+    if (!day) {
+      hero.innerHTML = "";
+      hero.hidden = true;
+      return;
+    }
+    hero.hidden = false;
+    const date = parseDate(day.date);
+    const best = day.best;
+    const bestDay = payload.best_day;
+    const bestDayChip =
+      bestDay && bestDay.date !== day.date
+        ? `<span>Лучший день: ${dateShort.format(parseDate(bestDay.date))} · ${bestDay.comfort}/100</span>`
+        : "";
+    const alternatives = day.sports
+      .filter((item) => item.status !== "no" && item.key !== (best && best.key))
+      .slice(0, 2);
+
+    hero.innerHTML = `
+      <div class="sport-hero-copy">
+        <span class="sport-eyebrow">БЛИЖАЙШИЙ ДЕНЬ</span>
+        <h3>${capitalize(weekdayLong.format(date))}, ${dateLong.format(date)}</h3>
+        <p>${
+          best
+            ? `${day.weather}. Лучше всего подходит ${best.name.toLowerCase()} — ${best.reason}.`
+            : `${day.weather}. Подходящих видов на улице не нашлось — лучше тренироваться в помещении.`
+        }</p>
+        <div class="sport-hero-chips">
+          <span>${temp(day.tmax)}</span>
+          <span>${day.surface}</span>
+          <span>${day.level_label}</span>
+          ${bestDayChip}
+          ${alternatives.map((item) => `<span>${item.name}</span>`).join("")}
+        </div>
+      </div>
+      <div class="sport-hero-score">
+        <span>${day.comfort}</span>
+        <small>индекс комфорта</small>
+      </div>`;
+  }
+
+  function sportCardMarkup(day) {
+    const date = parseDate(day.date);
+    const ready = day.sports.filter((item) => item.status !== "no");
+    const shown = ready.length ? ready : day.sports.slice(0, 2);
+    const caution = day.cautions[0];
+    return `
+      <article class="sport-card level-${day.level}">
+        <div class="sport-card-head">
+          <b>${capitalize(weekdayShort.format(date))}</b>
+          <span>${dateShort.format(date)} · h=${day.lead}</span>
+          <span class="sport-temp">${temp(day.tmax)}</span>
+        </div>
+        <div class="sport-weather">${day.weather} · ${day.surface}</div>
+        <div class="sport-bar" role="img" aria-label="Индекс комфорта ${day.comfort} из 100"><i style="width:${day.comfort}%"></i></div>
+        <div class="sport-bar-value">Комфорт ${day.comfort}/100 · ${day.level_label}</div>
+        <ul class="sport-list">${sportListMarkup(day, 3)}</ul>
+        ${shown.length ? `<p class="sport-why">${shown[0].name}: ${shown[0].reason}.</p>` : ""}
+        <div class="sport-gear">${day.gear.slice(0, 3).map((item) => `<span>${item}</span>`).join("")}</div>
+        ${caution ? `<div class="sport-caution">${caution}</div>` : ""}
+        <details class="sport-more">
+          <summary>Все виды активности</summary>
+          <div class="sport-all">
+            ${day.sports
+              .map(
+                (item) =>
+                  `<div class="sport-all-row"><b>${item.name}</b><span class="is-${item.status}">${item.label}</span><span>${item.reason}</span></div>`
+              )
+              .join("")}
+          </div>
+        </details>
+      </article>`;
+  }
+
+  function renderSportCatalog(sports) {
+    const grid = $("#sport-catalog-grid");
+    if (!grid) return;
+    grid.innerHTML = sports
+      .map((item) => `<div class="sport-catalog-item"><b>${item.name}</b><span>${item.hint}</span></div>`)
+      .join("");
+  }
+
+  function renderSport() {
+    const payload = state.sport;
+    if (!payload) return;
+    renderSportHero(payload);
+    const grid = $("#sport-grid");
+    if (grid) grid.innerHTML = payload.days.map(sportCardMarkup).join("");
+    renderSportCatalog(payload.sports || []);
+    setText("sport-source", payload.provider_label ? "Источник: " + payload.provider_label : "Источник: Open-Meteo");
+    const note = $("#sport-note");
+    if (note) note.textContent = (payload.notes || []).join(" ");
+    const sub = $("#sport-sub");
+    if (sub && payload.best_day) {
+      sub.textContent =
+        "Живой прогноз на " +
+        payload.days.length +
+        " дн. Лучший день для тренировки — " +
+        capitalize(dateLong.format(parseDate(payload.best_day.date))) +
+        " (индекс комфорта " +
+        payload.best_day.comfort +
+        "). Для каждого дня: виды активности, экипировка и предупреждения.";
+    }
+  }
+
+  async function loadSport(force = false) {
+    if (!$("#sport-grid")) return;
+    const errorBox = $("#sport-error");
+    const source = $("#sport-source");
+    const button = $("#refresh-sport");
+    if (errorBox) errorBox.hidden = true;
+    if (source) source.textContent = "Загружаю прогноз…";
+    if (button) button.classList.add("is-spinning");
+    try {
+      const response = await fetch(
+        "/api/sport?city=" + encodeURIComponent(state.city) + (force ? "&t=" + Date.now() : ""),
+        { headers: { Accept: "application/json" } }
+      );
+      if (!response.ok) {
+        let detail = "HTTP " + response.status;
+        try {
+          const data = await response.json();
+          if (data && data.detail) detail = data.detail;
+        } catch (_) { /* ignore */ }
+        throw new Error(detail);
+      }
+      state.sport = await response.json();
+      renderSport();
+      if (force) showToast("Рекомендации обновлены");
+    } catch (error) {
+      const message = error && error.message ? error.message : "Проверьте соединение";
+      if (errorBox) {
+        errorBox.hidden = false;
+        setText("sport-error-text", message);
+      }
+      if (!state.sport) {
+        const grid = $("#sport-grid");
+        if (grid) grid.innerHTML = "";
+        const hero = $("#sport-hero");
+        if (hero) hero.innerHTML = "";
+      }
+      if (source) source.textContent = "Нет данных";
+    } finally {
+      if (button) button.classList.remove("is-spinning");
     }
   }
 
@@ -998,12 +1165,18 @@
     window.addEventListener("online", () => {
       updateNetwork();
       if (document.body.dataset.page === "forecast") loadForecast(true);
+      if (document.body.dataset.page === "sport") loadSport(true);
     });
     window.addEventListener("offline", updateNetwork);
     if (document.body.dataset.page === "forecast") {
       window.setInterval(() => {
         if (!document.hidden && navigator.onLine) loadForecast(true);
       }, 15 * 60 * 1000);
+    }
+    if (document.body.dataset.page === "sport") {
+      $("#retry-sport")?.addEventListener("click", () => loadSport(true));
+      $("#refresh-sport")?.addEventListener("click", () => loadSport(true));
+      loadSport(false);
     }
     loadForecast(false);
   }

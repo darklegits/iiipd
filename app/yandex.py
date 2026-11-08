@@ -172,9 +172,20 @@ async def _read_page(url: str, timeout: float = 25.0) -> str:
             process.wait(timeout=3)
         except subprocess.TimeoutExpired:
             process.kill()
+            try:
+                process.wait(timeout=3)
+            except subprocess.TimeoutExpired:
+                pass
         import shutil
 
-        shutil.rmtree(profile, ignore_errors=True)
+        # Chrome отпускает файлы профиля с задержкой: без повторов во временной
+        # папке остаются мусорные каталоги weather-oracle-yandex-*.
+        for _ in range(6):
+            if not profile.exists():
+                break
+            shutil.rmtree(profile, ignore_errors=True)
+            if profile.exists():
+                time.sleep(0.3)
 
 
 def fetch_yandex_forecast(slug: str, issue_date: date | None = None, timeout: float = 30.0) -> list[dict[str, Any]]:

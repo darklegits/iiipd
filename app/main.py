@@ -24,11 +24,13 @@ from .config import (
 )
 from .data import DataFetchError
 from .service import ArtifactError, WeatherOracleStore
+from .sport import build_payload as build_sport_payload
 
 templates = Jinja2Templates(directory=str(TEMPLATE_DIR))
 
 PAGE_LABELS = {
     "forecast": "Прогноз",
+    "sport": "Спорт",
     "compare": "Сравнение",
     "models": "Модели",
     "method": "Методика",
@@ -105,6 +107,14 @@ async def page_forecast(
     return render_page(request, city, "forecast")
 
 
+@app.get("/sport", response_class=HTMLResponse)
+async def page_sport(
+    request: Request,
+    city: str | None = Query(None, description="slug города"),
+) -> HTMLResponse:
+    return render_page(request, city, "sport")
+
+
 @app.get("/compare", response_class=HTMLResponse)
 async def page_compare(
     request: Request,
@@ -137,9 +147,7 @@ async def health(request: Request) -> dict[str, Any]:
         "status": "ok",
         "service": APP_NAME,
         "cities_loaded": len(store.cities),
-        "models_loaded": sum(
-            len(city.models) for city in store.cities.values() if city.models
-        ),
+        "models_loaded": sum(city.model_count for city in store.cities.values()),
         "default_city": default.slug,
         "cities": list(store.cities),
         "trained_at": default.metrics.get("generated_at"),
@@ -183,6 +191,23 @@ async def api_forecast(
         raise HTTPException(
             status_code=502, detail=f"Не удалось построить живой прогноз: {exc}"
         ) from exc
+    return JSONResponse(payload)
+
+
+@app.get("/api/sport")
+async def api_sport(
+    request: Request,
+    city: str | None = Query(None, description="slug города"),
+) -> JSONResponse:
+    store = get_store(request)
+    try:
+        city_store = store.get(city)
+        forecast = city_store.live_forecast()
+    except ArtifactError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except DataFetchError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    payload = build_sport_payload(forecast, city_store.city)
     return JSONResponse(payload)
 
 

@@ -76,6 +76,15 @@ class CityStore:
             self.models = loaded
         return self.models
 
+    @property
+    def model_count(self) -> int:
+        """Сколько моделей доступно для города (загруженных или лежащих на диске)."""
+        if self.models is not None:
+            return len(self.models)
+        return sum(
+            1 for lead in LEADS if (self.paths["models"] / f"lead_{lead}.joblib").exists()
+        )
+
     @staticmethod
     def _load_json(path: Path, *, required: bool = True) -> dict[str, Any]:
         if not path.exists():
@@ -163,6 +172,17 @@ class CityStore:
         timezone = str(self.city["timezone"])
         issue_date = local_today(timezone)
         yandex_rows = fetch_yandex_forecast(self.slug, issue_date)
+        # Публичная страница Яндекса начинается с сегодняшнего дня, а наши
+        # горизонты считаются от завтрашнего: h=1 — это следующие сутки.
+        yandex_rows = [
+            item
+            for item in yandex_rows
+            if pd.Timestamp(item["date"]).date() > issue_date
+        ]
+        if len(yandex_rows) < 7:
+            raise DataFetchError(
+                "Яндекс.Погода вернула меньше недели прогноза — источник недоступен."
+            )
         rows: list[dict[str, Any]] = []
         for index, item in enumerate(yandex_rows, start=1):
             rows.append(
@@ -192,6 +212,25 @@ class CityStore:
             "cache_seconds": 900,
         }
 
+    def _merge_history(self, history: pd.DataFrame, meta: dict[str, Any]) -> None:
+        """Сохраняет свежую историю, не теряя уже накопленные дни."""
+        path = self.data_paths["actuals"]
+        try:
+            cached = load_actuals(path)
+        except (FileNotFoundError, OSError, ValueError):
+            cached = None
+        if cached is not None and not cached.empty:
+            combined = pd.concat([cached, history])
+            combined = combined[~combined.index.duplicated(keep="last")].sort_index()
+        else:
+            combined = history
+        merged_meta = dict(meta)
+        merged_meta["first_date"] = combined.index.min().date().isoformat()
+        merged_meta["last_date"] = combined.index.max().date().isoformat()
+        merged_meta["rows"] = int(len(combined))
+        merged_meta["merged_with_cache"] = True
+        save_actuals(combined, merged_meta, city_slug=self.slug)
+
     def _build_live_forecast(self) -> dict[str, Any]:
         all_models = self._ensure_models()
         timezone = str(self.city["timezone"])
@@ -203,7 +242,9 @@ class CityStore:
         try:
             cached_history = load_actuals(self.data_paths["actuals"])
             cached_history = cached_history.loc[cached_history.index <= pd.Timestamp(history_end)]
-            if cached_history.empty or cached_history.index.max() < pd.Timestamp(history_end - timedelta(days=3)):
+            # Признаки любого горизонта опираются на вчерашний день (t - h - 1 = вчера),
+            # поэтому кэш без вчерашних данных бесполезен — его нужно обновить.
+            if cached_history.empty or cached_history.index.max() < pd.Timestamp(history_end):
                 raise FileNotFoundError
             history = cached_history.tail(75)
         except (FileNotFoundError, OSError, ValueError):
@@ -217,9 +258,14 @@ class CityStore:
                 request_retries=1,
             )
             try:
-                save_actuals(history, history_meta, city_slug=self.slug)
+                self._merge_history(history, history_meta)
             except OSError:
                 pass
+        if history.empty or history.index.max() < pd.Timestamp(history_end):
+            raise DataFetchError(
+                "Open-Meteo ещё не опубликовал полные данные за "
+                f"{history_end.strftime('%d.%m.%Y')}. Обновите прогноз позже."
+            )
         extended = future_frame(history, history.index.max(), days=15)
 
         rows: list[dict[str, Any]] = []

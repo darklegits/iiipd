@@ -36,6 +36,7 @@
 
       <nav class="main-nav" aria-label="Основная навигация">
         <a class="{% if page == 'forecast' %}is-active{% endif %}" href="/forecast?city={{ city.slug }}">Прогноз</a>
+        <a class="{% if page == 'sport' %}is-active{% endif %}" href="/sport?city={{ city.slug }}">Спорт</a>
         <a class="{% if page == 'compare' %}is-active{% endif %}" href="/compare?city={{ city.slug }}">Сравнение</a>
         <a class="{% if page == 'models' %}is-active{% endif %}" href="/models?city={{ city.slug }}">Модели</a>
         <a class="{% if page == 'method' %}is-active{% endif %}" href="/method?city={{ city.slug }}">Методика</a>
@@ -320,6 +321,55 @@
       </div>
     </section>
 
+    {% elif page == "sport" %}
+    <section class="section sport-section" id="sport">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <span class="kicker">СПОРТ</span>
+            <h2>Чем заняться на улице</h2>
+            <p class="section-sub" id="sport-sub">Смотрим на температуру, осадки и ветер и подсказываем, какая активность безопасна. Для каждого дня — подходящие виды, экипировка и предупреждения.</p>
+          </div>
+          <a class="text-link" href="/forecast?city={{ city.slug }}">Прогноз по дням <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="sport-hero" id="sport-hero" aria-live="polite">
+          <div class="sport-hero-skeleton"></div>
+        </div>
+
+        <div class="sport-toolbar">
+          <span class="sport-source" id="sport-source">Загружаю прогноз…</span>
+          <button class="btn btn-sm btn-outline" type="button" id="refresh-sport">Обновить</button>
+        </div>
+
+        <div class="sport-grid" id="sport-grid" aria-live="polite">
+          <div class="sport-skeleton"></div>
+          <div class="sport-skeleton"></div>
+          <div class="sport-skeleton"></div>
+          <div class="sport-skeleton"></div>
+          <div class="sport-skeleton"></div>
+          <div class="sport-skeleton"></div>
+        </div>
+
+        <div class="forecast-error" id="sport-error" hidden>
+          <div>
+            <strong>Рекомендации временно недоступны.</strong>
+            <span id="sport-error-text">Не удалось получить прогноз. Проверьте соединение и попробуйте ещё раз.</span>
+          </div>
+          <button class="btn btn-sm btn-outline" type="button" id="retry-sport">Повторить</button>
+        </div>
+
+        <div class="sport-catalog" id="sport-catalog">
+          <h3>Все виды активности</h3>
+          <div class="sport-catalog-grid" id="sport-catalog-grid"></div>
+        </div>
+
+        <p class="catalog-note" id="sport-note">
+          Рекомендации строятся по живому прогнозу и обновляются вместе с ним.
+        </p>
+      </div>
+    </section>
+
     {% elif page == "compare" %}
     <section class="section compare-section" id="compare">
       <div class="container">
@@ -570,6 +620,10 @@
     <a class="{% if page == 'forecast' %}is-active{% endif %}" href="/forecast?city={{ city.slug }}">
       <svg viewBox="0 0 24 24"><path d="M4 17h16M6 14a6 6 0 0 1 12 0M9 10V7m3 3V6m3 4V7"/></svg>
       <span>Прогноз</span>
+    </a>
+    <a class="{% if page == 'sport' %}is-active{% endif %}" href="/sport?city={{ city.slug }}">
+      <svg viewBox="0 0 24 24"><path d="M5 19V8l7-4 7 4v11"/><path d="M9 19v-5h6v5"/></svg>
+      <span>Спорт</span>
     </a>
     <a class="{% if page == 'compare' %}is-active{% endif %}" href="/compare?city={{ city.slug }}">
       <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg>

@@ -1,7 +1,8 @@
 /* Погодный оракул — офлайн-оболочка PWA */
-const CACHE = "weather-oracle-v17";
+const CACHE = "weather-oracle-v19";
 const SHELL = [
   "/forecast",
+  "/sport",
   "/static/style.css",
   "/static/app.js",
   "/static/manifest.webmanifest",
@@ -19,6 +20,22 @@ const SHELL = [
   "/static/icons/favicon-32.png",
   "/artifacts/forecast_vs_fact.png"
 ];
+
+// Один и тот же прогноз кэшируется независимо от ?refresh=true:
+// иначе офлайн-запрос без refresh не находит последний успешный ответ.
+function apiKey(url) {
+  const city = url.searchParams.get("city") || "";
+  return `${url.origin}${url.pathname}?city=${encodeURIComponent(city)}`;
+}
+
+// cache.put может отклониться (например, для редиректа) — это не должно
+// ломать ответ странице.
+function cachePut(key, response) {
+  caches
+    .open(CACHE)
+    .then((cache) => cache.put(key, response))
+    .catch(() => {});
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -43,27 +60,35 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (request.mode === "navigate") {
+    // Офлайн отдаём ту же страницу, которую открывали, и только если её
+    // нет в кэше — оболочку прогноза.
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put("/forecast", copy));
+          if (response.ok) {
+            const copy = response.clone();
+            cachePut(request, copy);
+          }
           return response;
         })
-        .catch(() => caches.match("/forecast"))
+        .catch(async () => (await caches.match(request)) || (await caches.match("/forecast")))
     );
     return;
   }
 
-  if (url.pathname === "/api/forecast") {
+  if (url.pathname === "/api/forecast" || url.pathname === "/api/sport") {
+    // Неудачный ответ не должен затирать последний успешный прогноз.
+    const key = apiKey(url);
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(request, copy));
+          if (response.ok) {
+            const copy = response.clone();
+            cachePut(key, copy);
+          }
           return response;
         })
-        .catch(() => caches.match(request))
+        .catch(async () => (await caches.match(key)) || (await caches.match(request)))
     );
     return;
   }
@@ -76,7 +101,7 @@ self.addEventListener("fetch", (event) => {
         .then((response) => {
           if (response.ok) {
             const copy = response.clone();
-            caches.open(CACHE).then((cache) => cache.put(request, copy));
+            cachePut(request, copy);
           }
           return response;
         })
