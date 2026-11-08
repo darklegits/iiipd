@@ -38,14 +38,101 @@
     return normalizeProfile(raw);
   }
 
-  function saveProfile(profile) {
+  function saveProfile(profile, push = true) {
     if (!profile.createdAt) profile.createdAt = new Date().toISOString();
+    profile.savedAt = new Date().toISOString();
+    state.profile = profile;
+    try {
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+    } catch (_) { /* приватный режим */ }
+    applyProfileToChrome(profile);
+    if (push) scheduleProfilePush(profile);
+    return profile;
+  }
+
+  // Сохранение без отметки времени: так применяем профиль с сервера,
+  // чтобы не перезаписать его устаревшей локальной копией.
+  function saveProfileLocal(profile) {
     state.profile = profile;
     try {
       localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
     } catch (_) { /* приватный режим */ }
     applyProfileToChrome(profile);
     return profile;
+  }
+
+  let profilePushTimer = 0;
+
+  function scheduleProfilePush(profile) {
+    window.clearTimeout(profilePushTimer);
+    profilePushTimer = window.setTimeout(() => {
+      pushProfile(profile);
+    }, 900);
+  }
+
+  async function pushProfile(profile) {
+    try {
+      const response = await fetch("/api/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(profile),
+      });
+      if (!response.ok) return null;
+      const data = await response.json();
+      if (data && data.profile) {
+        state.profile.updatedAt = data.profile.updated_at;
+        state.profile.savedAt = data.profile.updated_at;
+        try {
+          localStorage.setItem(PROFILE_KEY, JSON.stringify(state.profile));
+        } catch (_) { /* приватный режим */ }
+        setText("profile-sync", "Сохранено на сервере");
+      }
+      return data && data.profile;
+    } catch (_) {
+      setText("profile-sync", "Не сохранено: нет соединения");
+      return null;
+    }
+  }
+
+  async function syncProfileFromServer() {
+    let data = null;
+    try {
+      const response = await fetch("/api/profile", { headers: { Accept: "application/json" } });
+      if (response.ok) data = await response.json();
+    } catch (_) {
+      return;
+    }
+    const server = data && data.profile;
+    const local = state.profile || loadProfile();
+    if (!server) {
+      if ((local.name || local.sports.length) && local.savedAt) pushProfile(local);
+      return;
+    }
+    const serverTime = Date.parse(server.updated_at || 0) || 0;
+    const localTime = Date.parse(local.savedAt || 0) || 0;
+    if (localTime > serverTime + 2000) {
+      pushProfile(local);
+      return;
+    }
+    const merged = normalizeProfile({
+      name: server.name,
+      sports: server.sports,
+      level: server.level,
+      goal: server.goal,
+      notify: server.notify,
+      notifyTime: server.notifyTime,
+      onlyMine: server.onlyMine,
+      createdAt: local.createdAt || server.updated_at,
+      savedAt: server.updated_at,
+    });
+    saveProfileLocal(merged);
+    if (document.body.dataset.page === "profile") {
+      fillProfileFields(merged);
+      renderSportPick(merged);
+      updateNotifyStatus();
+      updateProfileStats();
+    }
+    if (document.body.dataset.page === "sport" && state.sport) renderSport();
   }
 
   function profileInitial(profile) {
@@ -1301,10 +1388,27 @@
       showToast(ok ? "Уведомление отправлено" : "Не удалось показать уведомление");
     });
 
-    $("#profile-reset")?.addEventListener("click", () => {
+    $("#profile-save")?.addEventListener("click", async () => {
+      const saved = await pushProfile(state.profile);
+      showToast(saved ? "Профиль и спорт сохранены" : "Не удалось сохранить — проверьте соединение");
+      if (saved) {
+        setText("profile-saved", "Сохранено");
+        setText("profile-sync", "Сохранено на сервере");
+        const badge = $("#profile-saved");
+        if (badge) {
+          badge.classList.add("is-visible");
+          window.setTimeout(() => badge.classList.remove("is-visible"), 2200);
+        }
+      }
+    });
+
+    $("#profile-reset")?.addEventListener("click", async () => {
       try {
         localStorage.removeItem(PROFILE_KEY);
       } catch (_) { /* ignore */ }
+      try {
+        await fetch("/api/profile", { method: "DELETE" });
+      } catch (_) { /* сервер может быть недоступен */ }
       window.location.reload();
     });
 
@@ -1327,8 +1431,10 @@
     if (errorBox) errorBox.hidden = true;
     try {
       state.sport = await fetchSportData(force);
-      renderSportPick(profile);
-      renderPlan(state.sport, profile);
+      // Пока грузился прогноз, профиль мог обновиться с сервера.
+      const current = state.profile;
+      renderSportPick(current);
+      renderPlan(state.sport, current);
       updateProfileStats();
       setText(
         "profile-plan-source",
@@ -1833,6 +1939,7 @@
     updateNetwork();
     updateUnitButtons();
     applyProfileToChrome(state.profile);
+    syncProfileFromServer();
     setupControls();
     setupModal();
     setupInstall();

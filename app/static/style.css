@@ -2418,9 +2418,10 @@ td.muted { color: #a4a9b2; }
   animation: shimmer 1.4s linear infinite;
 }
 
-.profile-actions { display: flex; align-items: center; gap: 14px; margin-top: 16px; }
+.profile-actions { display: flex; align-items: center; gap: 14px; margin-top: 16px; flex-wrap: wrap; }
 .profile-saved { font-size: 11px; color: var(--green); opacity: 0; transition: opacity 0.2s var(--ease); }
 .profile-saved.is-visible { opacity: 1; }
+.profile-sync { font-size: 11px; color: var(--muted); }
 
 /* баннер на странице спорта */
 

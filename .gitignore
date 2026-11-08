@@ -12,6 +12,7 @@ build/
 build-console/
 build-final/
 dist/
+data/profile.json
 artifacts/page-preview.html
 artifacts/ui-*.png
 .DS_Store

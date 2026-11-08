@@ -24,6 +24,7 @@ from .config import (
     TEMPLATE_DIR,
 )
 from .data import DataFetchError
+from .profile import ProfileError, delete_profile, load_profile, save_profile
 from .service import ArtifactError, WeatherOracleStore
 from .sport import build_payload as build_sport_payload
 
@@ -232,6 +233,38 @@ async def api_sport(
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     payload = build_sport_payload(forecast, city_store.city)
     return JSONResponse(payload)
+
+
+@app.get("/api/profile")
+async def api_profile_get() -> JSONResponse:
+    return JSONResponse({"profile": load_profile()})
+
+
+@app.put("/api/profile")
+async def api_profile_put(request: Request) -> JSONResponse:
+    try:
+        body = await request.json()
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=400, detail="Некорректный JSON") from exc
+    try:
+        saved = save_profile(body)
+    except ProfileError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return JSONResponse({"profile": saved})
+
+
+@app.post("/api/profile")
+async def api_profile_post(request: Request) -> JSONResponse:
+    return await api_profile_put(request)
+
+
+@app.delete("/api/profile")
+async def api_profile_delete() -> JSONResponse:
+    try:
+        delete_profile()
+    except ProfileError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    return JSONResponse({"ok": True})
 
 
 @app.get("/api/backtest")
