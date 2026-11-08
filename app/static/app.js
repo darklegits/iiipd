@@ -1457,6 +1457,27 @@
     const button = $("#music-toggle");
     if (!button) return;
     const KEY = "oracle-music";
+    const VOLUME_KEY = "oracle-music-volume";
+    const DEFAULT_VOLUME = 60;
+    const MAX_GAIN = 0.32;
+    const panel = $("#music-panel");
+    const volumeButton = $("#music-volume-btn");
+    const range = $("#music-volume");
+    const valueLabel = $("#music-volume-value");
+    let volume = DEFAULT_VOLUME;
+    try {
+      const storedVolume = localStorage.getItem(VOLUME_KEY);
+      if (storedVolume !== null && storedVolume !== "") {
+        const savedVolume = Number(storedVolume);
+        if (Number.isFinite(savedVolume) && savedVolume >= 0 && savedVolume <= 100) {
+          volume = savedVolume;
+        }
+      }
+    } catch (_) { /* приватный режим */ }
+    const gainForVolume = () => MAX_GAIN * (volume / 100);
+    if (range) range.value = String(volume);
+    if (valueLabel) valueLabel.textContent = volume + "%";
+    window.__musicVolume = volume;
     const chords = [
       [110.0, 130.81, 164.81, 196.0],
       [87.31, 110.0, 130.81, 164.81],
@@ -1578,7 +1599,7 @@
         }
         ctx.resume();
         master.gain.cancelScheduledValues(ctx.currentTime);
-        master.gain.linearRampToValueAtTime(0.16, ctx.currentTime + 2.5);
+        master.gain.linearRampToValueAtTime(gainForVolume(), ctx.currentTime + 2.5);
         startTimers();
         button.classList.add("is-playing");
         button.setAttribute("aria-pressed", "true");
@@ -1611,6 +1632,43 @@
 
     button.addEventListener("click", () => {
       setPlaying(!button.classList.contains("is-playing"));
+    });
+
+    range?.addEventListener("input", () => {
+      volume = Math.max(0, Math.min(100, Number(range.value) || 0));
+      if (valueLabel) valueLabel.textContent = volume + "%";
+      window.__musicVolume = volume;
+      try {
+        localStorage.setItem(VOLUME_KEY, String(volume));
+      } catch (_) {
+        /* приватный режим */
+      }
+      if (ctx && master) {
+        master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.linearRampToValueAtTime(gainForVolume(), ctx.currentTime + 0.2);
+      }
+    });
+
+    const closePanel = () => {
+      if (!panel || panel.hidden) return;
+      panel.hidden = true;
+      volumeButton?.setAttribute("aria-expanded", "false");
+    };
+
+    volumeButton?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (!panel) return;
+      const willOpen = panel.hidden;
+      panel.hidden = !willOpen;
+      volumeButton.setAttribute("aria-expanded", String(willOpen));
+      if (willOpen) range?.focus();
+    });
+    if (panel) {
+      panel.addEventListener("click", (event) => event.stopPropagation());
+    }
+    document.addEventListener("click", closePanel);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closePanel();
     });
 
     let saved = "0";

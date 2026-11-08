@@ -1,5 +1,5 @@
 /* Погодный оракул — офлайн-оболочка PWA */
-const CACHE = "weather-oracle-v22";
+const CACHE = "weather-oracle-v23";
 const SHELL = [
   "/forecast",
   "/sport",

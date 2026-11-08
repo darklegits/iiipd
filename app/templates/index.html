@@ -45,9 +45,21 @@
       </nav>
 
       <div class="header-actions">
-        <button class="music-btn" id="music-toggle" type="button" aria-pressed="false" aria-label="Фоновая музыка" title="Фоновая музыка">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
-        </button>
+        <div class="music-control" id="music-control">
+          <button class="music-btn" id="music-toggle" type="button" aria-pressed="false" aria-label="Фоновая музыка" title="Фоновая музыка">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+          </button>
+          <button class="music-volume-btn" id="music-volume-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="music-panel" aria-label="Громкость музыки" title="Громкость музыки">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+          </button>
+          <div class="music-panel" id="music-panel" hidden>
+            <span class="music-panel-label">Громкость музыки</span>
+            <div class="music-panel-row">
+              <input class="music-range" id="music-volume" type="range" min="0" max="100" step="5" value="60" aria-label="Громкость музыки" />
+              <span class="music-panel-value" id="music-volume-value">60%</span>
+            </div>
+          </div>
+        </div>
         <a class="profile-btn" id="profile-btn" href="/profile?city={{ city.slug }}" aria-label="Личный кабинет" title="Личный кабинет">
           <span id="profile-initial">Я</span>
         </a>

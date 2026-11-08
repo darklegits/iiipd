@@ -2720,6 +2720,50 @@ body { background: var(--bg); color: var(--ink); }
   0%, 100% { opacity: 1; }
   50% { opacity: 0.55; }
 }
+
+/* --- громкость музыки --- */
+
+.music-control { position: relative; display: flex; align-items: center; }
+.music-volume-btn {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+}
+.music-volume-btn svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.music-volume-btn:hover { color: #fff; }
+.music-panel {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  z-index: 320;
+  width: 228px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: #0b0b0c;
+  color: #fff;
+  box-shadow: var(--sh-3);
+}
+.music-panel-label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.music-panel-row { display: flex; align-items: center; gap: 10px; }
+.music-range { flex: 1; accent-color: #fff; cursor: pointer; }
+.music-panel-value { min-width: 36px; text-align: right; font-size: 11px; color: rgba(255, 255, 255, 0.85); font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) {
+  .music-panel { position: fixed; top: 68px; right: 12px; left: auto; }
+}
 .sport-hero-score { border-color: rgba(255, 255, 255, 0.34); background: rgba(8, 8, 10, 0.66); }
 .sport-hero-score span,
 .sport-hero .sport-eyebrow,
