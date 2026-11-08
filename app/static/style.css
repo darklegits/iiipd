@@ -2453,6 +2453,65 @@ td.muted { color: #a4a9b2; }
 .sport-banner-link { font-size: 12px; font-weight: 600; color: var(--volt); text-decoration: none; }
 .sport-banner-link:hover { text-decoration: underline; }
 
+/* галерея направлений */
+
+.sport-gallery { margin-top: 34px; }
+.sport-gallery-head { margin-bottom: 16px; }
+.sport-gallery-head h3 {
+  margin: 8px 0 6px;
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.sport-gallery-head p { margin: 0; font-size: 12px; color: var(--muted); }
+.sport-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sport-gallery-card {
+  position: relative;
+  display: block;
+  min-height: 210px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: var(--sh-2);
+}
+.sport-gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 8, 13, 0) 28%, rgba(6, 8, 13, 0.62) 62%, rgba(6, 8, 13, 0.94) 100%);
+}
+.sport-gallery-art {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.35s var(--ease);
+}
+.sport-gallery-card:hover .sport-gallery-art { transform: scale(1.05); }
+.sport-gallery-copy {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.sport-gallery-copy b { font-size: 15px; letter-spacing: -0.01em; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55); }
+.sport-gallery-copy small { font-size: 10.5px; color: rgba(255, 255, 255, 0.78); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5); }
+.sport-gallery-stadium { background-image: url("/static/images/sport-stadium.svg"); }
+.sport-gallery-winter { background-image: url("/static/images/sport-winter.svg"); }
+.sport-gallery-water { background-image: url("/static/images/sport-water.svg"); }
+
+@media (max-width: 900px) {
+  .sport-gallery-grid { grid-template-columns: 1fr; }
+  .sport-gallery-card { min-height: 170px; }
+}
+
 
 @media (max-width: 1100px) {
   .profile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

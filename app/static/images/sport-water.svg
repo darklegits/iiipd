@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Открытая вода на рассвете">
+  <defs>
+    <linearGradient id="wsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#080d18"/>
+      <stop offset="0.55" stop-color="#152238"/>
+      <stop offset="1" stop-color="#7a3a2c"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f2233"/>
+      <stop offset="1" stop-color="#08131f"/>
+    </linearGradient>
+    <radialGradient id="wsun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffb066" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffb066" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#wsky)"/>
+  <circle cx="450" cy="300" r="220" fill="url(#wsun)"/>
+  <circle cx="450" cy="300" r="64" fill="#ffd9a8" opacity="0.9"/>
+  <rect y="330" width="900" height="230" fill="url(#water)"/>
+
+  <g stroke="#ffcf9b" stroke-linecap="round" stroke-opacity="0.45">
+    <path d="M300 340h300" stroke-width="4"/>
+    <path d="M330 358h240" stroke-width="3"/>
+    <path d="M360 378h180" stroke-width="2"/>
+    <path d="M390 400h120" stroke-width="2"/>
+  </g>
+
+  <g fill="none" stroke="#9fd0e8" stroke-width="2.5" stroke-linecap="round" opacity="0.55">
+    <path d="M0 470c40-14 80-14 120 0s80 14 120 0 80-14 120 0 80 14 120 0 80-14 120 0 80 14 120 0 80-14 120 0"/>
+    <path d="M0 505c40-14 80-14 120 0s80 14 120 0 80-14 120 0 80 14 120 0 80-14 120 0 80 14 120 0 80-14 120 0"/>
+    <path d="M0 540c40-14 80-14 120 0s80 14 120 0 80-14 120 0 80 14 120 0 80-14 120 0 80 14 120 0 80-14 120 0"/>
+  </g>
+
+  <g fill="#0b1522">
+    <ellipse cx="620" cy="452" rx="92" ry="9"/>
+    <path d="M620 300v146" stroke="#0b1522" stroke-width="5"/>
+    <circle cx="620" cy="292" r="12"/>
+    <path d="M620 312l-24 34M620 312l24 30"/>
+    <path d="M620 352l-16 46M620 352l18 46"/>
+    <path d="M596 398h50" stroke="#0b1522" stroke-width="4"/>
+  </g>
+  <g fill="none" stroke="#d7e6f2" stroke-width="3" stroke-linecap="round" opacity="0.8">
+    <path d="M556 300l128-6"/>
+  </g>
+</svg>

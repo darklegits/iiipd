@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Зимний склон">
+  <defs>
+    <linearGradient id="wsky" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.52" stop-color="#25324d"/>
+      <stop offset="1" stop-color="#7a4a5c"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9f1fb"/>
+      <stop offset="1" stop-color="#b7c8de"/>
+    </linearGradient>
+    <radialGradient id="wsun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd27a" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#ffd27a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#wsky)"/>
+  <circle cx="690" cy="150" r="150" fill="url(#wsun)"/>
+  <circle cx="690" cy="150" r="42" fill="#ffe2a6" opacity="0.9"/>
+
+  <path d="M0 340 150 190l120 110 90-70 150 120 120-90 170 130v100H0Z" fill="#16203a"/>
+  <path d="M150 190l26 20 42 38-20 6-19-14-18 12-20-10-16 7Z" fill="url(#snow)"/>
+  <path d="M510 350l24 18 38 32-18 5-17-12-16 10-18-8-14 6Z" fill="url(#snow)" opacity="0.7"/>
+
+  <path d="M0 420c120-40 250-52 400-42 170 11 330 34 500 22v160H0Z" fill="url(#snow)"/>
+  <g stroke="#93a9c4" stroke-width="2" fill="none" opacity="0.55">
+    <path d="M50 550c60-70 150-90 250-70s170 40 260 10 170-70 290-50"/>
+    <path d="M20 505c70-55 160-70 250-50s160 32 240 8 160-50 240-38"/>
+  </g>
+
+  <g fill="#0f1728">
+    <path d="M120 430l22-58 22 58Z"/>
+    <path d="M160 438l18-46 18 46Z"/>
+    <path d="M700 440l24-64 24 64Z"/>
+    <path d="M744 448l18-48 18 48Z"/>
+  </g>
+  <g stroke="#0f1728" stroke-width="3" stroke-linecap="round">
+    <path d="M142 430v22M178 438v18M724 440v20M762 448v16"/>
+  </g>
+</svg>
