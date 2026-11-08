@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Горы на рассвете">
+  <defs>
+    <linearGradient id="dawn" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#0a0d14"/>
+      <stop offset="0.5" stop-color="#151a26"/>
+      <stop offset="1" stop-color="#2a1119"/>
+    </linearGradient>
+    <linearGradient id="peak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3242"/>
+      <stop offset="1" stop-color="#121722"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8eef7" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#9fb0c6" stop-opacity="0.25"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff6b5c" stop-opacity="0.85"/>
+      <stop offset="0.6" stop-color="#ff6b5c" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ff6b5c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="520" fill="url(#dawn)"/>
+  <circle cx="1180" cy="330" r="220" fill="url(#sun)"/>
+
+  <path d="M0 400 260 210l170 130 150-96 240 156 190-120 240 168 190-134 160 132v74H0Z" fill="url(#peak)"/>
+  <path d="M260 210l38 29 62 47-30 8-28-22-26 18-30-14-24 10Z" fill="url(#snow)"/>
+  <path d="M820 220l34 26 54 42-28 6-24-18-24 16-26-12-20 8Z" fill="url(#snow)" opacity="0.85"/>
+  <path d="M1270 268l30 22 46 38-24 5-20-16-22 14-22-10-18 7Z" fill="url(#snow)" opacity="0.7"/>
+
+  <g fill="none" stroke="#f5f7fb" stroke-opacity="0.08" stroke-width="1.5">
+    <path d="M0 470c240-26 420-30 620-20 200 10 380 22 560 12 140-8 280-16 420-30"/>
+    <path d="M0 496c240-22 420-26 620-16 200 10 380 18 560 10 140-6 280-14 420-24"/>
+  </g>
+</svg>

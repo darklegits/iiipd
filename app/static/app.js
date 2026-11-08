@@ -4,6 +4,99 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
+  const PROFILE_KEY = "oracle-profile";
+  const PROFILE_DEFAULTS = {
+    name: "",
+    sports: [],
+    level: "amateur",
+    goal: "health",
+    notify: false,
+    notifyTime: "18:00",
+    onlyMine: false,
+  };
+
+  function normalizeProfile(raw) {
+    const stored = raw && typeof raw === "object" ? raw : {};
+    const profile = Object.assign({}, PROFILE_DEFAULTS, stored);
+    if (!Array.isArray(profile.sports)) profile.sports = [];
+    profile.sports = profile.sports.filter((key) => typeof key === "string");
+    if (!/^\d{1,2}:\d{2}$/.test(String(profile.notifyTime))) {
+      profile.notifyTime = PROFILE_DEFAULTS.notifyTime;
+    }
+    profile.notify = Boolean(profile.notify);
+    profile.onlyMine = Boolean(profile.onlyMine);
+    return profile;
+  }
+
+  function loadProfile() {
+    let raw = null;
+    try {
+      raw = JSON.parse(localStorage.getItem(PROFILE_KEY) || "null");
+    } catch (_) {
+      raw = null;
+    }
+    return normalizeProfile(raw);
+  }
+
+  function saveProfile(profile) {
+    if (!profile.createdAt) profile.createdAt = new Date().toISOString();
+    state.profile = profile;
+    try {
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+    } catch (_) { /* приватный режим */ }
+    applyProfileToChrome(profile);
+    return profile;
+  }
+
+  function profileInitial(profile) {
+    const name = (profile && profile.name ? profile.name : "").trim();
+    return name ? name.charAt(0).toUpperCase() : "Я";
+  }
+
+  function applyProfileToChrome(profile) {
+    const initial = profileInitial(profile);
+    const headerInitial = $("#profile-initial");
+    if (headerInitial) headerInitial.textContent = initial;
+    const avatar = $("#profile-avatar");
+    if (avatar) avatar.textContent = initial;
+  }
+
+  const SPORT_ICONS = {
+    run: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="14.5" cy="5" r="2"/><path d="M13 8l-3 4 3 3-2 5"/><path d="M10 12l-4 1M14 15l4 2"/></svg>`,
+    walk: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="5" r="2"/><path d="M13 8l-2 5 2 3v4"/><path d="M11 13l-3 2M15 12l3 3"/></svg>`,
+    bike: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="16" r="3"/><circle cx="17.5" cy="16" r="3"/><path d="M6.5 16l4-7h4l3 7M10.5 9h5"/></svg>`,
+    football: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v4M12 16v4M4 12h4M16 12h4"/></svg>`,
+    tennis: `<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="10" cy="9" rx="5" ry="6"/><path d="m13.4 13.4 5 5"/><path d="M6.6 6.6 13.4 11.4M13.4 6.6 6.6 11.4"/></svg>`,
+    workout: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6M7 7v10M17 7v10M20 9v6M7 12h10"/></svg>`,
+    yoga: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8v6M6 11l6 1 6-1M8 20l4-5 4 5"/></svg>`,
+    swim: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="16" cy="7" r="2"/><path d="M3 15c2-2 4-2 6 0s4 2 6 0M3 19c2-2 4-2 6 0s4 2 6 0"/></svg>`,
+    sup: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17c4 3 14 3 18 0"/><path d="M12 4v9M8 8l4-4 4 4"/></svg>`,
+    ski: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l6-16M11 20l6-16"/><circle cx="9" cy="6" r="1.6"/></svg>`,
+    skate: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 14V5h4v4l4 3v2H8z"/><path d="M6 19h13"/></svg>`,
+    climb: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18l6-10 3 5 2-3 7 8z"/><path d="M16 4v4l3-1"/></svg>`,
+  };
+
+  const SPORT_STATUS_HINTS = {
+    great: "Отлично",
+    ok: "Можно",
+    careful: "Осторожно",
+    no: "Не стоит",
+  };
+
+  function favoriteSports() {
+    return (state.profile && state.profile.sports) || [];
+  }
+
+  function orderSports(sports, favorites) {
+    if (!favorites.length) return sports;
+    const favorite = [];
+    const rest = [];
+    sports.forEach((item) => {
+      (favorites.includes(item.key) ? favorite : rest).push(item);
+    });
+    return favorite.concat(rest);
+  }
+
   const state = {
     payload: null,
     period: Number(localStorage.getItem("oracle-period")) || 14,
@@ -13,6 +106,7 @@
     lastFocus: null,
     city: window.ORACLE_CITY || document.body.dataset.city || "ekaterinburg",
     sport: null,
+    profile: loadProfile(),
   };
   state.period = [7, 10, 14].includes(state.period) ? state.period : 14;
 
@@ -687,15 +781,32 @@
 
   /* ---------- спорт ---------- */
 
-  function sportListMarkup(day, limit) {
-    const ready = day.sports.filter((item) => item.status !== "no");
-    const shown = ready.length ? ready.slice(0, limit) : day.sports.slice(0, limit);
-    return shown
-      .map(
-        (item) =>
-          `<li class="sport-item is-${item.status}"><span class="sport-item-name">${item.name}</span><span class="sport-item-label">${item.label}</span></li>`
-      )
-      .join("");
+  function sportItemMarkup(item, favorites) {
+    const icon = SPORT_ICONS[item.key] || "";
+    const star = favorites.includes(item.key) ? `<span class="sport-item-star" title="мой вид">★</span>` : "";
+    return `<li class="sport-item is-${item.status}" data-sport="${item.key}">
+      <span class="sport-item-icon">${icon}</span>
+      <span class="sport-item-name">${item.name}</span>
+      ${star}
+      <span class="sport-item-label">${item.label}</span>
+    </li>`;
+  }
+
+  function sportListMarkup(items, limit, favorites) {
+    const ready = items.filter((item) => item.status !== "no");
+    const shown = ready.length ? ready.slice(0, limit) : items.slice(0, limit);
+    return shown.map((item) => sportItemMarkup(item, favorites)).join("");
+  }
+
+  function bestForDay(day, favorites) {
+    if (!day) return null;
+    const ordered = orderSports(day.sports, favorites);
+    const ready = ordered.filter((item) => item.status !== "no");
+    if (favorites.length) {
+      const mine = ready.filter((item) => favorites.includes(item.key));
+      if (mine.length) return mine[0];
+    }
+    return ready[0] || ordered[0] || null;
   }
 
   function renderSportHero(payload) {
@@ -709,13 +820,14 @@
     }
     hero.hidden = false;
     const date = parseDate(day.date);
-    const best = day.best;
+    const favorites = favoriteSports();
+    const best = bestForDay(day, favorites);
     const bestDay = payload.best_day;
     const bestDayChip =
       bestDay && bestDay.date !== day.date
         ? `<span>Лучший день: ${dateShort.format(parseDate(bestDay.date))} · ${bestDay.comfort}/100</span>`
         : "";
-    const alternatives = day.sports
+    const alternatives = orderSports(day.sports, favorites)
       .filter((item) => item.status !== "no" && item.key !== (best && best.key))
       .slice(0, 2);
 
@@ -744,9 +856,18 @@
 
   function sportCardMarkup(day) {
     const date = parseDate(day.date);
-    const ready = day.sports.filter((item) => item.status !== "no");
-    const shown = ready.length ? ready : day.sports.slice(0, 2);
+    const favorites = favoriteSports();
+    const profile = state.profile || {};
+    const ordered = orderSports(day.sports, favorites);
+    let visible = ordered;
+    if (profile.onlyMine && favorites.length) {
+      const mine = ordered.filter((item) => favorites.includes(item.key));
+      if (mine.length) visible = mine;
+    }
+    const ready = visible.filter((item) => item.status !== "no");
+    const shown = ready.length ? ready : visible.slice(0, 2);
     const caution = day.cautions[0];
+    const top = shown[0];
     return `
       <article class="sport-card level-${day.level}">
         <div class="sport-card-head">
@@ -757,17 +878,17 @@
         <div class="sport-weather">${day.weather} · ${day.surface}</div>
         <div class="sport-bar" role="img" aria-label="Индекс комфорта ${day.comfort} из 100"><i style="width:${day.comfort}%"></i></div>
         <div class="sport-bar-value">Комфорт ${day.comfort}/100 · ${day.level_label}</div>
-        <ul class="sport-list">${sportListMarkup(day, 3)}</ul>
-        ${shown.length ? `<p class="sport-why">${shown[0].name}: ${shown[0].reason}.</p>` : ""}
+        <ul class="sport-list">${sportListMarkup(visible, 3, favorites)}</ul>
+        ${top ? `<p class="sport-why">${top.name}: ${top.reason}.</p>` : ""}
         <div class="sport-gear">${day.gear.slice(0, 3).map((item) => `<span>${item}</span>`).join("")}</div>
         ${caution ? `<div class="sport-caution">${caution}</div>` : ""}
         <details class="sport-more">
           <summary>Все виды активности</summary>
           <div class="sport-all">
-            ${day.sports
+            ${visible
               .map(
                 (item) =>
-                  `<div class="sport-all-row"><b>${item.name}</b><span class="is-${item.status}">${item.label}</span><span>${item.reason}</span></div>`
+                  `<div class="sport-all-row"><b><span class="sport-all-icon">${SPORT_ICONS[item.key] || ""}</span>${item.name}</b><span class="is-${item.status}">${item.label}</span><span>${item.reason}</span></div>`
               )
               .join("")}
           </div>
@@ -783,10 +904,41 @@
       .join("");
   }
 
+  function renderSportMine(payload) {
+    const box = $("#sport-mine");
+    if (!box) return;
+    const favorites = favoriteSports();
+    if (!favorites.length) {
+      box.hidden = true;
+      return;
+    }
+    box.hidden = false;
+    const chips = $("#sport-mine-chips");
+    if (chips) {
+      chips.innerHTML = favorites
+        .map((key) => {
+          const info = (payload.sports || []).find((item) => item.key === key);
+          if (!info) return "";
+          return `<span class="sport-chip">${SPORT_ICONS[key] || ""}<span>${info.name}</span></span>`;
+        })
+        .join("");
+    }
+    const only = $("#sport-only-mine");
+    if (only) {
+      only.checked = Boolean(state.profile.onlyMine);
+      only.onchange = () => {
+        state.profile.onlyMine = only.checked;
+        saveProfile(state.profile);
+        renderSport();
+      };
+    }
+  }
+
   function renderSport() {
     const payload = state.sport;
     if (!payload) return;
     renderSportHero(payload);
+    renderSportMine(payload);
     const grid = $("#sport-grid");
     if (grid) grid.innerHTML = payload.days.map(sportCardMarkup).join("");
     renderSportCatalog(payload.sports || []);
@@ -804,6 +956,23 @@
         payload.best_day.comfort +
         "). Для каждого дня: виды активности, экипировка и предупреждения.";
     }
+    maybeNotifySport();
+  }
+
+  async function fetchSportData(force = false) {
+    const response = await fetch(
+      "/api/sport?city=" + encodeURIComponent(state.city) + (force ? "&t=" + Date.now() : ""),
+      { headers: { Accept: "application/json" } }
+    );
+    if (!response.ok) {
+      let detail = "HTTP " + response.status;
+      try {
+        const data = await response.json();
+        if (data && data.detail) detail = data.detail;
+      } catch (_) { /* ignore */ }
+      throw new Error(detail);
+    }
+    return response.json();
   }
 
   async function loadSport(force = false) {
@@ -815,19 +984,7 @@
     if (source) source.textContent = "Загружаю прогноз…";
     if (button) button.classList.add("is-spinning");
     try {
-      const response = await fetch(
-        "/api/sport?city=" + encodeURIComponent(state.city) + (force ? "&t=" + Date.now() : ""),
-        { headers: { Accept: "application/json" } }
-      );
-      if (!response.ok) {
-        let detail = "HTTP " + response.status;
-        try {
-          const data = await response.json();
-          if (data && data.detail) detail = data.detail;
-        } catch (_) { /* ignore */ }
-        throw new Error(detail);
-      }
-      state.sport = await response.json();
+      state.sport = await fetchSportData(force);
       renderSport();
       if (force) showToast("Рекомендации обновлены");
     } catch (error) {
@@ -845,6 +1002,343 @@
       if (source) source.textContent = "Нет данных";
     } finally {
       if (button) button.classList.remove("is-spinning");
+    }
+  }
+
+  /* ---------- уведомления ---------- */
+
+  function notificationsSupported() {
+    return "Notification" in window;
+  }
+
+  async function requestNotificationPermission() {
+    if (!notificationsSupported()) return "unsupported";
+    if (Notification.permission === "granted" || Notification.permission === "denied") {
+      return Notification.permission;
+    }
+    try {
+      return await Notification.requestPermission();
+    } catch (_) {
+      return "denied";
+    }
+  }
+
+  function showSportNotification(payload, profile) {
+    if (!notificationsSupported() || Notification.permission !== "granted") return false;
+    const day = payload && payload.days && payload.days[0];
+    const best = day ? bestForDay(day, (profile && profile.sports) || []) : null;
+    const body = best
+      ? `${best.name}: ${best.label.toLowerCase()} · ${best.reason}. ${day.weather}.`
+      : "Откройте «Спорт» и посмотрите рекомендации на день.";
+    try {
+      const notification = new Notification("Погодный оракул — пора тренироваться", {
+        body,
+        icon: "/static/icons/icon-192.png",
+        tag: "oracle-sport",
+      });
+      notification.onclick = () => {
+        window.focus();
+        window.location.href = "/sport?city=" + encodeURIComponent(state.city);
+      };
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function maybeNotifySport() {
+    const profile = state.profile || loadProfile();
+    if (!profile.notify) return;
+    if (!notificationsSupported() || Notification.permission !== "granted") return;
+    if (!state.sport) return;
+    const now = new Date();
+    const parts = String(profile.notifyTime || "18:00").split(":");
+    const due = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      Number(parts[0]) || 0,
+      Number(parts[1]) || 0,
+      0,
+      0
+    );
+    if (now < due) return;
+    const key = "oracle-notified:" + now.toISOString().slice(0, 10) + ":" + profile.notifyTime;
+    try {
+      if (localStorage.getItem(key)) return;
+    } catch (_) { /* приватный режим */ }
+    if (showSportNotification(state.sport, profile)) {
+      try {
+        localStorage.setItem(key, "1");
+      } catch (_) { /* приватный режим */ }
+    }
+  }
+
+  /* ---------- личный кабинет ---------- */
+
+  const SPORT_NAMES = {
+    run: "Бег",
+    walk: "Ходьба",
+    bike: "Велосипед",
+    football: "Футбол и баскетбол",
+    tennis: "Теннис и бадминтон",
+    workout: "Воркаут и силовые",
+    yoga: "Йога на улице",
+    swim: "Плавание",
+    sup: "SUP и каяк",
+    ski: "Лыжи и сноуборд",
+    skate: "Коньки",
+    climb: "Скалолазание",
+  };
+
+  const LEVEL_ADVICE = {
+    beginner: "Новичку достаточно 3 тренировок в неделю по 30 минут.",
+    amateur: "4 тренировки в неделю и один день восстановления.",
+    advanced: "5–6 тренировок в неделю, следите за сном и пульсом покоя.",
+  };
+
+  const GOAL_ADVICE = {
+    health: "Цель — тонус: выбирайте умеренный темп и меньше интервалов.",
+    endurance: "Цель — выносливость: длинные спокойные тренировки важнее скорости.",
+    strength: "Цель — сила: силовые на улице и короткие мощные подходы.",
+    weight: "Цель — вес: регулярность важнее интенсивности, добавьте ходьбу.",
+  };
+
+  function updateAdvice() {
+    const profile = state.profile;
+    const text = [LEVEL_ADVICE[profile.level] || "", GOAL_ADVICE[profile.goal] || ""]
+      .filter(Boolean)
+      .join(" ");
+    setText("profile-advice", text || "Настройки влияют на подсказки по нагрузке.");
+  }
+
+  function fillProfileFields(profile) {
+    const name = $("#profile-name");
+    if (name) name.value = profile.name || "";
+    const level = $("#profile-level");
+    if (level) level.value = profile.level;
+    const goal = $("#profile-goal");
+    if (goal) goal.value = profile.goal;
+    const time = $("#profile-time");
+    if (time) time.value = profile.notifyTime;
+    const notify = $("#profile-notify");
+    if (notify) notify.checked = profile.notify;
+    const created = $("#profile-created");
+    if (created) {
+      created.textContent = profile.createdAt
+        ? "в приложении с " + dateShort.format(new Date(profile.createdAt))
+        : "";
+    }
+    updateAdvice();
+  }
+
+  function updateNotifyStatus(message) {
+    const box = $("#notify-status");
+    if (!box) return;
+    if (message) {
+      box.textContent = message;
+      return;
+    }
+    if (!notificationsSupported()) {
+      box.textContent = "Этот браузер не умеет показывать уведомления.";
+    } else if (Notification.permission === "granted") {
+      box.textContent = state.profile.notify
+        ? "Включено. Напомним в " + state.profile.notifyTime + ", пока приложение открыто."
+        : "Разрешение есть. Включите напоминание, чтобы получать его в " + state.profile.notifyTime + ".";
+    } else if (Notification.permission === "denied") {
+      box.textContent = "Уведомления запрещены в настройках браузера для этого сайта.";
+    } else {
+      box.textContent = "Нужно разрешение браузера — включите переключатель.";
+    }
+  }
+
+  function renderSportPick(profile) {
+    const box = $("#sport-pick");
+    if (!box) return;
+    const catalog =
+      (state.sport && state.sport.sports) ||
+      Object.keys(SPORT_NAMES).map((key) => ({ key, name: SPORT_NAMES[key] }));
+    box.innerHTML = catalog
+      .map((item) => {
+        const selected = profile.sports.includes(item.key);
+        return `<button type="button" class="sport-pick-item${selected ? " is-selected" : ""}" data-pick="${item.key}" aria-pressed="${selected}">
+          <span class="sport-pick-icon">${SPORT_ICONS[item.key] || ""}</span>
+          <span>${item.name}</span>
+          <span class="sport-pick-check" aria-hidden="true"></span>
+        </button>`;
+      })
+      .join("");
+    $$("[data-pick]", box).forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.dataset.pick;
+        const current = state.profile;
+        const index = current.sports.indexOf(key);
+        if (index >= 0) current.sports.splice(index, 1);
+        else current.sports.push(key);
+        saveProfile(current);
+        renderSportPick(current);
+        updateProfileStats();
+        if (state.sport) renderPlan(state.sport, current);
+      });
+    });
+    const hint = $("#sport-pick-hint");
+    if (hint) hint.hidden = profile.sports.length > 0;
+  }
+
+  function renderPlan(payload, profile) {
+    const list = $("#profile-plan");
+    if (!list) return;
+    list.innerHTML = payload.days
+      .slice(0, 7)
+      .map((day) => {
+        const date = parseDate(day.date);
+        const best = bestForDay(day, profile.sports);
+        const icon = best ? SPORT_ICONS[best.key] || "" : "";
+        return `<div class="plan-row level-${day.level}">
+          <div class="plan-day"><b>${capitalize(weekdayShort.format(date))}</b><span>${dateShort.format(date)}</span></div>
+          <div class="plan-sport"><span class="plan-icon">${icon}</span><span>${best ? best.name : "нет данных"}</span></div>
+          <div class="plan-status is-${best ? best.status : "no"}">${best ? best.label : "—"}</div>
+          <div class="plan-temp">${temp(day.tmax)}</div>
+          <div class="plan-comfort">${day.comfort}/100</div>
+        </div>`;
+      })
+      .join("");
+  }
+
+  function pluralForm(count, forms) {
+    const abs = Math.abs(count) % 100;
+    const last = abs % 10;
+    if (abs > 10 && abs < 20) return forms[2];
+    if (last > 1 && last < 5) return forms[1];
+    if (last === 1) return forms[0];
+    return forms[2];
+  }
+
+  function updateProfileStats() {
+    const profile = state.profile;
+    setText("profile-fav-count", String(profile.sports.length));
+    setText("profile-fav-label", pluralForm(profile.sports.length, ["любимый вид", "любимых вида", "любимых видов"]));
+    if (!state.sport) return;
+    const days = state.sport.days;
+    const good = days.filter((day) => {
+      const best = bestForDay(day, profile.sports);
+      return best && (best.status === "great" || best.status === "ok");
+    }).length;
+    const planned = days.slice(0, 7).filter((day) => {
+      const best = bestForDay(day, profile.sports);
+      return best && best.status !== "no";
+    }).length;
+    setText("profile-good-days", String(good));
+    setText("profile-good-label", pluralForm(good, ["хороший день", "хороших дня", "хороших дней"]));
+    setText("profile-plan-count", String(planned));
+    setText("profile-plan-label", pluralForm(planned, ["тренировка в плане", "тренировки в плане", "тренировок в плане"]));
+  }
+
+  function bindProfileInputs() {
+    const name = $("#profile-name");
+    name?.addEventListener("input", () => {
+      state.profile.name = name.value.slice(0, 40);
+      saveProfile(state.profile);
+    });
+
+    const level = $("#profile-level");
+    level?.addEventListener("change", () => {
+      state.profile.level = level.value;
+      saveProfile(state.profile);
+      updateAdvice();
+    });
+
+    const goal = $("#profile-goal");
+    goal?.addEventListener("change", () => {
+      state.profile.goal = goal.value;
+      saveProfile(state.profile);
+      updateAdvice();
+    });
+
+    const time = $("#profile-time");
+    time?.addEventListener("change", () => {
+      if (!time.value) return;
+      state.profile.notifyTime = time.value;
+      saveProfile(state.profile);
+      updateNotifyStatus();
+    });
+
+    const notify = $("#profile-notify");
+    notify?.addEventListener("change", async () => {
+      const profile = state.profile;
+      if (!notify.checked) {
+        profile.notify = false;
+        saveProfile(profile);
+        updateNotifyStatus();
+        return;
+      }
+      const permission = await requestNotificationPermission();
+      if (permission !== "granted") {
+        notify.checked = false;
+        profile.notify = false;
+        saveProfile(profile);
+        updateNotifyStatus();
+        showToast("Браузер не разрешил уведомления");
+        return;
+      }
+      profile.notify = true;
+      saveProfile(profile);
+      updateNotifyStatus();
+      showSportNotification(state.sport, profile);
+    });
+
+    $("#notify-test")?.addEventListener("click", async () => {
+      const permission = await requestNotificationPermission();
+      if (permission !== "granted") {
+        updateNotifyStatus();
+        showToast("Уведомления не разрешены");
+        return;
+      }
+      const ok = showSportNotification(state.sport, state.profile);
+      showToast(ok ? "Уведомление отправлено" : "Не удалось показать уведомление");
+    });
+
+    $("#profile-reset")?.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(PROFILE_KEY);
+      } catch (_) { /* ignore */ }
+      window.location.reload();
+    });
+
+    $("#retry-profile")?.addEventListener("click", () => initProfilePage(true));
+  }
+
+  async function initProfilePage(force = false) {
+    const profile = state.profile;
+    applyProfileToChrome(profile);
+    fillProfileFields(profile);
+    renderSportPick(profile);
+    updateNotifyStatus();
+    if (!state.profileBound) {
+      bindProfileInputs();
+      state.profileBound = true;
+    }
+    updateProfileStats();
+
+    const errorBox = $("#profile-error");
+    if (errorBox) errorBox.hidden = true;
+    try {
+      state.sport = await fetchSportData(force);
+      renderSportPick(profile);
+      renderPlan(state.sport, profile);
+      updateProfileStats();
+      setText(
+        "profile-plan-source",
+        state.sport.provider_label ? "Источник: " + state.sport.provider_label : "Источник: Open-Meteo"
+      );
+      maybeNotifySport();
+    } catch (error) {
+      if (errorBox) {
+        errorBox.hidden = false;
+        setText("profile-error-text", error && error.message ? error.message : "Проверьте соединение");
+      }
+      const list = $("#profile-plan");
+      if (list) list.innerHTML = "";
     }
   }
 
@@ -1157,6 +1651,7 @@
     }
     updateNetwork();
     updateUnitButtons();
+    applyProfileToChrome(state.profile);
     setupControls();
     setupModal();
     setupInstall();
@@ -1177,6 +1672,14 @@
       $("#retry-sport")?.addEventListener("click", () => loadSport(true));
       $("#refresh-sport")?.addEventListener("click", () => loadSport(true));
       loadSport(false);
+    }
+    if (document.body.dataset.page === "profile") {
+      initProfilePage(false);
+    }
+    if (state.profile.notify) {
+      window.setInterval(() => {
+        if (!document.hidden) maybeNotifySport();
+      }, 60 * 1000);
     }
     loadForecast(false);
   }

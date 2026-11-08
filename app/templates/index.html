@@ -43,6 +43,9 @@
       </nav>
 
       <div class="header-actions">
+        <a class="profile-btn" id="profile-btn" href="/profile?city={{ city.slug }}" aria-label="Личный кабинет" title="Личный кабинет">
+          <span id="profile-initial">Я</span>
+        </a>
         <div class="city-picker" id="city-picker">
           <button class="city-trigger" id="city-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="city-menu">
             <svg class="city-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
@@ -337,6 +340,16 @@
           <div class="sport-hero-skeleton"></div>
         </div>
 
+        <div class="sport-mine" id="sport-mine" hidden>
+          <span class="sport-mine-label">Мои виды</span>
+          <div class="sport-mine-chips" id="sport-mine-chips"></div>
+          <label class="sport-only">
+            <input type="checkbox" id="sport-only-mine">
+            <span>только мои</span>
+          </label>
+          <a class="sport-mine-edit" href="/profile?city={{ city.slug }}">Изменить</a>
+        </div>
+
         <div class="sport-toolbar">
           <span class="sport-source" id="sport-source">Загружаю прогноз…</span>
           <button class="btn btn-sm btn-outline" type="button" id="refresh-sport">Обновить</button>
@@ -367,6 +380,124 @@
         <p class="catalog-note" id="sport-note">
           Рекомендации строятся по живому прогнозу и обновляются вместе с ним.
         </p>
+
+        <div class="sport-banner">
+          <div class="sport-banner-copy">
+            <span class="sport-eyebrow">ПЕРСОНАЛЬНО</span>
+            <h3>Свой план и напоминания</h3>
+            <p>Отметьте любимые виды, уровень и удобное время — рекомендации встанут в нужном порядке, а приложение напомнит о тренировке.</p>
+            <div class="sport-banner-actions">
+              <a class="btn btn-sm btn-primary" href="/profile?city={{ city.slug }}">Настроить профиль</a>
+              <a class="sport-banner-link" href="/profile?city={{ city.slug }}#plan">Мой план <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% elif page == "profile" %}
+    <section class="section profile-section" id="profile">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <span class="kicker">ЛИЧНЫЙ КАБИНЕТ</span>
+            <h2>Мой профиль</h2>
+            <p class="section-sub" id="profile-sub">Выберите виды спорта и напоминания — рекомендации на странице «Спорт» подстроятся под вас. Данные хранятся только в этом браузере.</p>
+          </div>
+          <a class="text-link" href="/sport?city={{ city.slug }}">Спорт по погоде <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="profile-hero">
+          <div class="profile-avatar" id="profile-avatar">Я</div>
+          <div class="profile-id">
+            <label class="profile-field profile-field-light">
+              <span>Имя</span>
+              <input id="profile-name" type="text" placeholder="Как вас зовут" autocomplete="name" maxlength="40">
+            </label>
+            <div class="profile-meta">
+              <span id="profile-city">{{ city.name }}</span>
+              <span id="profile-created"></span>
+            </div>
+          </div>
+          <div class="profile-stats">
+            <div><b id="profile-fav-count">0</b><span id="profile-fav-label">любимых видов</span></div>
+            <div><b id="profile-good-days">—</b><span id="profile-good-label">хороших дней</span></div>
+            <div><b id="profile-plan-count">—</b><span id="profile-plan-label">тренировок в плане</span></div>
+          </div>
+        </div>
+
+        <div class="profile-grid">
+          <div class="profile-card">
+            <h3>Мои виды спорта</h3>
+            <p class="profile-hint">Эти виды будут первыми в рекомендациях и в плане на неделю.</p>
+            <div class="sport-pick" id="sport-pick" role="group" aria-label="Выбор видов спорта"></div>
+            <div class="sport-pick-hint" id="sport-pick-hint" hidden>Пока ничего не выбрано — покажем все виды.</div>
+          </div>
+
+          <div class="profile-card">
+            <h3>Уровень и цель</h3>
+            <label class="profile-field">
+              <span>Уровень подготовки</span>
+              <select id="profile-level">
+                <option value="beginner">Новичок</option>
+                <option value="amateur" selected>Любитель</option>
+                <option value="advanced">Продвинутый</option>
+              </select>
+            </label>
+            <label class="profile-field">
+              <span>Цель</span>
+              <select id="profile-goal">
+                <option value="health" selected>Здоровье и тонус</option>
+                <option value="endurance">Выносливость</option>
+                <option value="strength">Сила</option>
+                <option value="weight">Снижение веса</option>
+              </select>
+            </label>
+            <p class="profile-hint" id="profile-advice">Настройки влияют на подсказки по нагрузке.</p>
+          </div>
+
+          <div class="profile-card">
+            <h3>Уведомления</h3>
+            <label class="switch-row" for="profile-notify">
+              <input type="checkbox" id="profile-notify">
+              <span class="switch" aria-hidden="true"></span>
+              <span>Напоминать о тренировке</span>
+            </label>
+            <label class="profile-field">
+              <span>Во сколько</span>
+              <input type="time" id="profile-time" value="18:00">
+            </label>
+            <button class="btn btn-sm btn-outline" type="button" id="notify-test">Проверить уведомление</button>
+            <p class="profile-hint" id="notify-status">Уведомления работают, пока приложение открыто.</p>
+          </div>
+        </div>
+
+        <div class="profile-card profile-plan-card" id="plan">
+          <div class="profile-plan-head">
+            <div>
+              <h3>План на неделю</h3>
+              <p class="profile-hint">Лучший вид из ваших и условия по дням — по живому прогнозу.</p>
+            </div>
+            <span class="profile-plan-source" id="profile-plan-source"></span>
+          </div>
+          <div class="plan-list" id="profile-plan" aria-live="polite">
+            <div class="plan-skeleton"></div>
+            <div class="plan-skeleton"></div>
+            <div class="plan-skeleton"></div>
+          </div>
+          <div class="forecast-error" id="profile-error" hidden>
+            <div>
+              <strong>План временно недоступен.</strong>
+              <span id="profile-error-text">Не удалось получить прогноз.</span>
+            </div>
+            <button class="btn btn-sm btn-outline" type="button" id="retry-profile">Повторить</button>
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="btn btn-sm btn-outline" id="profile-reset" type="button">Сбросить профиль</button>
+          <span class="profile-saved" id="profile-saved" role="status">Сохранено</span>
+        </div>
       </div>
     </section>
 
@@ -594,9 +725,11 @@
       <div class="footer-col">
         <span>Разделы</span>
         <a href="/forecast?city={{ city.slug }}">Прогноз</a>
+        <a href="/sport?city={{ city.slug }}">Спорт</a>
         <a href="/compare?city={{ city.slug }}">Сравнение</a>
         <a href="/models?city={{ city.slug }}">Модели</a>
         <a href="/method?city={{ city.slug }}">Методика</a>
+        <a href="/profile?city={{ city.slug }}">Личный кабинет</a>
       </div>
       <div class="footer-col">
         <span>Данные</span>

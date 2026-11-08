@@ -1,8 +1,9 @@
 /* Погодный оракул — офлайн-оболочка PWA */
-const CACHE = "weather-oracle-v19";
+const CACHE = "weather-oracle-v20";
 const SHELL = [
   "/forecast",
   "/sport",
+  "/profile",
   "/static/style.css",
   "/static/app.js",
   "/static/manifest.webmanifest",
@@ -14,6 +15,8 @@ const SHELL = [
   "/static/images/hero.jpg",
   "/static/images/hero-2.jpg",
   "/static/images/hero-3.jpg",
+  "/static/images/sport-stadium.svg",
+  "/static/images/sport-mountains.svg",
   "/static/icons/icon-192.png",
   "/static/icons/icon-512.png",
   "/static/icons/icon-180.png",
@@ -60,18 +63,24 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (request.mode === "navigate") {
-    // Офлайн отдаём ту же страницу, которую открывали, и только если её
-    // нет в кэше — оболочку прогноза.
+    // Офлайн отдаём ту же страницу, которую открывали; если для этого города
+    // её ещё нет — страницу по тому же пути без query, затем оболочку.
     event.respondWith(
       fetch(request)
         .then((response) => {
           if (response.ok) {
-            const copy = response.clone();
-            cachePut(request, copy);
+            cachePut(request, response.clone());
+            cachePut(url.pathname, response.clone());
           }
           return response;
         })
-        .catch(async () => (await caches.match(request)) || (await caches.match("/forecast")))
+        .catch(async () => {
+          const exact = await caches.match(request);
+          if (exact) return exact;
+          const byPath = await caches.match(url.pathname);
+          if (byPath) return byPath;
+          return (await caches.match("/forecast")) || Response.error();
+        })
     );
     return;
   }

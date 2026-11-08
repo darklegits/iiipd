@@ -31,6 +31,7 @@ templates = Jinja2Templates(directory=str(TEMPLATE_DIR))
 PAGE_LABELS = {
     "forecast": "Прогноз",
     "sport": "Спорт",
+    "profile": "Личный кабинет",
     "compare": "Сравнение",
     "models": "Модели",
     "method": "Методика",
@@ -113,6 +114,14 @@ async def page_sport(
     city: str | None = Query(None, description="slug города"),
 ) -> HTMLResponse:
     return render_page(request, city, "sport")
+
+
+@app.get("/profile", response_class=HTMLResponse)
+async def page_profile(
+    request: Request,
+    city: str | None = Query(None, description="slug города"),
+) -> HTMLResponse:
+    return render_page(request, city, "profile")
 
 
 @app.get("/compare", response_class=HTMLResponse)

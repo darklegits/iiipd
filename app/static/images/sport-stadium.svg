@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 640" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Стадион на закате">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#07090f"/>
+      <stop offset="0.48" stop-color="#1b0f1c"/>
+      <stop offset="0.78" stop-color="#5c1520"/>
+      <stop offset="1" stop-color="#a81c26"/>
+    </linearGradient>
+    <linearGradient id="track" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff3b3b" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#8c0d16" stop-opacity="0.9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffcf5c" stop-opacity="0.75"/>
+      <stop offset="0.45" stop-color="#ff8a3d" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ff8a3d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#07090f" stop-opacity="0.9"/>
+      <stop offset="0.55" stop-color="#07090f" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#07090f" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="640" fill="url(#sky)"/>
+
+  <!-- солнце и зарево -->
+  <circle cx="1150" cy="250" r="230" fill="url(#glow)"/>
+  <circle cx="1150" cy="250" r="74" fill="#ffcf5c" opacity="0.85"/>
+  <circle cx="1150" cy="250" r="118" fill="none" stroke="#ffcf5c" stroke-opacity="0.18" stroke-width="2"/>
+
+  <!-- дальние трибуны -->
+  <path d="M0 430c220-46 430-60 640-58 210 2 420 18 640 58v70H0Z" fill="#0d1018" opacity="0.85"/>
+  <g fill="#1a1e29" opacity="0.9">
+    <rect x="0" y="400" width="1600" height="6"/>
+    <rect x="0" y="414" width="1600" height="4"/>
+  </g>
+
+  <!-- беговые дорожки: концентрические дуги -->
+  <g fill="none" stroke="url(#track)" stroke-linecap="round">
+    <ellipse cx="820" cy="1080" rx="980" ry="560" stroke-width="34"/>
+    <ellipse cx="820" cy="1096" rx="918" ry="528" stroke-width="26" opacity="0.85"/>
+    <ellipse cx="820" cy="1112" rx="856" ry="496" stroke-width="20" opacity="0.7"/>
+    <ellipse cx="820" cy="1128" rx="794" ry="464" stroke-width="14" opacity="0.55"/>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2">
+    <ellipse cx="820" cy="1072" rx="1012" ry="578"/>
+    <ellipse cx="820" cy="1090" rx="950" ry="546"/>
+    <ellipse cx="820" cy="1108" rx="888" ry="514"/>
+    <ellipse cx="820" cy="1126" rx="826" ry="482"/>
+  </g>
+
+  <!-- дорожки уходят в темноту -->
+  <path d="M0 520h1600v120H0Z" fill="#0a0c13" opacity="0.55"/>
+  <rect width="1600" height="640" fill="url(#fade)"/>
+</svg>
