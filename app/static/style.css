@@ -2537,5 +2537,193 @@ td.muted { color: #a4a9b2; }
   .sport-pick { grid-template-columns: 1fr; }
 }
 
+/* ==========================================================================
+   Монохромная спортивная тема: чёрный, белый, серый.
+   Шрифты: Onest для текста, Unbounded для заголовков.
+   ========================================================================== */
+
+:root {
+  --red: #111214;
+  --red-dark: #000000;
+  --red-soft: #f2f2f2;
+  --red-glow: rgba(0, 0, 0, 0.12);
+  --ink: #0b0b0c;
+  --ink-2: #171718;
+  --ink-3: #262628;
+  --slate: #5d5d62;
+  --muted: #8b8b90;
+  --bg: #ffffff;
+  --bg-soft: #f4f4f4;
+  --bg-softer: #fafafa;
+  --line: #e3e3e3;
+  --line-2: #eeeeee;
+  --green: #141414;
+  --green-soft: #f1f1f1;
+  --amber: #4c4c50;
+  --amber-soft: #f3f3f3;
+  --volt: #ffffff;
+  --volt-soft: rgba(255, 255, 255, 0.16);
+  --night: #08080a;
+  --font: "Onest", "Golos Text", "Segoe UI", system-ui, sans-serif;
+}
+
+body { background: var(--bg); color: var(--ink); }
+
+/* --- типографика --- */
+
+.section h2 {
+  font-family: "Unbounded", var(--font);
+  font-weight: 600;
+  font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.sport-hero h3,
+.sport-banner h3,
+.sport-gallery-head h3,
+.profile-hero h3 {
+  font-family: "Unbounded", var(--font);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.kicker,
+.sport-mine-label,
+.sport-eyebrow { letter-spacing: 0.2em; }
+
+/* --- шапка: чёрная --- */
+
+.site-header {
+  background: #0b0b0c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.site-header .logo-word { color: #fff; }
+.site-header .main-nav a {
+  color: rgba(255, 255, 255, 0.62);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10.5px;
+}
+.site-header .main-nav a:hover,
+.site-header .main-nav a.is-active { color: #fff; }
+.site-header .city-trigger {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.site-header .city-trigger svg { stroke: #fff; }
+.site-header .network-pill { color: rgba(255, 255, 255, 0.6); }
+.site-header .header-cta,
+.site-header .btn-primary { background: #fff; color: #0b0b0c; }
+.site-header .header-cta:hover,
+.site-header .btn-primary:hover { background: #dcdcdc; }
+.site-header .btn-outline { color: #fff; border-color: rgba(255, 255, 255, 0.32); background: transparent; }
+.site-header .btn-outline:hover { background: rgba(255, 255, 255, 0.12); }
+.site-header .profile-btn { background: #fff; color: #0b0b0c; border-color: #fff; }
+.site-header .profile-btn:hover { background: #d6d6d6; color: #000; }
+.logo-mark,
+.logo-mark svg { filter: grayscale(1); }
+
+/* --- кнопки и ссылки --- */
+
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: #000; }
+.btn-outline { border-color: #c9c9c9; color: var(--ink); }
+.text-link { color: var(--ink); }
+.text-link:hover { color: #000; }
+
+/* --- подвал и мобильное меню: чёрные --- */
+
+.site-footer { background: #0b0b0c; color: rgba(255, 255, 255, 0.68); border-top: 0; }
+.site-footer a,
+.site-footer .footer-col span,
+.site-footer .footer-bottom,
+.site-footer .footer-meta p { color: rgba(255, 255, 255, 0.68); }
+.site-footer a:hover { color: #fff; }
+.site-footer .logo-word { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.12); }
+
+.mobile-tabbar {
+  background: rgba(11, 11, 12, 0.97);
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+.mobile-tabbar a,
+.mobile-tabbar button { color: rgba(255, 255, 255, 0.58); }
+.mobile-tabbar a.is-active,
+.mobile-tabbar a:hover,
+.mobile-tabbar button:hover { color: #fff; }
+
+/* --- изображения: чёрно-белые --- */
+
+.hero-slide,
+.sport-gallery-art { filter: grayscale(1) contrast(1.06); }
+.sport-hero,
+.sport-banner,
+.profile-hero { filter: grayscale(1) contrast(1.04); }
+
+/* Секции с тёплыми градиентами и фото переводим в ч/б целиком. */
+.hero,
+.live-card,
+.trend-panel,
+.api-section,
+.now-strip,
+.api-console { filter: grayscale(1); }
+.hero h1 .accent { color: #ededed; }
+.hero-badge { border-color: rgba(255, 255, 255, 0.4); }
+.hero-badge i,
+.live-pill i,
+.dot-red { background: #ffffff; }
+.live-pill { border-color: rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.12); color: #fff; }
+.k-ens { background: #111; }
+.tag-red { color: #111; background: #f0f0f0; }
+.sport-hero-score { border-color: rgba(255, 255, 255, 0.34); background: rgba(8, 8, 10, 0.66); }
+.sport-hero-score span,
+.sport-hero .sport-eyebrow,
+.sport-banner-link { color: #fff; }
+.sport-chip { background: #111; }
+.sport-chip svg { stroke: #fff; }
+
+/* --- статусы и индикаторы: оттенки серого --- */
+
+.sport-card.level-good { border-top-color: #111; }
+.sport-card.level-ok { border-top-color: #7a7a7e; }
+.sport-card.level-hard { border-top-color: #adadb1; }
+.sport-card.level-bad { border-top-color: #d6d6d6; }
+.sport-bar i { background: #111; }
+.sport-card.level-ok .sport-bar i { background: #6f6f73; }
+.sport-card.level-hard .sport-bar i { background: #a5a5a9; }
+.sport-card.level-bad .sport-bar i { background: #d2d2d2; }
+.sport-item.is-great .sport-item-label,
+.plan-status.is-great { color: #111; }
+.sport-item.is-ok .sport-item-label,
+.plan-status.is-ok { color: #6f6f73; }
+.sport-item.is-careful .sport-item-label,
+.plan-status.is-careful { color: #9c9ca0; }
+.sport-item-star { color: #111; }
+.sport-caution { background: #f2f2f2; color: #333; }
+.sport-item.is-great .sport-item-icon { color: #111; }
+.sport-item.is-ok .sport-item-icon { color: #6f6f73; }
+.sport-item.is-careful .sport-item-icon { color: #9c9ca0; }
+.sport-item.is-no .sport-item-icon { color: #c9c9cd; }
+
+/* --- профиль --- */
+
+.profile-avatar { border-color: #fff; background: #111; }
+.sport-pick-item.is-selected { background: #111; }
+.sport-pick-item.is-selected .sport-pick-icon { color: #fff; }
+.sport-pick-item.is-selected .sport-pick-check { border-color: #fff; background: #fff; }
+.switch-row input:checked + .switch { background: #111; }
+.profile-btn { background: #111; color: #fff; border-color: #111; }
+
+/* --- таблицы, графики, мелочи --- */
+
+.confidence-badge i,
+.dot-pulse { background: #111; }
+.trend-line { stroke: #111; }
+.condition-pill { color: #4a4a4e; background: #f2f2f2; }
+.forecast-lead-badge { color: #4a4a4e; background: #f2f2f2; }
+
+
 
 

@@ -530,30 +530,36 @@ class WeatherOracleStore:
     def page_context(self, slug: str | None = None) -> dict[str, Any]:
         context = self.get(slug).page_context()
         selected_slug = context["city"]["slug"]
+
+        def sort_key(city: Any) -> str:
+            # Ё в русском алфавите идёт после Е, а в Unicode — раньше.
+            return str(city.city["name"]).replace("ё", "е").replace("Ё", "Е").casefold()
+
+        ordered = sorted(self.cities.values(), key=sort_key)
         context["cities"] = [
             {
                 "slug": city.slug,
                 "name": city.city["name"],
                 "selected": city.slug == selected_slug,
             }
-            for city in self.cities.values()
+            for city in ordered
         ]
-        groups = []
-        for group in CITY_GROUPS:
-            items = [
-                {
-                    "slug": slug_item,
-                    "name": self.cities[slug_item].city["name"],
-                    "latitude": self.cities[slug_item].city["latitude"],
-                    "longitude": self.cities[slug_item].city["longitude"],
-                    "selected": slug_item == selected_slug,
-                }
-                for slug_item in group["slugs"]
-                if slug_item in self.cities
-            ]
-            if items:
-                groups.append({"label": group["label"], "cities": items})
-        context["city_groups"] = groups
+        # Один плоский список всех городов в алфавитном порядке.
+        context["city_groups"] = [
+            {
+                "label": "Все города",
+                "cities": [
+                    {
+                        "slug": city.slug,
+                        "name": city.city["name"],
+                        "latitude": city.city["latitude"],
+                        "longitude": city.city["longitude"],
+                        "selected": city.slug == selected_slug,
+                    }
+                    for city in ordered
+                ],
+            }
+        ]
         return context
 
     def live_forecast(self, slug: str | None = None, *, force: bool = False) -> dict[str, Any]:
