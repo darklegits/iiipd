@@ -412,9 +412,12 @@
         : "Дни 1–14 — ML-ансамбль. Официальный baseline доступен до 7 дней.";
     }
     if (source) {
+      const modeled = document.body.dataset.modeled !== "false";
       setText(
         "hero-lede",
-        "Живой прогноз " + source + " до 14 дней вперёд. ML-ансамбль, честные метрики и сравнение с официальным baseline — на страницах «Сравнение» и «Модели»."
+        modeled
+          ? "Живой прогноз " + source + " до 14 дней вперёд. ML-ансамбль, честные метрики и сравнение с официальным baseline — на страницах «Сравнение» и «Модели»."
+          : "Живой прогноз " + source + " до 13 дней вперёд. Для этого города ML-модель ещё не обучена, поэтому показан только источник — без выдуманных метрик и ансамбля."
       );
       setText(
         "forecast-sub",
@@ -1342,6 +1345,184 @@
     }
   }
 
+  /* ---------- фоновая музыка ---------- */
+
+  function setupAmbientMusic() {
+    const button = $("#music-toggle");
+    if (!button) return;
+    const KEY = "oracle-music";
+    const chords = [
+      [110.0, 130.81, 164.81, 196.0],
+      [87.31, 110.0, 130.81, 164.81],
+      [130.81, 164.81, 196.0, 246.94],
+      [98.0, 123.47, 146.83, 164.81],
+    ];
+    let ctx = null;
+    let master = null;
+    let bus = null;
+    let chordTimer = 0;
+    let bellTimer = 0;
+    let chordIndex = 0;
+
+    const makeImpulse = () => {
+      const rate = ctx.sampleRate;
+      const length = Math.floor(rate * 2.4);
+      const buffer = ctx.createBuffer(2, length, rate);
+      for (let channel = 0; channel < 2; channel += 1) {
+        const data = buffer.getChannelData(channel);
+        for (let i = 0; i < length; i += 1) {
+          data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2.8);
+        }
+      }
+      return buffer;
+    };
+
+    const build = () => {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return false;
+      ctx = new AudioCtx();
+      master = ctx.createGain();
+      master.gain.value = 0;
+      bus = ctx.createBiquadFilter();
+      bus.type = "lowpass";
+      bus.frequency.value = 1150;
+      const reverb = ctx.createConvolver();
+      reverb.buffer = makeImpulse();
+      const wet = ctx.createGain();
+      wet.gain.value = 0.45;
+      master.connect(bus);
+      bus.connect(ctx.destination);
+      bus.connect(reverb);
+      reverb.connect(wet);
+      wet.connect(ctx.destination);
+      return true;
+    };
+
+    const playChord = () => {
+      if (!ctx) return;
+      const chord = chords[chordIndex % chords.length];
+      chordIndex += 1;
+      const now = ctx.currentTime;
+      const envelope = ctx.createGain();
+      envelope.gain.setValueAtTime(0, now);
+      envelope.gain.linearRampToValueAtTime(0.9, now + 2.4);
+      envelope.gain.setValueAtTime(0.9, now + 6.2);
+      envelope.gain.linearRampToValueAtTime(0, now + 8.4);
+      envelope.connect(master);
+      chord.forEach((frequency) => {
+        [0, 1].forEach((layer) => {
+          const osc = ctx.createOscillator();
+          osc.type = layer ? "triangle" : "sine";
+          osc.frequency.value = frequency * (layer ? 2 : 1);
+          osc.detune.value = layer ? 5 : -3;
+          const gain = ctx.createGain();
+          gain.gain.value = layer ? 0.12 : 0.42;
+          osc.connect(gain);
+          gain.connect(envelope);
+          osc.start(now);
+          osc.stop(now + 8.5);
+        });
+      });
+      window.setTimeout(() => {
+        try {
+          envelope.disconnect();
+        } catch (_) {
+          /* уже отключён */
+        }
+      }, 9000);
+    };
+
+    const playBell = () => {
+      if (!ctx) return;
+      const chord = chords[(chordIndex - 1 + chords.length) % chords.length];
+      const frequency = chord[Math.floor(Math.random() * chord.length)] * 4;
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      osc.type = "sine";
+      osc.frequency.value = frequency;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.05, now + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.6);
+      osc.connect(gain);
+      gain.connect(master);
+      osc.start(now);
+      osc.stop(now + 2.7);
+    };
+
+    const startTimers = () => {
+      if (chordTimer) return;
+      playChord();
+      chordTimer = window.setInterval(playChord, 8000);
+      bellTimer = window.setInterval(playBell, 2600);
+    };
+
+    const stopTimers = () => {
+      window.clearInterval(chordTimer);
+      window.clearInterval(bellTimer);
+      chordTimer = 0;
+      bellTimer = 0;
+    };
+
+    const setPlaying = (on, save = true) => {
+      if (on) {
+        if (!ctx && !build()) {
+          showToast("Браузер не поддерживает фоновую музыку");
+          return;
+        }
+        ctx.resume();
+        master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.linearRampToValueAtTime(0.16, ctx.currentTime + 2.5);
+        startTimers();
+        button.classList.add("is-playing");
+        button.setAttribute("aria-pressed", "true");
+        window.__musicPlaying = true;
+        if (save) {
+          try {
+            localStorage.setItem(KEY, "1");
+          } catch (_) {
+            /* приватный режим */
+          }
+        }
+      } else {
+        if (ctx) {
+          master.gain.cancelScheduledValues(ctx.currentTime);
+          master.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.8);
+        }
+        stopTimers();
+        button.classList.remove("is-playing");
+        button.setAttribute("aria-pressed", "false");
+        window.__musicPlaying = false;
+        if (save) {
+          try {
+            localStorage.setItem(KEY, "0");
+          } catch (_) {
+            /* приватный режим */
+          }
+        }
+      }
+    };
+
+    button.addEventListener("click", () => {
+      setPlaying(!button.classList.contains("is-playing"));
+    });
+
+    let saved = "0";
+    try {
+      saved = localStorage.getItem(KEY) || "0";
+    } catch (_) {
+      /* приватный режим */
+    }
+    if (saved === "1") {
+      // Автовоспроизведение запрещено: включаем после первого касания страницы.
+      const resume = () => {
+        document.removeEventListener("pointerdown", resume);
+        setPlaying(true, false);
+      };
+      document.addEventListener("pointerdown", resume, { once: true });
+    }
+  }
+
   function updateNetwork() {
     const pill = $("#network-status");
     if (!pill) return;
@@ -1656,6 +1837,7 @@
     setupModal();
     setupInstall();
     setupNav();
+    setupAmbientMusic();
     setupServiceWorker();
     window.addEventListener("online", () => {
       updateNetwork();

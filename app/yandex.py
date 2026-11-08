@@ -64,7 +64,7 @@ def _free_port() -> int:
 
 def _url_for(slug: str) -> str:
     city = get_city(slug)
-    name = SLUGS.get(slug, slug.replace("_", "-"))
+    name = str(city.get("yandex") or SLUGS.get(slug, slug.replace("_", "-")))
     return (
         f"https://yandex.ru/pogoda/ru/{name}/details/14-day-weather"
         f"?lat={city['latitude']}&lon={city['longitude']}"

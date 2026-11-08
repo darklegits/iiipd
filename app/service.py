@@ -15,7 +15,9 @@ import numpy as np
 import pandas as pd
 
 from .config import (
+    ALL_CITIES,
     CITIES,
+    CITY_CATALOG,
     CITY_GROUPS,
     DEFAULT_CITY,
     LEADS,
@@ -40,6 +42,124 @@ from .yandex import fetch_yandex_forecast
 
 class ArtifactError(RuntimeError):
     """Артефакты обучения отсутствуют или повреждены."""
+
+
+def build_yandex_payload(
+    city: dict[str, Any],
+    slug: str,
+    model_version: str | None = None,
+) -> dict[str, Any]:
+    """Собирает живой прогноз Яндекс.Погоды в общем формате приложения."""
+
+    timezone = str(city["timezone"])
+    issue_date = local_today(timezone)
+    yandex_rows = fetch_yandex_forecast(slug, issue_date)
+    # Публичная страница Яндекса начинается с сегодняшнего дня, а наши
+    # горизонты считаются от завтрашнего: h=1 — это следующие сутки.
+    yandex_rows = [
+        item for item in yandex_rows if pd.Timestamp(item["date"]).date() > issue_date
+    ]
+    if len(yandex_rows) < 7:
+        raise DataFetchError(
+            "Яндекс.Погода вернула меньше недели прогноза — источник недоступен."
+        )
+    rows: list[dict[str, Any]] = []
+    for index, item in enumerate(yandex_rows, start=1):
+        rows.append(
+            {
+                "date": item["date"],
+                "lead": index,
+                "ensemble_tmax": float(item["tmax"]),
+                "model_spread": None,
+                "components": {},
+                "official_tmax": None,
+                "precip_mm": None,
+                "source": "yandex",
+                "provider_label": "Яндекс.Погода",
+            }
+        )
+    return {
+        "location": city,
+        "city": slug,
+        "issue_date": issue_date.isoformat(),
+        "generated_at": datetime.now(ZoneInfo(timezone)).isoformat(timespec="seconds"),
+        "target_dates": [row["date"] for row in rows],
+        "rows": rows,
+        "official_note": "Источник живого прогноза: Яндекс.Погода.",
+        "source": "yandex",
+        "provider_label": "Яндекс.Погода",
+        "model_version": model_version,
+        "cache_seconds": 900,
+    }
+
+
+class UntrainedCity:
+    """Город без обученных моделей: только живой прогноз Яндекса и спорт."""
+
+    def __init__(self, slug: str) -> None:
+        self.slug = slug
+        self.city = get_city(slug)
+        self.metrics: dict[str, Any] = {}
+        self.models: dict[int, Any] | None = None
+        self._live_cache: dict[str, Any] | None = None
+        self._live_cached_at = 0.0
+        self._lock = threading.Lock()
+
+    @property
+    def model_count(self) -> int:
+        return 0
+
+    def live_forecast(self, *, force: bool = False, cache_seconds: int = 900) -> dict[str, Any]:
+        now = time.monotonic()
+        with self._lock:
+            if (
+                not force
+                and self._live_cache is not None
+                and now - self._live_cached_at < cache_seconds
+            ):
+                return self._live_cache
+        payload = build_yandex_payload(self.city, self.slug)
+        with self._lock:
+            self._live_cache = payload
+            self._live_cached_at = now
+        return payload
+
+    def page_context(self) -> dict[str, Any]:
+        city = self.city
+        return {
+            "metrics": {},
+            "city": city,
+            "location": city,
+            "headline": {},
+            "overall_rows": [],
+            "leads": [],
+            "chart_url": "",
+            "current": None,
+            "improvement_vs_best_base": 0.0,
+            "improvement_abs": 0.0,
+            "improvement_sign": "",
+            "improvement_label": "",
+            "best_base_label": "",
+            "best_base_mae": None,
+            "official_mae": None,
+            "official_note": "",
+            "generated_at": "—",
+            "actuals_range": "нет истории наблюдений",
+            "test_range": "—",
+            "split": {"train": "—", "validation": "—", "test": "—"},
+            "official_source_note": "",
+            "test_days": 0,
+            "n_rows": 0,
+            "n_dates": 0,
+            "beats_official": False,
+            "api_example": f"/api/forecast?city={self.slug}",
+        }
+
+    def chart_url(self) -> str:
+        return ""
+
+    def current_weather(self) -> dict[str, Any] | None:
+        return None
 
 
 class CityStore:
@@ -169,48 +289,7 @@ class CityStore:
         return result
 
     def _yandex_forecast(self) -> dict[str, Any]:
-        timezone = str(self.city["timezone"])
-        issue_date = local_today(timezone)
-        yandex_rows = fetch_yandex_forecast(self.slug, issue_date)
-        # Публичная страница Яндекса начинается с сегодняшнего дня, а наши
-        # горизонты считаются от завтрашнего: h=1 — это следующие сутки.
-        yandex_rows = [
-            item
-            for item in yandex_rows
-            if pd.Timestamp(item["date"]).date() > issue_date
-        ]
-        if len(yandex_rows) < 7:
-            raise DataFetchError(
-                "Яндекс.Погода вернула меньше недели прогноза — источник недоступен."
-            )
-        rows: list[dict[str, Any]] = []
-        for index, item in enumerate(yandex_rows, start=1):
-            rows.append(
-                {
-                    "date": item["date"],
-                    "lead": index,
-                    "ensemble_tmax": float(item["tmax"]),
-                    "model_spread": None,
-                    "components": {},
-                    "official_tmax": None,
-                    "precip_mm": None,
-                    "source": "yandex",
-                    "provider_label": "Яндекс.Погода",
-                }
-            )
-        return {
-            "location": self.city,
-            "city": self.slug,
-            "issue_date": issue_date.isoformat(),
-            "generated_at": datetime.now(ZoneInfo(timezone)).isoformat(timespec="seconds"),
-            "target_dates": [row["date"] for row in rows],
-            "rows": rows,
-            "official_note": "Источник живого прогноза: Яндекс.Погода.",
-            "source": "yandex",
-            "provider_label": "Яндекс.Погода",
-            "model_version": self.metrics.get("generated_at"),
-            "cache_seconds": 900,
-        }
+        return build_yandex_payload(self.city, self.slug, self.metrics.get("generated_at"))
 
     def _merge_history(self, history: pd.DataFrame, meta: dict[str, Any]) -> None:
         """Сохраняет свежую историю, не теряя уже накопленные дни."""
@@ -502,7 +581,7 @@ class CityStore:
 
 
 class WeatherOracleStore:
-    """Все обученные города и их независимые модели."""
+    """Обученные города, а также каталог городов с прогнозом Яндекса."""
 
     def __init__(self) -> None:
         self.cities: dict[str, CityStore] = {}
@@ -518,30 +597,30 @@ class WeatherOracleStore:
             )
         self.default_slug = DEFAULT_CITY if DEFAULT_CITY in self.cities else next(iter(self.cities))
         self.artifact_errors = errors
+        self.untrained: dict[str, UntrainedCity] = {
+            slug: UntrainedCity(slug) for slug in CITY_CATALOG
+        }
 
-    def get(self, slug: str | None = None) -> CityStore:
+    def get(self, slug: str | None = None) -> CityStore | UntrainedCity:
         requested = (slug or self.default_slug).strip().lower()
-        if requested not in self.cities:
-            raise ArtifactError(
-                f"Город «{requested}» не обучен. Доступны: {', '.join(self.cities)}"
-            )
-        return self.cities[requested]
+        if requested in self.cities:
+            return self.cities[requested]
+        if requested in self.untrained:
+            return self.untrained[requested]
+        raise ArtifactError(f"Неизвестный город: {requested}")
 
     def page_context(self, slug: str | None = None) -> dict[str, Any]:
-        context = self.get(slug).page_context()
-        selected_slug = context["city"]["slug"]
+        store = self.get(slug)
+        context = store.page_context()
+        selected_slug = str(context["city"]["slug"])
 
-        def sort_key(city: Any) -> str:
+        def sort_key(city: dict[str, Any]) -> str:
             # Ё в русском алфавите идёт после Е, а в Unicode — раньше.
-            return str(city.city["name"]).replace("ё", "е").replace("Ё", "Е").casefold()
+            return str(city["name"]).replace("ё", "е").replace("Ё", "Е").casefold()
 
-        ordered = sorted(self.cities.values(), key=sort_key)
+        ordered = sorted(ALL_CITIES.values(), key=sort_key)
         context["cities"] = [
-            {
-                "slug": city.slug,
-                "name": city.city["name"],
-                "selected": city.slug == selected_slug,
-            }
+            {"slug": city["slug"], "name": city["name"], "modeled": city["modeled"]}
             for city in ordered
         ]
         # Один плоский список всех городов в алфавитном порядке.
@@ -550,11 +629,12 @@ class WeatherOracleStore:
                 "label": "Все города",
                 "cities": [
                     {
-                        "slug": city.slug,
-                        "name": city.city["name"],
-                        "latitude": city.city["latitude"],
-                        "longitude": city.city["longitude"],
-                        "selected": city.slug == selected_slug,
+                        "slug": city["slug"],
+                        "name": city["name"],
+                        "latitude": city["latitude"],
+                        "longitude": city["longitude"],
+                        "modeled": city["modeled"],
+                        "selected": city["slug"] == selected_slug,
                     }
                     for city in ordered
                 ],
@@ -566,17 +646,21 @@ class WeatherOracleStore:
         return self.get(slug).live_forecast(force=force)
 
     def catalog(self) -> list[dict[str, Any]]:
-        return [
-            {
-                "slug": city.slug,
-                "name": city.city["name"],
-                "latitude": city.city["latitude"],
-                "longitude": city.city["longitude"],
-                "timezone": city.city["timezone"],
-                "headline": city.metrics.get("headline", {}),
-            }
-            for city in self.cities.values()
-        ]
+        result = []
+        for slug, city in ALL_CITIES.items():
+            store = self.cities.get(slug)
+            result.append(
+                {
+                    "slug": slug,
+                    "name": city["name"],
+                    "latitude": city["latitude"],
+                    "longitude": city["longitude"],
+                    "timezone": city["timezone"],
+                    "modeled": bool(city["modeled"]),
+                    "headline": store.metrics.get("headline", {}) if store else {},
+                }
+            )
+        return result
 
 
 def best_model_name(overall: dict[str, dict]) -> str:

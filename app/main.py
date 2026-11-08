@@ -13,6 +13,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .config import (
+    ALL_CITIES,
     APP_NAME,
     APP_SUBTITLE,
     ARTIFACT_DIR,
@@ -41,9 +42,15 @@ PAGE_LABELS = {
 def render_page(request: Request, city: str | None, page: str) -> HTMLResponse:
     store = get_store(request)
     try:
+        target = store.get(city)
         context = store.page_context(city)
     except ArtifactError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+    # Для городов без обученных моделей доступны прогноз, спорт и кабинет.
+    if not target.city.get("modeled", True) and page in {"compare", "models", "method"}:
+        params = dict(request.query_params)
+        params["city"] = str(target.city["slug"])
+        return RedirectResponse(url=f"/forecast?{urlencode(params)}", status_code=307)
     context["request"] = request
     context["app_name"] = APP_NAME
     context["app_subtitle"] = APP_SUBTITLE
@@ -156,6 +163,7 @@ async def health(request: Request) -> dict[str, Any]:
         "status": "ok",
         "service": APP_NAME,
         "cities_loaded": len(store.cities),
+        "cities_catalog": len(ALL_CITIES),
         "models_loaded": sum(city.model_count for city in store.cities.values()),
         "default_city": default.slug,
         "cities": list(store.cities),
@@ -178,9 +186,15 @@ async def api_metrics(
 ) -> JSONResponse:
     store = get_store(request)
     try:
-        return JSONResponse(store.get(city).metrics)
+        city_store = store.get(city)
     except ArtifactError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+    if not city_store.city.get("modeled", True):
+        raise HTTPException(
+            status_code=404,
+            detail="Для этого города нет обученной модели: метрики недоступны.",
+        )
+    return JSONResponse(city_store.metrics)
 
 
 @app.get("/api/forecast")
@@ -234,6 +248,11 @@ async def api_backtest(
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     if model not in (*MODEL_ORDER, "ensemble", "official", "persistence"):
         raise HTTPException(status_code=400, detail="Неизвестная модель")
+    if not city_store.city.get("modeled", True):
+        raise HTTPException(
+            status_code=404,
+            detail="Для этого города нет обученной модели: бэктест недоступен.",
+        )
     frame = city_store.predictions
     if lead is not None:
         frame = frame.loc[frame["lead"] == lead]
