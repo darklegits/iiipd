@@ -79,7 +79,14 @@ if (Test-Path $legacyBuild) {
 }
 
 Write-Host "Проверяю запуск: $exe --smoke-test"
-$proc = Start-Process -FilePath $exe -ArgumentList "--smoke-test" -PassThru
+# Start-Process для GUI-EXE может ждать оболочку Windows бесконечно;
+# запускаем процесс напрямую и ждём его завершения.
+$startInfo = New-Object System.Diagnostics.ProcessStartInfo
+$startInfo.FileName = $exe
+$startInfo.Arguments = "--smoke-test"
+$startInfo.UseShellExecute = $false
+$startInfo.WorkingDirectory = $appDir
+$proc = [System.Diagnostics.Process]::Start($startInfo)
 if (-not $proc.WaitForExit(240000)) {
     try { $proc.Kill() } catch { }
     throw "EXE не завершил smoke-test за 4 минуты"
