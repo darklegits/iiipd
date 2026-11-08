@@ -34,18 +34,60 @@ $pythonDll = Join-Path $appDir "_internal\python313.dll"
 # случайный запуск даёт «Failed to load Python DLL ... python313.dll».
 $workDir = Join-Path $root ".cache\pyinstaller"
 
-# PyInstaller очищает папку назначения, поэтому userdata (логи и
-# обновлённую историю) сохраняем и возвращаем на место после сборки.
+# PyInstaller очищает папку назначения, поэтому сохраняем только данные
+# (data: история и кэш). Логи и временные профили Chrome копировать нельзя:
+# открытый браузер держит файлы профиля, и копирование падает.
 $userdata = Join-Path $appDir "userdata"
+$userdataData = Join-Path $userdata "data"
 $userdataBackup = Join-Path $root ".cache\userdata-backup"
 if (Test-Path $userdataBackup) {
     Remove-Item $userdataBackup -Recurse -Force
 }
-$hasUserdata = Test-Path $userdata
+$hasUserdata = Test-Path $userdataData
 if ($hasUserdata) {
     # Копирование вместо Move-Item: переименование каталога может быть
     # запрещено политикой рабочей папки, а чтение и копирование — нет.
-    Copy-Item $userdata $userdataBackup -Recurse -Force
+    Copy-Item $userdataData $userdataBackup -Recurse -Force
+}
+
+# PyInstaller удаляет dist целиком, а Chrome из окна приложения держит файлы
+# профиля в userdata\ChromeProfile-*. Закрываем окно и убираем профили,
+# иначе сборка падает с «файл занят другим процессом».
+if (Test-Path $userdata) {
+    Add-Type -TypeDefinition @"
+using System;
+using System.Text;
+using System.Runtime.InteropServices;
+public class OracleWindowCloser {
+    public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+    [DllImport("user32.dll")] public static extern bool EnumWindows(EnumWindowsProc cb, IntPtr lParam);
+    [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr hWnd);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern int GetWindowTextW(IntPtr hWnd, StringBuilder text, int max);
+    [DllImport("user32.dll")] public static extern bool PostMessageW(IntPtr hWnd, uint msg, IntPtr w, IntPtr l);
+    public static void CloseAppWindows() {
+        EnumWindows((h, l) => {
+            if (IsWindowVisible(h)) {
+                var text = new StringBuilder(512);
+                GetWindowTextW(h, text, 512);
+                var title = text.ToString();
+                if (title.StartsWith("127.0.0.1") || title.StartsWith("Погодный оракул")) {
+                    PostMessageW(h, 0x0010, IntPtr.Zero, IntPtr.Zero);
+                }
+            }
+            return true;
+        }, IntPtr.Zero);
+    }
+}
+"@ -ErrorAction SilentlyContinue
+    try { [OracleWindowCloser]::CloseAppWindows() } catch { }
+    Start-Sleep -Seconds 2
+    Get-ChildItem $userdata -Directory -Filter "ChromeProfile-*" -ErrorAction SilentlyContinue | ForEach-Object {
+        for ($attempt = 0; $attempt -lt 8; $attempt++) {
+            Remove-Item $_.FullName -Recurse -Force -ErrorAction SilentlyContinue
+            if (-not (Test-Path $_.FullName)) { break }
+            Start-Sleep -Milliseconds 400
+        }
+    }
 }
 
 Write-Host "Собираю приложение..."
@@ -64,8 +106,9 @@ if (-not (Test-Path $pythonDll)) {
 
 Copy-Item (Join-Path $root "build_assets\README-dist.txt") (Join-Path $appDir "README.txt") -Force
 
-if ($hasUserdata -and (Test-Path $userdataBackup) -and -not (Test-Path $userdata)) {
-    Copy-Item $userdataBackup $userdata -Recurse -Force
+if ($hasUserdata -and (Test-Path $userdataBackup) -and -not (Test-Path $userdataData)) {
+    New-Item -ItemType Directory -Force -Path $userdata | Out-Null
+    Copy-Item $userdataBackup $userdataData -Recurse -Force
 }
 if (Test-Path $userdataBackup) {
     Remove-Item $userdataBackup -Recurse -Force
