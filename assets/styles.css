@@ -1535,3 +1535,20 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
 /* компактнее, чтобы не распирало шапку */
 .topbar-search.is-open { flex: 0 0 320px; width: 320px; max-width: 320px; }
 .steam-form.is-open { flex: 0 0 290px; width: 290px; max-width: 290px; }
+
+/* лупа героев слева, лупа Dotabuff справа, между ними — навигация */
+.topbar-search { margin-left: 6px; margin-right: auto; }
+.topbar-nav { margin-left: 0; }
+.steam-form { margin-left: 14px; }
+
+/* винрейт героя в плитке */
+.hero-tile { position: relative; }
+.tile-wr {
+  position: absolute; top: 6px; right: 6px; z-index: 2;
+  font-style: normal; font-size: 11px; font-weight: 700;
+  padding: 2px 6px; border-radius: 6px;
+  background: rgba(8, 10, 14, 0.82); border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(2px);
+}
+.tile-wr.is-good { color: #63d471; }
+.tile-wr.is-bad { color: #ef6b6b; }

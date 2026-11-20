@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Forum&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />  <link rel="preconnect" href="https://cdn.cloudflare.steamstatic.com" crossorigin />
-  <link rel="stylesheet" href="assets/styles.css?v=61" />
+  <link rel="stylesheet" href="assets/styles.css?v=62" />
 </head>
 <body>
   <header class="topbar">
@@ -38,13 +38,7 @@
       <div class="suggestions" id="suggestions" role="listbox" hidden></div>
     </div>
 
-    <form class="steam-form" id="steamForm" autocomplete="off" novalidate>
-      <button type="button" class="search-trigger" id="steamTrigger" aria-label="Поиск по Steam-ссылке">
-        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <input id="steamInput" type="text" spellcheck="false" placeholder="Steam-ссылка → Dotabuff" aria-label="Ссылка на профиль Steam для поиска в Dotabuff" />
-      <p class="steam-hint" id="steamHint" hidden></p>
-    </form>
+
 
     <nav class="topbar-nav">
       <a href="#heroes">Все герои</a>
@@ -56,6 +50,15 @@
       <a href="#/cabinet" class="account-link" id="accountLink">Войти</a>
       <span class="topbar-badge" title="Картинки героев и предметов — официальный CDN Dota 2">Dota 2 · Live</span>
     </nav>
+
+
+    <form class="steam-form" id="steamForm" autocomplete="off" novalidate>
+      <button type="button" class="search-trigger" id="steamTrigger" aria-label="Поиск по Steam-ссылке">
+        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <input id="steamInput" type="text" spellcheck="false" placeholder="Steam-ссылка → Dotabuff" aria-label="Ссылка на профиль Steam для поиска в Dotabuff" />
+      <p class="steam-hint" id="steamHint" hidden></p>
+    </form>
   </header>
 
   <main>
@@ -299,7 +302,7 @@
       <strong>DotaPicker</strong> — учебный пет-проект по Dota 2. Не связан с Valve.
     </div>
     <div class="muted small">
-      Изображения героев и предметов: Steam CDN. Статистика: Stratz (Valve) и OpenDota API.
+      Изображения героев и предметов: Steam CDN. Статистика: Stratz (Valve) и OpenDota API. Патч 7.42.
     </div>
   </footer>
 
@@ -342,6 +345,6 @@
     </button>
   </template>
 
-  <script type="module" src="assets/app.js?v=61"></script>
+  <script type="module" src="assets/app.js?v=62"></script>
 </body>
 </html>

@@ -691,7 +691,9 @@ function renderHeroGrid(filter = "") {
     tile.type = "button";
     tile.className = "hero-tile";
     tile.title = `${hero.en} · ${hero.ru}`;
-    tile.innerHTML = `<img src="${hero.crop || hero.img}" alt="${escapeHtml(hero.en)}" loading="lazy" width="400" height="250"><span>${escapeHtml(hero.en)}</span>`;
+    const wr = state.heroStats?.[hero.id]?.win;
+    const wrBadge = wr ? `<em class="tile-wr ${wr >= 50 ? "is-good" : "is-bad"}">${wr.toFixed(1)}%</em>` : "";
+    tile.innerHTML = `<img src="${hero.crop || hero.img}" alt="${escapeHtml(hero.en)}" loading="lazy" width="400" height="250"><span>${escapeHtml(hero.en)}</span>${wrBadge}`;
     tile.addEventListener("click", () => { location.hash = `#/hero/${hero.key}`; });
     grid.appendChild(tile);
   }
