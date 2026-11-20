@@ -1303,7 +1303,7 @@ function renderItemsGrid(filter) {
   const catalog = state.itemCatalog || {};
   const q = String(filter || "").trim().toLowerCase();
   const list = Object.entries(catalog)
-    .filter(([key]) => key !== "__updated")
+    .filter(([key]) => !key.startsWith("__"))
     .map(([key, item]) => ({ key, ...item }))
     .filter((item) => !q || item.n.toLowerCase().includes(q) || item.key.includes(q.replace(/\s+/g, "_")))
     .sort((a, b) => a.c - b.c || a.n.localeCompare(b.n, "en"));
