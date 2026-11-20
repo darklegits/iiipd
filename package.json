@@ -1,13 +1,14 @@
 {
-  "name": "counterpick-dota2",
-  "version": "1.0.0",
+  "name": "dotapicker",
+  "version": "2.0.0",
   "private": true,
-  "description": "Контрпики Dota 2: герой → контрпики, предметы и объяснения",
+  "description": "DotaPicker — контрпики, матчапы, сборки и каталог предметов Dota 2",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js 3000",
-    "build:data": "node tools/build-data.mjs"
+    "build:data": "node tools/build-data.mjs",
+    "sync:stratz": "node tools/stratz-sync.mjs"
   },
   "engines": {
     "node": ">=18"
