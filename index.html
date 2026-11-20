@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DotaPicker — контрпики Dota 2</title>
+  <meta name="description" content="Введи героя Dota 2 и получи список контрпиков, предметов против него и объяснение, как его законтрить." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0e13'/%3E%3Cpath d='M14 50L50 14M18 14h32v32' stroke='%23e05a3a' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Forum&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />  <link rel="preconnect" href="https://cdn.cloudflare.steamstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/styles.css?v=58" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 20L20 4M6 4h14v14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text">Dota<em>Picker</em></span>
+    </a>
+
+    <div class="topbar-search" id="topbarSearchWrap">
+      <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Найти героя: Pudge, Пудж, PL…" aria-label="Поиск героя" aria-autocomplete="list" aria-controls="suggestions" />
+      <kbd class="search-kbd">/</kbd>
+      <div class="suggestions" id="suggestions" role="listbox" hidden></div>
+    </div>
+
+    <form class="steam-form" id="steamForm" autocomplete="off" novalidate>
+      <input id="steamInput" type="text" spellcheck="false" placeholder="Steam-ссылка → Dotabuff" aria-label="Ссылка на профиль Steam для поиска в Dotabuff" />
+      <button type="submit" title="Открыть профиль в Dotabuff">→</button>
+      <p class="steam-hint" id="steamHint" hidden></p>
+    </form>
+
+    <nav class="topbar-nav">
+      <a href="#heroes">Все герои</a>
+      <a href="#/items">Предметы</a>
+      <a href="#/esports">Киберспорт</a>
+      <button type="button" class="icon-btn" id="settingsBtn" aria-label="Настройки" title="Настройки">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.36a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.64 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.64 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.64a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.36 9v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"/></svg>
+      </button>
+      <a href="#/cabinet" class="account-link" id="accountLink">Войти</a>
+      <span class="topbar-badge" title="Картинки героев и предметов — официальный CDN Dota 2">Dota 2 · Live</span>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-landing" id="landing">
+        <svg class="anime-eye" viewBox="0 0 200 120" aria-hidden="true">
+          <ellipse cx="100" cy="60" rx="92" ry="54" fill="#0d0d0f"/>
+          <ellipse cx="100" cy="60" rx="46" ry="40" fill="#141418" stroke="#c8102e" stroke-width="2"/>
+          <circle cx="100" cy="60" r="24" fill="#c8102e"/>
+          <circle cx="100" cy="60" r="13" fill="#5c0a14"/>
+          <circle cx="100" cy="60" r="6" fill="#07070a"/>
+          <g stroke="#c8102e" stroke-width="1.4" opacity="0.5">
+            <path d="M54 60h-24M58 42L40 28M58 78L40 92M146 60h24M142 42l18-14M142 78l18 14"/>
+          </g>
+        </svg>      <div class="landing-inner">
+        <p class="eyebrow">Dota 2 · контрпики и предметы</p>
+        <h1>Кого взять против<br /><span class="accent">твоего героя?</span></h1>
+        <p class="lead">Введи героя — получишь 5–7 лучших контрпиков, предметы против него и короткое объяснение, почему это работает.</p>
+
+        <div class="big-search">
+          <div class="big-search-field" id="bigSearchWrap">
+            <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="bigSearchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Например: Phantom Lancer или Пудж" aria-label="Поиск героя" aria-autocomplete="list" aria-controls="bigSuggestions" />
+            <div class="suggestions" id="bigSuggestions" role="listbox" hidden></div>
+          </div>
+        </div>
+
+        <div class="quick-picks" id="quickPicks" aria-label="Популярные герои"></div>
+        <p class="landing-hint">Данные: курируемая подборка + живая статистика матчапов OpenDota.</p>
+      </div>
+    </section>
+
+    <section class="heroes-section" id="heroes">
+      <div class="section-head">
+        <h2>Все герои <span class="muted">127</span></h2>
+        <div class="hero-filter">
+          <input id="gridFilter" type="search" placeholder="Фильтр по имени…" autocomplete="off" />
+        </div>
+      </div>
+      <div class="hero-grid" id="heroGrid"></div>
+    </section>
+
+    <section class="hero-view" id="heroView" hidden>
+      <a class="back-link" href="#heroes">← Все герои</a>
+      <article class="target-panel" id="targetPanel"></article>
+
+      <nav class="hero-tabs" id="heroTabs" aria-label="Разделы героя">
+        <button type="button" data-tab="overview" class="is-active">Обзор</button>
+        <button type="button" data-tab="abilities">Способности</button>
+        <button type="button" data-tab="counters">Контрпики</button>
+        <button type="button" data-tab="builds">Сборки</button>
+        <button type="button" data-tab="matchups">Матчапы</button>
+      </nav>
+
+      <div class="hero-tab-panel" id="tab-overview">
+        <section class="block">
+          <div class="block-head">
+            <h2>Контр-предметы <span class="dot">·</span> <span id="itemsTargetName"></span></h2>
+            <p class="muted small">Что покупать, чтобы нивелировать его сильные стороны.</p>
+          </div>
+          <div class="item-grid" id="itemGrid"></div>
+        </section>
+      </div>
+
+      <div class="hero-tab-panel" id="tab-abilities" hidden>
+        <section class="block">
+          <div class="block-head">
+            <h2>Способности <span class="dot">·</span> <span id="abilityTargetName"></span></h2>
+            <p class="muted small">Что делает герой и как это контрить</p>
+          </div>
+          <div class="ability-grid" id="abilityGrid"></div>
+        </section>
+      </div>
+      <div class="hero-tab-panel" id="tab-counters" hidden>
+        <section class="block">
+          <div class="block-head">
+            <h2>Лучшие контрпики</h2>
+            <div class="block-meta">
+              <span class="source-badge" id="sourceBadge"></span>
+              <span class="muted small" id="wrNote"></span>
+            </div>
+          </div>
+          <div class="counter-grid" id="counterGrid"></div>
+        </section>
+      </div>
+
+      <div class="hero-tab-panel" id="tab-builds" hidden>
+        <div id="heroBuildResult"></div>
+      </div>
+
+      <div class="hero-tab-panel" id="tab-matchups" hidden>
+        <section class="block" id="matchupBlock" hidden>
+          <div class="block-head">
+            <h2>Все матчапы <span class="dot">·</span> <span id="matchupTargetName"></span></h2>
+            <div class="block-meta">
+              <span class="muted small" id="matchupNote"></span>
+            </div>
+          </div>
+          <div class="db-panels" id="matchupPanels"></div>
+          <div class="matchup-table-wrap">
+            <table class="matchup-table">
+              <thead id="matchupHead"></thead>
+              <tbody id="matchupBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="tool-view" id="combosView" hidden>
+      <div class="tool-hero">
+        <p class="eyebrow">Dota 2 · связки героев</p>
+        <h1>Кем дополнить пик?</h1>
+        <p class="lead">Введи героя, которого уже взяли, — покажу, кто с ним лучше всего сочетается и почему.</p>
+        <div class="big-search">
+          <div class="big-search-field" id="comboSearchWrap">
+            <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="comboSearchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Например: Sven или Свен" aria-label="Герой для связки" aria-autocomplete="list" aria-controls="comboSuggestions" />
+            <div class="suggestions" id="comboSuggestions" role="listbox" hidden></div>
+          </div>
+        </div>
+      </div>
+      <div id="comboResult"></div>
+    </section>
+
+    <section class="tool-view" id="buildsView" hidden>
+      <div class="tool-hero">
+        <p class="eyebrow">Dota 2 · сборки предметов</p>
+        <h1>Сборки героя</h1>
+        <p class="lead">Популярные предметы по стадиям игры из открытых данных OpenDota плюс сборка на физический или магический урон.</p>
+        <div class="big-search">
+          <div class="big-search-field" id="buildSearchWrap">
+            <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="buildSearchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Например: Invoker или Инвокер" aria-label="Герой для сборки" aria-autocomplete="list" aria-controls="buildSuggestions" />
+            <div class="suggestions" id="buildSuggestions" role="listbox" hidden></div>
+          </div>
+        </div>
+      </div>
+      <div id="buildResult"></div>
+    </section>
+
+    <section class="tool-view" id="cabinetView" hidden>
+      <div class="tool-hero">
+        <p class="eyebrow">CounterPick · аккаунт</p>
+        <h1>Личный кабинет</h1>
+        <p class="lead" id="cabinetLead">Любимый герой, его винрейт и лучшие предметы — всё в одном месте.</p>
+      </div>
+      <div id="cabinetBody"></div>
+    </section>
+
+    <div class="auth-modal" id="authModal" hidden>
+      <div class="auth-backdrop" data-auth-close></div>
+      <div class="auth-dialog">
+        <h3 id="authTitle">Вход</h3>
+        <form id="authForm" autocomplete="on">
+          <input id="authUser" name="username" placeholder="Логин" autocomplete="username" />
+          <input id="authPass" name="password" type="password" placeholder="Пароль" autocomplete="current-password" />
+          <p class="auth-error" id="authError" hidden></p>
+          <button type="submit" id="authSubmit">Войти</button>
+        </form>
+        <p class="auth-switch"><button type="button" id="authToggle">Нет аккаунта? Регистрация</button></p>
+        <button type="button" class="auth-close" data-auth-close aria-label="Закрыть">×</button>
+      </div>
+    </div>
+    <div class="settings-modal" id="settingsModal" hidden>
+      <div class="auth-backdrop" data-settings-close></div>
+      <div class="settings-dialog">
+        <h3>Настройки</h3>
+
+        <div class="settings-row">
+          <div>
+            <b>Музыка</b>
+            <p class="muted small">Кто пчёлок уважает — тому они приносят мёд</p>
+          </div>
+          <button type="button" class="switch" id="musicToggle" aria-pressed="false" aria-label="Включить музыку"><span></span></button>
+        </div>
+        <div class="settings-row">
+          <div><b>Громкость</b></div>
+          <input type="range" id="musicVolume" min="0" max="100" value="35" />
+        </div>
+
+        <div class="bee-note">
+          <svg class="bee-icon" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">
+            <ellipse cx="32" cy="38" rx="16" ry="12" fill="#e8b23a"/>
+            <path d="M20 34h24M21 41h22M24 47h16" stroke="#2a2118" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="32" cy="22" r="7" fill="#2a2118"/>
+            <path d="M27 16l-4-6M37 16l4-6" stroke="#2a2118" stroke-width="2.4" stroke-linecap="round"/>
+            <ellipse cx="19" cy="24" rx="8" ry="4" fill="#9fd3ff" opacity=".55" transform="rotate(-25 19 24)"/>
+            <ellipse cx="45" cy="24" rx="8" ry="4" fill="#9fd3ff" opacity=".55" transform="rotate(25 45 24)"/>
+          </svg>
+          <p>Кто пчёл уважает и к ним не пристаёт — того они не жалят, тому приносят мёд.</p>
+        </div>
+
+        <button type="button" class="auth-close" data-settings-close aria-label="Закрыть">×</button>
+      </div>
+    </div>
+    <section class="tool-view" id="itemsView" hidden>
+      <div class="tool-hero">
+        <p class="eyebrow">Dota 2 · предметы</p>
+        <h1>Предметы</h1>
+        <p class="lead">Что даёт предмет, сколько стоит и из чего собирается.</p>
+        <div class="big-search">
+          <div class="big-search-field">
+            <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="itemsSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Например: Black King Bar или BKB" aria-label="Поиск предмета" />
+          </div>
+        </div>
+      </div>
+      <div class="items-grid" id="itemsGrid"></div>
+      <p class="muted small" id="itemsNote"></p>
+    </section>
+    <section class="tool-view" id="esportsView" hidden>
+      <div class="tool-hero">
+        <p class="eyebrow">Dota 2 · киберспорт</p>
+        <h1>Команды и медиа</h1>
+        <p class="lead">Кто сейчас в топе, где читать новости и что происходит в игре.</p>
+      </div>
+
+      <h2 class="esports-title">Команды</h2>
+      <div class="teams-grid" id="esportsTeams"></div>
+
+      <h2 class="esports-title">Медиа о Dota 2</h2>
+      <div class="media-grid" id="esportsMedia"></div>
+
+      <h2 class="esports-title">Прямые трансляции</h2>
+      <div class="streams-grid" id="esportsStreams"></div>
+
+      <div class="esports-news-head">
+        <h2 class="esports-title">Свежие новости</h2>
+        <div class="news-controls">
+          <span class="muted small" id="esportsNewsNote"></span>
+          <button type="button" class="btn-ghost" id="newsRefresh">Обновить</button>
+        </div>
+      </div>
+      <div class="news-list" id="esportsNews"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>DotaPicker</strong> — учебный пет-проект по Dota 2. Не связан с Valve.
+    </div>
+    <div class="muted small">
+      Изображения героев и предметов: Steam CDN. Статистика: Stratz (Valve) и OpenDota API.
+    </div>
+  </footer>
+
+  <div class="profile-modal" id="profileModal" hidden>
+    <div class="profile-backdrop" data-profile-close></div>
+    <div class="profile-dialog" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+      <header class="profile-head">
+        <img class="profile-avatar" id="profileAvatar" alt="" width="64" height="64" hidden />
+        <div class="profile-id">
+          <h3 id="profileTitle">Профиль игрока</h3>
+          <p class="muted small" id="profileMeta"></p>
+        </div>
+        <button class="profile-close" type="button" data-profile-close aria-label="Закрыть">×</button>
+      </header>
+      <div class="profile-body" id="profileBody">
+        <div class="profile-stats" id="profileStats"></div>
+        <div class="profile-cols">
+          <section class="profile-col">
+            <h4>Чаще всего играет</h4>
+            <div id="profileHeroes"><div class="skeleton" style="height:180px"></div></div>
+          </section>
+          <section class="profile-col">
+            <h4>Последние матчи</h4>
+            <div id="profileMatches"><div class="skeleton" style="height:180px"></div></div>
+          </section>
+        </div>
+      </div>
+      <footer class="profile-foot">
+        <span class="muted small" id="profileNote" hidden></span>
+        <a class="profile-link" id="profileDotabuff" href="#" target="_blank" rel="noopener">Открыть в Dotabuff →</a>
+      </footer>
+    </div>
+  </div>
+
+  <template id="suggestionTemplate">
+    <button class="suggestion" role="option" type="button">
+      <img class="suggestion-img" alt="" loading="lazy" width="56" height="32" />
+      <span class="suggestion-text"><span class="suggestion-ru"></span><span class="suggestion-en"></span></span>
+      <span class="suggestion-attr"></span>
+    </button>
+  </template>
+
+  <script type="module" src="assets/app.js?v=58"></script>
+</body>
+</html>

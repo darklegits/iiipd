@@ -1,0 +1,12 @@
+[Unit]
+Description=CounterPick: публичный туннель localhost.run
+After=network-online.target nginx.service
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o ExitOnForwardFailure=yes -T -R 80:localhost:8080 nokey@localhost.run
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

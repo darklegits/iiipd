@@ -1,0 +1,5886 @@
+{
+  "abaddon": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.0,
+        "games": 2095
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.8,
+        "games": 2438
+      },
+      {
+        "hero": "lich",
+        "why": "Lich убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.7,
+        "games": 1668
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.9,
+        "games": 2420
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.6,
+        "games": 2169
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 51.6,
+        "games": 2368
+      }
+    ]
+  },
+  "alchemist": {
+    "counters": [
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 58.3,
+        "games": 2345
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.6,
+        "games": 1971
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.2,
+        "games": 1833
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.4,
+        "games": 2754
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.3,
+        "games": 2455
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.0,
+        "games": 2196
+      }
+    ]
+  },
+  "ancient_apparition": {
+    "counters": [
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.0,
+        "games": 1983
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 7037
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.7,
+        "games": 4727
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 54.1,
+        "games": 3025
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.8,
+        "games": 4851
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.5,
+        "games": 5870
+      }
+    ]
+  },
+  "antimage": {
+    "counters": [
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [
+          "blink",
+          "ultimate_scepter",
+          "sheepstick"
+        ],
+        "wr": 60.7,
+        "games": 1868
+      },
+      {
+        "hero": "bloodseeker",
+        "why": "Bloodseeker переживает её урон и выигрывает затяжную драку.",
+        "items": [
+          "blade_mail",
+          "black_king_bar",
+          "sange_and_yasha"
+        ],
+        "wr": 55.3,
+        "games": 3668
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.0,
+        "games": 6307
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.0,
+        "games": 8621
+      },
+      {
+        "hero": "axe",
+        "why": "Axe держит цель в контроле и не даёт ей уйти.",
+        "items": [
+          "blade_mail",
+          "blink",
+          "crimson_guard"
+        ],
+        "wr": 54.7,
+        "games": 13056
+      },
+      {
+        "hero": "troll_warlord",
+        "why": "Troll Warlord держит цель в контроле и не даёт ей уйти.",
+        "items": [
+          "black_king_bar",
+          "satanic",
+          "abyssal_blade"
+        ],
+        "wr": 54.4,
+        "games": 2687
+      }
+    ],
+    "threat": "Мобильный керри: быстро фармит, сжигает ману, блинкуется от фокуса и переворачивает позднюю игру.",
+    "items": [
+      "orchid",
+      "bloodthorn",
+      "sheepstick",
+      "nullifier",
+      "abyssal_blade",
+      "manta"
+    ]
+  },
+  "arc_warden": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.0,
+        "games": 3782
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 52.8,
+        "games": 4299
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.6,
+        "games": 3456
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.8,
+        "games": 3507
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.6,
+        "games": 4166
+      },
+      {
+        "hero": "luna",
+        "why": "Luna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.2,
+        "games": 3774
+      }
+    ]
+  },
+  "axe": {
+    "counters": [
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.9,
+        "games": 1540
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.1,
+        "games": 15584
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.7,
+        "games": 9379
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 15577
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.7,
+        "games": 12694
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.4,
+        "games": 9697
+      }
+    ]
+  },
+  "bane": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.8,
+        "games": 1722
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.1,
+        "games": 2062
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.4,
+        "games": 2144
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.4,
+        "games": 1823
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.2,
+        "games": 1644
+      },
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.1,
+        "games": 1947
+      }
+    ]
+  },
+  "batrider": {
+    "counters": []
+  },
+  "beastmaster": {
+    "counters": [
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.3,
+        "games": 1502
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 57.4,
+        "games": 1666
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.1,
+        "games": 1521
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.1,
+        "games": 1691
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.0,
+        "games": 1827
+      },
+      {
+        "hero": "earthshaker",
+        "why": "Earthshaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.7,
+        "games": 1788
+      }
+    ]
+  },
+  "bloodseeker": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.1,
+        "games": 2580
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.3,
+        "games": 3457
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.2,
+        "games": 3241
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.8,
+        "games": 1674
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.6,
+        "games": 1780
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.5,
+        "games": 2107
+      }
+    ]
+  },
+  "bounty_hunter": {
+    "counters": [
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.8,
+        "games": 3009
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 51.8,
+        "games": 5348
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.5,
+        "games": 6982
+      },
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.3,
+        "games": 4916
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.1,
+        "games": 4719
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.0,
+        "games": 4697
+      }
+    ]
+  },
+  "brewmaster": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.2,
+        "games": 1545
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.3,
+        "games": 2030
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.9,
+        "games": 1600
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 51.7,
+        "games": 2211
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.3,
+        "games": 2293
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.0,
+        "games": 1560
+      }
+    ]
+  },
+  "bristleback": {
+    "counters": [
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 59.0,
+        "games": 3050
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [
+          "blink",
+          "blade_mail",
+          "black_king_bar"
+        ],
+        "wr": 57.6,
+        "games": 6449
+      },
+      {
+        "hero": "slark",
+        "why": "Slark переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.3,
+        "games": 6061
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 6856
+      },
+      {
+        "hero": "ancient_apparition",
+        "why": "Ancient Apparition убивает до того, как цель успевает ответить.",
+        "items": [
+          "cyclone",
+          "ultimate_scepter",
+          "force_staff"
+        ],
+        "wr": 55.4,
+        "games": 2651
+      },
+      {
+        "hero": "silencer",
+        "why": "Silencer выключает способности в решающий момент.",
+        "items": [],
+        "wr": 55.1,
+        "games": 4031
+      }
+    ],
+    "threat": "Танк с Quill Spray и Bristleback: чем больше его бьёшь, тем больнее, и он почти не умирает.",
+    "items": [
+      "silver_edge",
+      "spirit_vessel",
+      "skadi",
+      "assault",
+      "sheepstick",
+      "shivas_guard"
+    ]
+  },
+  "broodmother": {
+    "counters": [
+      {
+        "hero": "earthshaker",
+        "why": "Earthshaker держит цель в контроле и не даёт ей уйти.",
+        "items": [
+          "blink",
+          "ultimate_scepter",
+          "refresher"
+        ],
+        "wr": 58.1,
+        "games": 1856
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.0,
+        "games": 1565
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.6,
+        "games": 1668
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [
+          "blink",
+          "blade_mail",
+          "black_king_bar"
+        ],
+        "wr": 51.7,
+        "games": 1608
+      },
+      {
+        "hero": "luna",
+        "why": "Luna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 50.9,
+        "games": 1502
+      },
+      {
+        "hero": "lion",
+        "why": "Lion держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 50.9,
+        "games": 2430
+      }
+    ],
+    "threat": "Паучиха: армия паучат, паутина на всю линию и почти неуязвимая зона на своей территории.",
+    "items": [
+      "bfury",
+      "mjollnir",
+      "crimson_guard",
+      "shivas_guard",
+      "pipe",
+      "force_staff"
+    ]
+  },
+  "centaur": {
+    "counters": [
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.1,
+        "games": 4706
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.3,
+        "games": 5897
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 56.2,
+        "games": 1682
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.7,
+        "games": 3827
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.4,
+        "games": 4344
+      },
+      {
+        "hero": "ancient_apparition",
+        "why": "Ancient Apparition убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.2,
+        "games": 2081
+      }
+    ]
+  },
+  "chaos_knight": {
+    "counters": [
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.5,
+        "games": 3397
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.1,
+        "games": 2723
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.1,
+        "games": 2657
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.7,
+        "games": 3284
+      },
+      {
+        "hero": "lich",
+        "why": "Lich убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.4,
+        "games": 2159
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.0,
+        "games": 3250
+      }
+    ]
+  },
+  "chen": {
+    "counters": []
+  },
+  "clinkz": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.3,
+        "games": 3444
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.8,
+        "games": 2634
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.6,
+        "games": 2224
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.9,
+        "games": 2012
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.7,
+        "games": 3703
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.3,
+        "games": 1603
+      }
+    ]
+  },
+  "rattletrap": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.7,
+        "games": 1500
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.3,
+        "games": 1838
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.4,
+        "games": 1802
+      },
+      {
+        "hero": "necrolyte",
+        "why": "Necrophos убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.7,
+        "games": 2018
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.3,
+        "games": 2020
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.9,
+        "games": 2798
+      }
+    ]
+  },
+  "crystal_maiden": {
+    "counters": [
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.6,
+        "games": 18710
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.9,
+        "games": 7902
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.8,
+        "games": 6835
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.8,
+        "games": 4310
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 52.7,
+        "games": 14916
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.3,
+        "games": 12671
+      }
+    ]
+  },
+  "dark_seer": {
+    "counters": [
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.9,
+        "games": 2673
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.9,
+        "games": 2317
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.2,
+        "games": 1615
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.1,
+        "games": 2383
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.1,
+        "games": 2023
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 54.0,
+        "games": 3166
+      }
+    ]
+  },
+  "dark_willow": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.2,
+        "games": 4662
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.7,
+        "games": 5526
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.4,
+        "games": 8074
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.1,
+        "games": 5377
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 54.6,
+        "games": 6210
+      },
+      {
+        "hero": "pugna",
+        "why": "Pugna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.4,
+        "games": 1975
+      }
+    ]
+  },
+  "dawnbreaker": {
+    "counters": [
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.7,
+        "games": 2733
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.5,
+        "games": 4945
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.0,
+        "games": 6625
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.9,
+        "games": 8192
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.7,
+        "games": 7080
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 51.6,
+        "games": 2947
+      }
+    ]
+  },
+  "dazzle": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.9,
+        "games": 3585
+      },
+      {
+        "hero": "ancient_apparition",
+        "why": "Ancient Apparition убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.7,
+        "games": 2354
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.7,
+        "games": 3680
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.4,
+        "games": 1790
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.3,
+        "games": 3599
+      },
+      {
+        "hero": "razor",
+        "why": "Razor переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.2,
+        "games": 1520
+      }
+    ]
+  },
+  "death_prophet": {
+    "counters": [
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.4,
+        "games": 1692
+      },
+      {
+        "hero": "ancient_apparition",
+        "why": "Ancient Apparition убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.4,
+        "games": 2083
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.1,
+        "games": 2877
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.0,
+        "games": 2599
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.7,
+        "games": 2448
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.4,
+        "games": 4090
+      }
+    ]
+  },
+  "disruptor": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.2,
+        "games": 7399
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.1,
+        "games": 8179
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.0,
+        "games": 1997
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 53.7,
+        "games": 3029
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.7,
+        "games": 4779
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.6,
+        "games": 7698
+      }
+    ]
+  },
+  "doom_bringer": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 59.0,
+        "games": 5884
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.9,
+        "games": 3120
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 55.9,
+        "games": 2187
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.6,
+        "games": 6090
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.0,
+        "games": 3804
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.0,
+        "games": 2402
+      }
+    ]
+  },
+  "dragon_knight": {
+    "counters": [
+      {
+        "hero": "brewmaster",
+        "why": "Brewmaster держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.2,
+        "games": 1960
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.0,
+        "games": 12283
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.9,
+        "games": 13169
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.4,
+        "games": 8260
+      },
+      {
+        "hero": "leshrac",
+        "why": "Leshrac убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.4,
+        "games": 1961
+      },
+      {
+        "hero": "enigma",
+        "why": "Enigma держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.3,
+        "games": 3479
+      }
+    ]
+  },
+  "drow_ranger": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 60.7,
+        "games": 10402
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 60.1,
+        "games": 3276
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 59.6,
+        "games": 8480
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 59.2,
+        "games": 7792
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 59.0,
+        "games": 9424
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.6,
+        "games": 11363
+      }
+    ]
+  },
+  "earth_spirit": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.6,
+        "games": 2905
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.5,
+        "games": 2771
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.6,
+        "games": 2234
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.5,
+        "games": 4270
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.4,
+        "games": 1783
+      },
+      {
+        "hero": "luna",
+        "why": "Luna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.3,
+        "games": 2848
+      }
+    ]
+  },
+  "earthshaker": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.7,
+        "games": 14048
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.5,
+        "games": 15858
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.4,
+        "games": 7681
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.4,
+        "games": 7577
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.2,
+        "games": 12601
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.1,
+        "games": 10662
+      }
+    ]
+  },
+  "elder_titan": {
+    "counters": []
+  },
+  "ember_spirit": {
+    "counters": [
+      {
+        "hero": "slark",
+        "why": "Slark переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.5,
+        "games": 5897
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.3,
+        "games": 4347
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.2,
+        "games": 5129
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.8,
+        "games": 1602
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.8,
+        "games": 4535
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.8,
+        "games": 5153
+      }
+    ]
+  },
+  "enchantress": {
+    "counters": [
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.1,
+        "games": 1675
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.6,
+        "games": 1734
+      },
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.4,
+        "games": 3551
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.3,
+        "games": 2584
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.3,
+        "games": 1963
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.1,
+        "games": 2316
+      }
+    ]
+  },
+  "enigma": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.0,
+        "games": 3180
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.4,
+        "games": 2607
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.0,
+        "games": 2051
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.4,
+        "games": 2701
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.1,
+        "games": 4145
+      },
+      {
+        "hero": "luna",
+        "why": "Luna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.9,
+        "games": 3015
+      }
+    ]
+  },
+  "faceless_void": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.6,
+        "games": 6858
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.6,
+        "games": 2951
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.5,
+        "games": 1933
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.2,
+        "games": 5839
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.3,
+        "games": 7205
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.1,
+        "games": 2867
+      }
+    ]
+  },
+  "grimstroke": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.3,
+        "games": 5849
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.6,
+        "games": 4050
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 52.2,
+        "games": 2458
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.7,
+        "games": 3631
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 51.6,
+        "games": 2403
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 51.5,
+        "games": 4825
+      }
+    ]
+  },
+  "gyrocopter": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.3,
+        "games": 3595
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.3,
+        "games": 2593
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.7,
+        "games": 1576
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.1,
+        "games": 3505
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.1,
+        "games": 1689
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.0,
+        "games": 3744
+      }
+    ]
+  },
+  "hoodwink": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.8,
+        "games": 8134
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.6,
+        "games": 5875
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.6,
+        "games": 7263
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.6,
+        "games": 7872
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.6,
+        "games": 9360
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 56.6,
+        "games": 3861
+      }
+    ]
+  },
+  "huskar": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 61.9,
+        "games": 2093
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 61.1,
+        "games": 2660
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.9,
+        "games": 1642
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [
+          "blink",
+          "blade_mail",
+          "black_king_bar"
+        ],
+        "wr": 58.3,
+        "games": 2989
+      },
+      {
+        "hero": "viper",
+        "why": "Viper переживает её урон и выигрывает затяжную драку.",
+        "items": [
+          "skadi",
+          "sange_and_yasha",
+          "black_king_bar"
+        ],
+        "wr": 58.0,
+        "games": 2303
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.0,
+        "games": 2433
+      }
+    ],
+    "threat": "Танк, который наносит урон от потери HP, лечится и становится сильнее на низком HP.",
+    "items": [
+      "spirit_vessel",
+      "skadi",
+      "silver_edge",
+      "sheepstick",
+      "nullifier",
+      "assault"
+    ]
+  },
+  "invoker": {
+    "counters": [
+      {
+        "hero": "visage",
+        "why": "Visage забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.9,
+        "games": 1804
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.1,
+        "games": 2069
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.1,
+        "games": 11856
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.8,
+        "games": 13450
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 52.7,
+        "games": 6404
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.5,
+        "games": 14519
+      }
+    ],
+    "threat": "Универсальный кастер: комбо Sun Strike, Meteor и Deafening Blast, Forge Spirits и контроль зоны.",
+    "items": [
+      "black_king_bar",
+      "sphere",
+      "pipe",
+      "aeon_disk",
+      "lotus_orb",
+      "wind_waker"
+    ]
+  },
+  "wisp": {
+    "counters": [
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.7,
+        "games": 1697
+      },
+      {
+        "hero": "ancient_apparition",
+        "why": "Ancient Apparition убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.5,
+        "games": 1637
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.5,
+        "games": 2041
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.4,
+        "games": 3223
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.2,
+        "games": 2019
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.1,
+        "games": 2621
+      }
+    ]
+  },
+  "jakiro": {
+    "counters": [
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.0,
+        "games": 7199
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.4,
+        "games": 5744
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.2,
+        "games": 9176
+      },
+      {
+        "hero": "mirana",
+        "why": "Mirana держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.0,
+        "games": 4539
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.7,
+        "games": 5633
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.7,
+        "games": 2077
+      }
+    ]
+  },
+  "juggernaut": {
+    "counters": [
+      {
+        "hero": "broodmother",
+        "why": "Broodmother забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.8,
+        "games": 1586
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.5,
+        "games": 1828
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.5,
+        "games": 17494
+      },
+      {
+        "hero": "omniknight",
+        "why": "Omniknight переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.1,
+        "games": 1989
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 52.4,
+        "games": 7560
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.0,
+        "games": 7934
+      }
+    ],
+    "threat": "Blade Fury даёт магиммунность и большой урон, Omnislash убивает в одиночку, Healing Ward лечит команду.",
+    "items": [
+      "ghost",
+      "aeon_disk",
+      "heavens_halberd",
+      "blade_mail",
+      "sphere",
+      "force_staff"
+    ]
+  },
+  "keeper_of_the_light": {
+    "counters": [
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.4,
+        "games": 2995
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.1,
+        "games": 3257
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.7,
+        "games": 2452
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.6,
+        "games": 3081
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.3,
+        "games": 2477
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.3,
+        "games": 1922
+      }
+    ]
+  },
+  "kez": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 60.0,
+        "games": 2761
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 59.3,
+        "games": 3056
+      },
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 59.1,
+        "games": 2976
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.9,
+        "games": 2701
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.7,
+        "games": 3052
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.1,
+        "games": 1651
+      }
+    ]
+  },
+  "kunkka": {
+    "counters": [
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.2,
+        "games": 5462
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 3925
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.0,
+        "games": 3623
+      },
+      {
+        "hero": "ancient_apparition",
+        "why": "Ancient Apparition убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.7,
+        "games": 2062
+      },
+      {
+        "hero": "ember_spirit",
+        "why": "Ember Spirit убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.6,
+        "games": 1554
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.4,
+        "games": 2758
+      }
+    ]
+  },
+  "largo": {
+    "counters": [
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.3,
+        "games": 1527
+      },
+      {
+        "hero": "lion",
+        "why": "Lion держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.9,
+        "games": 2058
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.8,
+        "games": 1547
+      },
+      {
+        "hero": "rubick",
+        "why": "Rubick держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 50.4,
+        "games": 1691
+      },
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 48.2,
+        "games": 2245
+      }
+    ]
+  },
+  "legion_commander": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.8,
+        "games": 15686
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.6,
+        "games": 1609
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.7,
+        "games": 8942
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.4,
+        "games": 12635
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.0,
+        "games": 14445
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.8,
+        "games": 7874
+      }
+    ],
+    "threat": "Дуэль вытаскивает ключевую цель, а победы в дуэли бесконечно растят урон.",
+    "items": [
+      "sphere",
+      "aeon_disk",
+      "ghost",
+      "cyclone",
+      "heavens_halberd",
+      "black_king_bar"
+    ]
+  },
+  "leshrac": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.8,
+        "games": 1598
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.9,
+        "games": 1667
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.4,
+        "games": 1562
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.2,
+        "games": 2360
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 51.0,
+        "games": 1850
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 50.3,
+        "games": 2198
+      }
+    ]
+  },
+  "lich": {
+    "counters": [
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.6,
+        "games": 2870
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.8,
+        "games": 9303
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.3,
+        "games": 8407
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 52.0,
+        "games": 4013
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 51.9,
+        "games": 6810
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 51.1,
+        "games": 3833
+      }
+    ]
+  },
+  "life_stealer": {
+    "counters": [
+      {
+        "hero": "enigma",
+        "why": "Enigma держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.9,
+        "games": 2318
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.1,
+        "games": 4302
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.9,
+        "games": 5037
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.8,
+        "games": 9827
+      },
+      {
+        "hero": "razor",
+        "why": "Razor переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.6,
+        "games": 4992
+      },
+      {
+        "hero": "abaddon",
+        "why": "Abaddon переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.4,
+        "games": 1822
+      }
+    ]
+  },
+  "lina": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.6,
+        "games": 10701
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.9,
+        "games": 11639
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.8,
+        "games": 10986
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.7,
+        "games": 6607
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.5,
+        "games": 4557
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.5,
+        "games": 6719
+      }
+    ]
+  },
+  "lion": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.9,
+        "games": 20758
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.4,
+        "games": 2633
+      },
+      {
+        "hero": "visage",
+        "why": "Visage забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.7,
+        "games": 2125
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.6,
+        "games": 13959
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.6,
+        "games": 18502
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.4,
+        "games": 22500
+      }
+    ]
+  },
+  "lone_druid": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.4,
+        "games": 2053
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.2,
+        "games": 2045
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.9,
+        "games": 2644
+      },
+      {
+        "hero": "luna",
+        "why": "Luna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.1,
+        "games": 2207
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.8,
+        "games": 2431
+      },
+      {
+        "hero": "necrolyte",
+        "why": "Necrophos убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.8,
+        "games": 2236
+      }
+    ]
+  },
+  "luna": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.6,
+        "games": 9591
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.7,
+        "games": 6377
+      },
+      {
+        "hero": "lich",
+        "why": "Lich убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.0,
+        "games": 7460
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.6,
+        "games": 8781
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.5,
+        "games": 10334
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 52.1,
+        "games": 4292
+      }
+    ]
+  },
+  "lycan": {
+    "counters": [
+      {
+        "hero": "rubick",
+        "why": "Rubick держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.2,
+        "games": 1528
+      },
+      {
+        "hero": "lion",
+        "why": "Lion держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 50.2,
+        "games": 1794
+      },
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 47.6,
+        "games": 2028
+      }
+    ]
+  },
+  "magnataur": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.8,
+        "games": 9319
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.2,
+        "games": 3360
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.7,
+        "games": 8675
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.6,
+        "games": 12925
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.1,
+        "games": 5886
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 54.5,
+        "games": 3619
+      }
+    ]
+  },
+  "marci": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.3,
+        "games": 2952
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.7,
+        "games": 3118
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.3,
+        "games": 4266
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.0,
+        "games": 3294
+      },
+      {
+        "hero": "luna",
+        "why": "Luna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.3,
+        "games": 2916
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.2,
+        "games": 1733
+      }
+    ]
+  },
+  "mars": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.5,
+        "games": 2848
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.1,
+        "games": 3337
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.7,
+        "games": 3016
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.0,
+        "games": 2117
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.4,
+        "games": 3837
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.3,
+        "games": 2568
+      }
+    ]
+  },
+  "medusa": {
+    "counters": [
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [
+          "bfury",
+          "manta",
+          "abyssal_blade"
+        ],
+        "wr": 61.9,
+        "games": 2367
+      },
+      {
+        "hero": "sniper",
+        "why": "Sniper не даёт догнать и добить.",
+        "items": [],
+        "wr": 56.7,
+        "games": 2404
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.5,
+        "games": 2236
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [
+          "cyclone",
+          "ultimate_scepter",
+          "refresher"
+        ],
+        "wr": 54.5,
+        "games": 2024
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.1,
+        "games": 2977
+      },
+      {
+        "hero": "mirana",
+        "why": "Mirana держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.7,
+        "games": 1504
+      }
+    ],
+    "threat": "Супер-танк: Mana Shield, Split Shot по всей команде и Stone Gaze, ломающая инициацию.",
+    "items": [
+      "diffusal_blade",
+      "skadi",
+      "sheepstick",
+      "nullifier",
+      "assault",
+      "bloodthorn"
+    ]
+  },
+  "meepo": {
+    "counters": [
+      {
+        "hero": "earthshaker",
+        "why": "Earthshaker держит цель в контроле и не даёт ей уйти.",
+        "items": [
+          "blink",
+          "ultimate_scepter",
+          "refresher"
+        ],
+        "wr": 52.5,
+        "games": 1691
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.2,
+        "games": 1535
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 47.7,
+        "games": 1680
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 46.8,
+        "games": 1827
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 46.8,
+        "games": 1603
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 46.3,
+        "games": 1658
+      }
+    ],
+    "threat": "Пять тел, Poof-бурст и снежный ком по нетворсу: убивает по одному и пушит всю карту.",
+    "items": [
+      "mjollnir",
+      "crimson_guard",
+      "shivas_guard",
+      "pipe",
+      "bfury",
+      "sheepstick"
+    ]
+  },
+  "mirana": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 8910
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.0,
+        "games": 8432
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 52.9,
+        "games": 4189
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.9,
+        "games": 10720
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 52.8,
+        "games": 6370
+      },
+      {
+        "hero": "abaddon",
+        "why": "Abaddon переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.4,
+        "games": 1543
+      }
+    ]
+  },
+  "monkey_king": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.3,
+        "games": 2710
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.3,
+        "games": 2403
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.0,
+        "games": 4115
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.0,
+        "games": 3908
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.8,
+        "games": 2424
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.7,
+        "games": 3012
+      }
+    ]
+  },
+  "morphling": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.4,
+        "games": 2388
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.1,
+        "games": 2682
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 57.0,
+        "games": 3831
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.2,
+        "games": 2874
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.9,
+        "games": 2224
+      },
+      {
+        "hero": "axe",
+        "why": "Axe держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.8,
+        "games": 2905
+      }
+    ]
+  },
+  "muerta": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 60.4,
+        "games": 1849
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.4,
+        "games": 2115
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.2,
+        "games": 1700
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.4,
+        "games": 1963
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.0,
+        "games": 1681
+      },
+      {
+        "hero": "zuus",
+        "why": "Zeus убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.8,
+        "games": 1609
+      }
+    ]
+  },
+  "naga_siren": {
+    "counters": [
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.7,
+        "games": 1676
+      },
+      {
+        "hero": "lion",
+        "why": "Lion держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.4,
+        "games": 1507
+      }
+    ],
+    "threat": "Иллюзионист с Song of the Siren: армия клонов и сплитпуш на всю карту.",
+    "items": [
+      "bfury",
+      "mjollnir",
+      "shivas_guard",
+      "crimson_guard",
+      "sheepstick",
+      "pipe"
+    ]
+  },
+  "furion": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 63.1,
+        "games": 6270
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 62.6,
+        "games": 4072
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 61.6,
+        "games": 4232
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 61.6,
+        "games": 4762
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 61.4,
+        "games": 6687
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 60.9,
+        "games": 2185
+      }
+    ]
+  },
+  "necrolyte": {
+    "counters": [
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.8,
+        "games": 3608
+      },
+      {
+        "hero": "ancient_apparition",
+        "why": "Ancient Apparition убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.3,
+        "games": 5606
+      },
+      {
+        "hero": "leshrac",
+        "why": "Leshrac убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.8,
+        "games": 2164
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.3,
+        "games": 5259
+      },
+      {
+        "hero": "pugna",
+        "why": "Pugna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.0,
+        "games": 4051
+      },
+      {
+        "hero": "lich",
+        "why": "Lich убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.8,
+        "games": 8961
+      }
+    ]
+  },
+  "night_stalker": {
+    "counters": [
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.9,
+        "games": 4144
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.5,
+        "games": 6515
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.3,
+        "games": 4529
+      },
+      {
+        "hero": "bloodseeker",
+        "why": "Bloodseeker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.9,
+        "games": 1501
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.5,
+        "games": 6131
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 52.4,
+        "games": 5027
+      }
+    ]
+  },
+  "nyx_assassin": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.6,
+        "games": 8702
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 52.7,
+        "games": 3745
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.1,
+        "games": 12569
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.6,
+        "games": 4183
+      },
+      {
+        "hero": "clinkz",
+        "why": "Clinkz переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 51.2,
+        "games": 2262
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 50.8,
+        "games": 8835
+      }
+    ]
+  },
+  "ogre_magi": {
+    "counters": [
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.0,
+        "games": 1743
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.8,
+        "games": 11726
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 14913
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.8,
+        "games": 4306
+      },
+      {
+        "hero": "chaos_knight",
+        "why": "Chaos Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.6,
+        "games": 4562
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.3,
+        "games": 19137
+      }
+    ]
+  },
+  "omniknight": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.4,
+        "games": 1596
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.8,
+        "games": 1504
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.7,
+        "games": 1688
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.7,
+        "games": 1728
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.7,
+        "games": 2158
+      },
+      {
+        "hero": "necrolyte",
+        "why": "Necrophos убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.7,
+        "games": 1742
+      }
+    ]
+  },
+  "oracle": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.6,
+        "games": 2770
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.9,
+        "games": 3127
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.9,
+        "games": 2707
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.8,
+        "games": 3364
+      },
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.7,
+        "games": 3140
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.4,
+        "games": 1832
+      }
+    ]
+  },
+  "obsidian_destroyer": {
+    "counters": [
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.6,
+        "games": 10357
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.7,
+        "games": 10417
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.4,
+        "games": 7333
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 52.7,
+        "games": 3466
+      },
+      {
+        "hero": "enigma",
+        "why": "Enigma держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.1,
+        "games": 2762
+      },
+      {
+        "hero": "chaos_knight",
+        "why": "Chaos Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.3,
+        "games": 2585
+      }
+    ]
+  },
+  "pangolier": {
+    "counters": [
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.1,
+        "games": 3302
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.1,
+        "games": 2748
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.0,
+        "games": 2678
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.0,
+        "games": 2012
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 57.2,
+        "games": 2665
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.0,
+        "games": 1861
+      }
+    ]
+  },
+  "phantom_assassin": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.4,
+        "games": 10328
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.2,
+        "games": 6077
+      },
+      {
+        "hero": "troll_warlord",
+        "why": "Troll Warlord держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.8,
+        "games": 2265
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.4,
+        "games": 10403
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.2,
+        "games": 16455
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.1,
+        "games": 5859
+      }
+    ],
+    "threat": "Керри с Blur (уклонение), критами и мгновенным бурстом через Phantom Strike.",
+    "items": [
+      "monkey_king_bar",
+      "bloodthorn",
+      "sheepstick",
+      "silver_edge",
+      "aeon_disk",
+      "blade_mail"
+    ]
+  },
+  "phantom_lancer": {
+    "counters": [
+      {
+        "hero": "leshrac",
+        "why": "Leshrac убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.6,
+        "games": 2044
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [
+          "bfury",
+          "black_king_bar",
+          "blink"
+        ],
+        "wr": 52.8,
+        "games": 13575
+      },
+      {
+        "hero": "centaur",
+        "why": "Centaur Warrunner держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.6,
+        "games": 2767
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.3,
+        "games": 9506
+      },
+      {
+        "hero": "axe",
+        "why": "Axe держит цель в контроле и не даёт ей уйти.",
+        "items": [
+          "blade_mail",
+          "blink",
+          "crimson_guard"
+        ],
+        "wr": 51.7,
+        "games": 8184
+      },
+      {
+        "hero": "tidehunter",
+        "why": "Tidehunter держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.5,
+        "games": 5825
+      }
+    ],
+    "threat": "Иллюзионист-керри: армия клонов забивает одиночную цель, пушит линии и путает фокус.",
+    "items": [
+      "bfury",
+      "gungir",
+      "mjollnir",
+      "shivas_guard",
+      "crimson_guard",
+      "sheepstick"
+    ]
+  },
+  "phoenix": {
+    "counters": [
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.9,
+        "games": 6451
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.4,
+        "games": 4674
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 52.6,
+        "games": 1535
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.6,
+        "games": 4293
+      },
+      {
+        "hero": "mirana",
+        "why": "Mirana держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.2,
+        "games": 2946
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.1,
+        "games": 2291
+      }
+    ]
+  },
+  "primal_beast": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.3,
+        "games": 2087
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.1,
+        "games": 3240
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.6,
+        "games": 1696
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.9,
+        "games": 1610
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.4,
+        "games": 2334
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.8,
+        "games": 1749
+      }
+    ]
+  },
+  "puck": {
+    "counters": [
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.9,
+        "games": 2049
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.6,
+        "games": 2207
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.5,
+        "games": 2067
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.3,
+        "games": 2096
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.3,
+        "games": 1549
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.2,
+        "games": 2911
+      }
+    ]
+  },
+  "pudge": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.8,
+        "games": 23664
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.8,
+        "games": 3133
+      },
+      {
+        "hero": "visage",
+        "why": "Visage забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.4,
+        "games": 2641
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.5,
+        "games": 21455
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.3,
+        "games": 12797
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.2,
+        "games": 15130
+      }
+    ],
+    "threat": "Хук вытаскивает из строя и убивает с Rot и ультой, а запас HP делает его очень живучим.",
+    "items": [
+      "black_king_bar",
+      "sphere",
+      "force_staff",
+      "glimmer_cape",
+      "aeon_disk",
+      "spirit_vessel"
+    ]
+  },
+  "pugna": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.0,
+        "games": 3942
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.3,
+        "games": 2301
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.1,
+        "games": 5073
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.8,
+        "games": 2814
+      },
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.6,
+        "games": 7502
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 52.3,
+        "games": 1532
+      }
+    ]
+  },
+  "queenofpain": {
+    "counters": [
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 58.0,
+        "games": 7945
+      },
+      {
+        "hero": "pugna",
+        "why": "Pugna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.5,
+        "games": 2440
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 57.4,
+        "games": 3185
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.3,
+        "games": 7730
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.1,
+        "games": 6911
+      },
+      {
+        "hero": "clinkz",
+        "why": "Clinkz переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.8,
+        "games": 2141
+      }
+    ]
+  },
+  "razor": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.7,
+        "games": 6239
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 54.1,
+        "games": 6639
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.7,
+        "games": 4229
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.6,
+        "games": 3750
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.5,
+        "games": 5373
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.5,
+        "games": 1717
+      }
+    ]
+  },
+  "riki": {
+    "counters": [
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.5,
+        "games": 3438
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.2,
+        "games": 5266
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.5,
+        "games": 5179
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.5,
+        "games": 4694
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 51.1,
+        "games": 3641
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 50.9,
+        "games": 2172
+      }
+    ]
+  },
+  "ringmaster": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.3,
+        "games": 3446
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.2,
+        "games": 3518
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.1,
+        "games": 2540
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.1,
+        "games": 2401
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.6,
+        "games": 3296
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.4,
+        "games": 4498
+      }
+    ]
+  },
+  "rubick": {
+    "counters": [
+      {
+        "hero": "visage",
+        "why": "Visage забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.5,
+        "games": 1780
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.9,
+        "games": 2218
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 16571
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 54.6,
+        "games": 19325
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.4,
+        "games": 9997
+      },
+      {
+        "hero": "brewmaster",
+        "why": "Brewmaster держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.3,
+        "games": 2634
+      }
+    ]
+  },
+  "sand_king": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.9,
+        "games": 2903
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.6,
+        "games": 3783
+      },
+      {
+        "hero": "zuus",
+        "why": "Zeus убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.6,
+        "games": 2987
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.3,
+        "games": 4562
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.5,
+        "games": 3059
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.0,
+        "games": 1699
+      }
+    ]
+  },
+  "shadow_demon": {
+    "counters": [
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 59.4,
+        "games": 1776
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.1,
+        "games": 1840
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.0,
+        "games": 1975
+      },
+      {
+        "hero": "earthshaker",
+        "why": "Earthshaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.9,
+        "games": 1824
+      },
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.8,
+        "games": 2783
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 1730
+      }
+    ]
+  },
+  "nevermore": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 64.1,
+        "games": 6026
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 61.1,
+        "games": 6524
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 61.0,
+        "games": 5635
+      },
+      {
+        "hero": "spirit_breaker",
+        "why": "Spirit Breaker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 60.8,
+        "games": 7263
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 60.5,
+        "games": 5533
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 60.4,
+        "games": 5869
+      }
+    ]
+  },
+  "shadow_shaman": {
+    "counters": [
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.4,
+        "games": 1745
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.8,
+        "games": 12680
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.8,
+        "games": 8703
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.7,
+        "games": 10843
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.4,
+        "games": 8058
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.6,
+        "games": 12958
+      }
+    ]
+  },
+  "silencer": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.4,
+        "games": 6817
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.6,
+        "games": 9838
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.2,
+        "games": 2602
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 53.9,
+        "games": 3622
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.9,
+        "games": 6301
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.4,
+        "games": 10140
+      }
+    ]
+  },
+  "skywrath_mage": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.0,
+        "games": 10566
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.3,
+        "games": 4962
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.8,
+        "games": 7148
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 54.4,
+        "games": 4086
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.1,
+        "games": 9187
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.1,
+        "games": 10479
+      }
+    ]
+  },
+  "slardar": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.6,
+        "games": 4084
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.3,
+        "games": 7345
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.4,
+        "games": 6008
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.2,
+        "games": 2944
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.0,
+        "games": 5391
+      },
+      {
+        "hero": "luna",
+        "why": "Luna убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.8,
+        "games": 4251
+      }
+    ]
+  },
+  "slark": {
+    "counters": [
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 59.2,
+        "games": 5382
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.4,
+        "games": 5614
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.8,
+        "games": 8850
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.7,
+        "games": 11156
+      },
+      {
+        "hero": "leshrac",
+        "why": "Leshrac убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.3,
+        "games": 2119
+      },
+      {
+        "hero": "enigma",
+        "why": "Enigma держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.2,
+        "games": 2761
+      }
+    ],
+    "threat": "Крадёт статы, снимает дебаффы Dark Pact, уходит в Shadow Dance и видит невидимок.",
+    "items": [
+      "sheepstick",
+      "bloodthorn",
+      "aeon_disk",
+      "ghost",
+      "spirit_vessel",
+      "assault"
+    ]
+  },
+  "snapfire": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.2,
+        "games": 6791
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.9,
+        "games": 5051
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.8,
+        "games": 7007
+      },
+      {
+        "hero": "clinkz",
+        "why": "Clinkz переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 54.6,
+        "games": 2050
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.5,
+        "games": 10330
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 53.8,
+        "games": 3047
+      }
+    ]
+  },
+  "sniper": {
+    "counters": [
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.5,
+        "games": 1944
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.4,
+        "games": 16002
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.9,
+        "games": 5077
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.6,
+        "games": 11688
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [
+          "blink",
+          "dagon_5",
+          "ultimate_scepter"
+        ],
+        "wr": 55.7,
+        "games": 10040
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.5,
+        "games": 16549
+      }
+    ],
+    "threat": "Дальний керри с огромным радиусом атаки: убивает из-за спины команды и не подпускает к себе.",
+    "items": [
+      "blink",
+      "silver_edge",
+      "heavens_halberd",
+      "smoke_of_deceit",
+      "aeon_disk",
+      "cyclone"
+    ]
+  },
+  "spectre": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.6,
+        "games": 5407
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.5,
+        "games": 2124
+      },
+      {
+        "hero": "wisp",
+        "why": "Io переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.9,
+        "games": 1584
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.9,
+        "games": 7667
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.8,
+        "games": 5123
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.7,
+        "games": 8010
+      }
+    ],
+    "threat": "Поздний керри с глобальным Haunt, Dispersion и Desolate: убивает одиночек по всей карте.",
+    "items": [
+      "silver_edge",
+      "skadi",
+      "spirit_vessel",
+      "sheepstick",
+      "ghost",
+      "aeon_disk"
+    ]
+  },
+  "spirit_breaker": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.4,
+        "games": 14636
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.0,
+        "games": 1645
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.2,
+        "games": 13215
+      },
+      {
+        "hero": "lich",
+        "why": "Lich убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.5,
+        "games": 11027
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.1,
+        "games": 18226
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.0,
+        "games": 10103
+      }
+    ]
+  },
+  "storm_spirit": {
+    "counters": [
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 60.5,
+        "games": 1696
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 59.3,
+        "games": 4167
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 59.2,
+        "games": 1852
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.6,
+        "games": 1886
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [
+          "manta",
+          "abyssal_blade",
+          "black_king_bar"
+        ],
+        "wr": 56.8,
+        "games": 5151
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [
+          "blink",
+          "dagon_5",
+          "ultimate_scepter"
+        ],
+        "wr": 56.7,
+        "games": 2570
+      }
+    ],
+    "threat": "Мобильный мидер: прыгает через всю карту, убивает с Orchid и BKB, уходит из любой драки.",
+    "items": [
+      "sheepstick",
+      "nullifier",
+      "sphere",
+      "aeon_disk",
+      "cyclone",
+      "bloodthorn"
+    ]
+  },
+  "sven": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.3,
+        "games": 8163
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.0,
+        "games": 2365
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.7,
+        "games": 8435
+      },
+      {
+        "hero": "troll_warlord",
+        "why": "Troll Warlord держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.5,
+        "games": 1571
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.9,
+        "games": 5024
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.9,
+        "games": 7757
+      }
+    ]
+  },
+  "techies": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.5,
+        "games": 10622
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.2,
+        "games": 12552
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.0,
+        "games": 16143
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.2,
+        "games": 7647
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.0,
+        "games": 9410
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.9,
+        "games": 15038
+      }
+    ]
+  },
+  "templar_assassin": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 61.1,
+        "games": 3266
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 60.1,
+        "games": 2234
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 59.4,
+        "games": 2908
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.6,
+        "games": 3496
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.8,
+        "games": 2195
+      },
+      {
+        "hero": "crystal_maiden",
+        "why": "Crystal Maiden держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.4,
+        "games": 3753
+      }
+    ]
+  },
+  "terrorblade": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 61.4,
+        "games": 1745
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 59.1,
+        "games": 2324
+      },
+      {
+        "hero": "axe",
+        "why": "Axe держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.7,
+        "games": 2315
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.1,
+        "games": 2367
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 57.3,
+        "games": 3060
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.3,
+        "games": 2556
+      }
+    ]
+  },
+  "tidehunter": {
+    "counters": [
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.1,
+        "games": 11823
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.1,
+        "games": 4375
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.0,
+        "games": 7826
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.5,
+        "games": 6147
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.4,
+        "games": 7831
+      },
+      {
+        "hero": "abaddon",
+        "why": "Abaddon переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.8,
+        "games": 1509
+      }
+    ]
+  },
+  "shredder": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 61.6,
+        "games": 4636
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 59.0,
+        "games": 2018
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.8,
+        "games": 1606
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.7,
+        "games": 2194
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.6,
+        "games": 5382
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.5,
+        "games": 3196
+      }
+    ]
+  },
+  "tinker": {
+    "counters": [
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.4,
+        "games": 2260
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.0,
+        "games": 4950
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.3,
+        "games": 4564
+      },
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.1,
+        "games": 4333
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.0,
+        "games": 5610
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.9,
+        "games": 3221
+      }
+    ],
+    "threat": "Маговый керри: стоит в лесу и убивает всю команду через March, Blink и Rearm.",
+    "items": [
+      "black_king_bar",
+      "pipe",
+      "sphere",
+      "aeon_disk",
+      "blade_mail",
+      "smoke_of_deceit"
+    ]
+  },
+  "tiny": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 61.6,
+        "games": 2668
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 60.3,
+        "games": 1843
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 59.2,
+        "games": 3054
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.8,
+        "games": 1760
+      },
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 58.2,
+        "games": 3750
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 58.0,
+        "games": 2655
+      }
+    ]
+  },
+  "treant": {
+    "counters": [
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 59.2,
+        "games": 1698
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 59.2,
+        "games": 1709
+      },
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.0,
+        "games": 2244
+      },
+      {
+        "hero": "sniper",
+        "why": "Sniper не даёт догнать и добить.",
+        "items": [],
+        "wr": 54.8,
+        "games": 1693
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.0,
+        "games": 1582
+      },
+      {
+        "hero": "rubick",
+        "why": "Rubick держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.8,
+        "games": 1684
+      }
+    ]
+  },
+  "troll_warlord": {
+    "counters": [
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.1,
+        "games": 1771
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.9,
+        "games": 2046
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 52.7,
+        "games": 2264
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.6,
+        "games": 2032
+      },
+      {
+        "hero": "axe",
+        "why": "Axe держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.5,
+        "games": 2173
+      },
+      {
+        "hero": "slark",
+        "why": "Slark переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 51.1,
+        "games": 2008
+      }
+    ]
+  },
+  "tusk": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.6,
+        "games": 3334
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.2,
+        "games": 3991
+      },
+      {
+        "hero": "dark_willow",
+        "why": "Dark Willow держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 55.6,
+        "games": 1807
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.2,
+        "games": 2946
+      },
+      {
+        "hero": "techies",
+        "why": "Techies убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.7,
+        "games": 3585
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.3,
+        "games": 2689
+      }
+    ]
+  },
+  "abyssal_underlord": {
+    "counters": [
+      {
+        "hero": "rubick",
+        "why": "Rubick держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 59.7,
+        "games": 5339
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 59.1,
+        "games": 6374
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.7,
+        "games": 4251
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 56.7,
+        "games": 3718
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.4,
+        "games": 4669
+      },
+      {
+        "hero": "lich",
+        "why": "Lich убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.3,
+        "games": 3104
+      }
+    ]
+  },
+  "undying": {
+    "counters": [
+      {
+        "hero": "medusa",
+        "why": "Medusa переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.2,
+        "games": 1835
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 54.8,
+        "games": 7117
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 54.4,
+        "games": 3610
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 53.7,
+        "games": 3490
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.7,
+        "games": 5371
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.7,
+        "games": 2902
+      }
+    ]
+  },
+  "ursa": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.9,
+        "games": 4907
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.1,
+        "games": 3586
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.0,
+        "games": 4087
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 56.1,
+        "games": 1883
+      },
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.0,
+        "games": 5982
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.5,
+        "games": 2226
+      }
+    ]
+  },
+  "vengefulspirit": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.1,
+        "games": 5983
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.1,
+        "games": 7336
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 52.3,
+        "games": 7877
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 52.0,
+        "games": 2418
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 51.4,
+        "games": 4991
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 51.4,
+        "games": 4959
+      }
+    ]
+  },
+  "venomancer": {
+    "counters": [
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.9,
+        "games": 1657
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.7,
+        "games": 4483
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.9,
+        "games": 7161
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.9,
+        "games": 5123
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.9,
+        "games": 5977
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.1,
+        "games": 2763
+      }
+    ]
+  },
+  "viper": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.9,
+        "games": 4768
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.8,
+        "games": 1944
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 57.1,
+        "games": 2883
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.7,
+        "games": 6621
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.4,
+        "games": 9568
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.1,
+        "games": 6607
+      }
+    ]
+  },
+  "visage": {
+    "counters": [
+      {
+        "hero": "witch_doctor",
+        "why": "Witch Doctor держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 46.2,
+        "games": 1578
+      },
+      {
+        "hero": "invoker",
+        "why": "Invoker убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 45.1,
+        "games": 1764
+      },
+      {
+        "hero": "pudge",
+        "why": "Pudge держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 44.4,
+        "games": 2606
+      },
+      {
+        "hero": "rubick",
+        "why": "Rubick держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 43.2,
+        "games": 1768
+      },
+      {
+        "hero": "lion",
+        "why": "Lion держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 43.1,
+        "games": 2123
+      }
+    ]
+  },
+  "void_spirit": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.9,
+        "games": 2598
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.3,
+        "games": 1543
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.3,
+        "games": 2233
+      },
+      {
+        "hero": "vengefulspirit",
+        "why": "Vengeful Spirit держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.2,
+        "games": 1689
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.2,
+        "games": 1812
+      },
+      {
+        "hero": "shadow_shaman",
+        "why": "Shadow Shaman держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.1,
+        "games": 2909
+      }
+    ]
+  },
+  "warlock": {
+    "counters": [
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 55.7,
+        "games": 1871
+      },
+      {
+        "hero": "nyx_assassin",
+        "why": "Nyx Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.2,
+        "games": 3008
+      },
+      {
+        "hero": "sven",
+        "why": "Sven держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.2,
+        "games": 3559
+      },
+      {
+        "hero": "dragon_knight",
+        "why": "Dragon Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 53.9,
+        "games": 4965
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.4,
+        "games": 1646
+      },
+      {
+        "hero": "dawnbreaker",
+        "why": "Dawnbreaker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.2,
+        "games": 2927
+      }
+    ]
+  },
+  "weaver": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 58.5,
+        "games": 3904
+      },
+      {
+        "hero": "legion_commander",
+        "why": "Legion Commander переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 58.0,
+        "games": 4729
+      },
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 57.9,
+        "games": 3107
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 57.1,
+        "games": 1970
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 56.8,
+        "games": 1853
+      },
+      {
+        "hero": "grimstroke",
+        "why": "Grimstroke держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 56.6,
+        "games": 1845
+      }
+    ]
+  },
+  "windrunner": {
+    "counters": [
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 58.0,
+        "games": 1573
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.7,
+        "games": 13338
+      },
+      {
+        "hero": "bloodseeker",
+        "why": "Bloodseeker переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.3,
+        "games": 3581
+      },
+      {
+        "hero": "riki",
+        "why": "Riki переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 55.6,
+        "games": 5898
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.5,
+        "games": 12785
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 55.5,
+        "games": 4168
+      }
+    ]
+  },
+  "winter_wyvern": {
+    "counters": [
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 57.3,
+        "games": 1793
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 55.6,
+        "games": 4417
+      },
+      {
+        "hero": "spectre",
+        "why": "Spectre переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 55.1,
+        "games": 3168
+      },
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.5,
+        "games": 4159
+      },
+      {
+        "hero": "necrolyte",
+        "why": "Necrophos убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 54.5,
+        "games": 4945
+      },
+      {
+        "hero": "phantom_assassin",
+        "why": "Phantom Assassin убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.7,
+        "games": 3722
+      }
+    ]
+  },
+  "witch_doctor": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 54.6,
+        "games": 15460
+      },
+      {
+        "hero": "visage",
+        "why": "Visage забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.6,
+        "games": 1605
+      },
+      {
+        "hero": "broodmother",
+        "why": "Broodmother забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 53.5,
+        "games": 1941
+      },
+      {
+        "hero": "meepo",
+        "why": "Meepo забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 52.4,
+        "games": 1673
+      },
+      {
+        "hero": "arc_warden",
+        "why": "Arc Warden забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 52.2,
+        "games": 5217
+      },
+      {
+        "hero": "night_stalker",
+        "why": "Night Stalker держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 51.7,
+        "games": 8424
+      }
+    ]
+  },
+  "skeleton_king": {
+    "counters": [
+      {
+        "hero": "phantom_lancer",
+        "why": "Phantom Lancer забивает числом и не даёт играть в одну цель.",
+        "items": [],
+        "wr": 51.8,
+        "games": 9991
+      },
+      {
+        "hero": "phoenix",
+        "why": "Phoenix переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 50.1,
+        "games": 3648
+      },
+      {
+        "hero": "warlock",
+        "why": "Warlock держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 49.6,
+        "games": 4697
+      },
+      {
+        "hero": "dark_seer",
+        "why": "Dark Seer не даёт догнать и добить.",
+        "items": [],
+        "wr": 49.5,
+        "games": 2703
+      },
+      {
+        "hero": "antimage",
+        "why": "Anti-Mage переигрывает её в поздней игре.",
+        "items": [],
+        "wr": 49.2,
+        "games": 16158
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 48.7,
+        "games": 4783
+      }
+    ]
+  },
+  "zuus": {
+    "counters": [
+      {
+        "hero": "skeleton_king",
+        "why": "Wraith King переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 56.5,
+        "games": 11064
+      },
+      {
+        "hero": "chaos_knight",
+        "why": "Chaos Knight держит цель в контроле и не даёт ей уйти.",
+        "items": [],
+        "wr": 54.0,
+        "games": 3013
+      },
+      {
+        "hero": "juggernaut",
+        "why": "Juggernaut переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.9,
+        "games": 15435
+      },
+      {
+        "hero": "bounty_hunter",
+        "why": "Bounty Hunter по статистике выигрывает эту пару.",
+        "items": [],
+        "wr": 53.5,
+        "games": 5323
+      },
+      {
+        "hero": "life_stealer",
+        "why": "Lifestealer переживает её урон и выигрывает затяжную драку.",
+        "items": [],
+        "wr": 53.4,
+        "games": 9470
+      },
+      {
+        "hero": "obsidian_destroyer",
+        "why": "Outworld Devourer убивает до того, как цель успевает ответить.",
+        "items": [],
+        "wr": 53.3,
+        "games": 10140
+      }
+    ]
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "marci": [
+    {
+      "hero": "wisp",
+      "why": "Relocate заносит Marci в тыл, Dispose швыряет цель в Tether — связка на убийство любой точки карты."
+    },
+    {
+      "hero": "disruptor",
+      "why": "Glimpse возвращает цель под удар, а Static Storm не даёт ответить, пока Marci бьёт."
+    }
+  ],
+  "wisp": [
+    {
+      "hero": "marci",
+      "why": "Tether + Relocate: Marci получает хил и мобильность, а Io — урон и прикрытие."
+    },
+    {
+      "hero": "gyrocopter",
+      "why": "Io даёт хил и Relocate, Gyro наносит урон с Flak Cannon по всей драке."
+    }
+  ],
+  "viper": [
+    {
+      "hero": "venomancer",
+      "why": "Двойной яд: Poison Sting и Venomous Gale складываются, цель не может ни лечиться, ни бежать."
+    },
+    {
+      "hero": "sand_king",
+      "why": "Epicenter + Viper Strike: Sand King держит всех в зоне, Viper добивает замедленных."
+    }
+  ],
+  "venomancer": [
+    {
+      "hero": "viper",
+      "why": "Poison Nova вместе с Viper's ядами снимает HP по всей команде и блокирует хил."
+    },
+    {
+      "hero": "pudge",
+      "why": "Gale и Rot не дают уйти, а Meat Hook вытаскивает цель под яд."
+    }
+  ],
+  "faceless_void": [
+    {
+      "hero": "invoker",
+      "why": "Chronosphere фиксирует врагов, Sun Strike и Cataclysm кладутся точно в купол."
+    },
+    {
+      "hero": "warlock",
+      "why": "Chrono + Chaotic Offering: голем и связки добивают всех, кто стоит в куполе."
+    }
+  ],
+  "invoker": [
+    {
+      "hero": "faceless_void",
+      "why": "Chrono — идеальная цель для Sun Strike: враги стоят на месте и получают полный урон."
+    },
+    {
+      "hero": "magnataur",
+      "why": "Reverse Polarity собирает врагов, EMP и Chaos Meteor накрывают всю группу."
+    }
+  ],
+  "magnataur": [
+    {
+      "hero": "sven",
+      "why": "Reverse Polarity + Empower: Sven бьёт Cleave по собранным врагам с усиленным уроном."
+    },
+    {
+      "hero": "invoker",
+      "why": "RP держит всех вместе, Invoker вкладывает Meteor и EMP в толпу."
+    }
+  ],
+  "sven": [
+    {
+      "hero": "magnataur",
+      "why": "RP собирает врагов, Empower усиливает Cleave — один удар сносит всю драку."
+    },
+    {
+      "hero": "crystal_maiden",
+      "why": "Frostbite и Crystal Nova замедляют, Sven догоняет и убивает с двух ударов."
+    }
+  ],
+  "crystal_maiden": [
+    {
+      "hero": "sven",
+      "why": "Мана и замедление для Sven: он догоняет цель и сносит её Cleave."
+    },
+    {
+      "hero": "juggernaut",
+      "why": "Frostbite держит цель, Blade Fury не даёт ответить, Omnislash добивает."
+    }
+  ],
+  "juggernaut": [
+    {
+      "hero": "crystal_maiden",
+      "why": "Контроль и замедление CM позволяют Juggernaut спокойно крутить Blade Fury."
+    },
+    {
+      "hero": "warlock",
+      "why": "Heal и голем Warlock перекрывают Juggernaut, пока он рубит строения."
+    }
+  ],
+  "warlock": [
+    {
+      "hero": "faceless_void",
+      "why": "Chronosphere + Chaotic Offering: голем бьёт по всем, кто заперт в куполе."
+    },
+    {
+      "hero": "juggernaut",
+      "why": "Хил и связки Warlock держат Juggernaut живым, пока он давит линии."
+    }
+  ],
+  "enigma": [
+    {
+      "hero": "dark_seer",
+      "why": "Vacuum стягивает врагов в одну точку, Black Hole ловит всех сразу."
+    },
+    {
+      "hero": "faceless_void",
+      "why": "Black Hole и Chrono по очереди выключают команду врага на 8+ секунд."
+    }
+  ],
+  "dark_seer": [
+    {
+      "hero": "enigma",
+      "why": "Vacuum собирает врагов, Black Hole и Wall of Replica добивают застрявших."
+    },
+    {
+      "hero": "earthshaker",
+      "why": "Vacuum + Echo Slam: чем плотнее стоит враг, тем больше урона."
+    }
+  ],
+  "earthshaker": [
+    {
+      "hero": "dark_seer",
+      "why": "Vacuum стягивает всех в кучу, Echo Slam наносит максимальный урон."
+    },
+    {
+      "hero": "faceless_void",
+      "why": "Chrono держит врагов в зоне, Echo Slam бьёт по всем сразу."
+    }
+  ],
+  "gyrocopter": [
+    {
+      "hero": "wisp",
+      "why": "Io лечит и вытаскивает Gyro из-под фокуса, Flak Cannon бьёт всю команду."
+    },
+    {
+      "hero": "magnataur",
+      "why": "RP собирает врагов, Gyro накрывает их Flak Cannon и Call Down."
+    }
+  ],
+  "tiny": [
+    {
+      "hero": "wisp",
+      "why": "Tether + Relocate: Tiny бросает Io в цель, тот возвращается и добивает."
+    },
+    {
+      "hero": "magnataur",
+      "why": "RP держит врагов, Tiny снимает их Toss и Avalanche."
+    }
+  ],
+  "kunkka": [
+    {
+      "hero": "shadow_demon",
+      "why": "Disruption фиксирует цель на месте, Torrent и Ghostship попадают гарантированно."
+    },
+    {
+      "hero": "dark_willow",
+      "why": "Terrorize и бинды держат врагов, Kunkka кладёт Torrent и Ghostship по площади."
+    }
+  ],
+  "shadow_demon": [
+    {
+      "hero": "kunkka",
+      "why": "Disruption останавливает цель, Kunkka попадает Torrent и Ghostship."
+    },
+    {
+      "hero": "mirana",
+      "why": "Disruption фиксирует цель, Sacred Arrow прилетает без промаха."
+    }
+  ],
+  "spectre": [
+    {
+      "hero": "zuus",
+      "why": "Глобальный вижен Zeus позволяет Spectre прыгать Haunt в любую драку."
+    },
+    {
+      "hero": "dazzle",
+      "why": "Shallow Grave спасает Spectre в лейте, пока она разбирает врагов."
+    }
+  ],
+  "zuus": [
+    {
+      "hero": "spectre",
+      "why": "Thundergod's Wrath даёт вижен и урон, Spectre прыгает на раненых."
+    },
+    {
+      "hero": "legion_commander",
+      "why": "Duel держит цель, Zeus добивает её с ультимейта."
+    }
+  ],
+  "bane": [
+    {
+      "hero": "mirana",
+      "why": "Nightmare фиксирует цель, Sacred Arrow прилетает точно в сон."
+    },
+    {
+      "hero": "pudge",
+      "why": "Fiend's Grip держит цель, Meat Hook и Rot добивают."
+    }
+  ],
+  "mirana": [
+    {
+      "hero": "bane",
+      "why": "Nightmare останавливает цель, Sacred Arrow попадает без промаха."
+    },
+    {
+      "hero": "shadow_demon",
+      "why": "Disruption фиксирует цель под Arrow и Starstorm."
+    }
+  ],
+  "tidehunter": [
+    {
+      "hero": "sven",
+      "why": "Ravage держит всех, Sven вкладывает Cleave по собранным врагам."
+    },
+    {
+      "hero": "gyrocopter",
+      "why": "Ravage + Flak Cannon и Call Down накрывают всю команду врага."
+    }
+  ],
+  "axe": [
+    {
+      "hero": "dazzle",
+      "why": "Shallow Grave не даёт Axe умереть, пока он держит врагов в Call."
+    },
+    {
+      "hero": "enigma",
+      "why": "Black Hole собирает врагов, Axe рубит их Call и Counter Helix."
+    }
+  ],
+  "dazzle": [
+    {
+      "hero": "axe",
+      "why": "Grave держит Axe живым под Blink Call, враги умирают от его урона."
+    },
+    {
+      "hero": "spectre",
+      "why": "Shallow Grave спасает Spectre в поздней игре, когда её фокусят."
+    }
+  ],
+  "pudge": [
+    {
+      "hero": "bane",
+      "why": "Fiend's Grip держит цель, Hook попадает без промаха."
+    },
+    {
+      "hero": "venomancer",
+      "why": "Яд и Gale замедляют, Hook вытаскивает цель под добивание."
+    }
+  ],
+  "legion_commander": [
+    {
+      "hero": "zuus",
+      "why": "Duel фиксирует цель, Zeus добивает её ультимейтом и молниями."
+    },
+    {
+      "hero": "skywrath_mage",
+      "why": "Duel + Mystic Flare: цель стоит на месте и получает весь урон."
+    }
+  ],
+  "skywrath_mage": [
+    {
+      "hero": "legion_commander",
+      "why": "Duel держит цель на месте, Mystic Flare наносит полный урон."
+    },
+    {
+      "hero": "axe",
+      "why": "Call собирает врагов, Mystic Flare снимает половину HP с группы."
+    }
+  ],
+  "sand_king": [
+    {
+      "hero": "viper",
+      "why": "Epicenter замедляет и держит зону, Viper добивает отравленных."
+    },
+    {
+      "hero": "lina",
+      "why": "Sand King начинает драку, Lina добивает Laguna Blade."
+    }
+  ],
+  "lina": [
+    {
+      "hero": "sand_king",
+      "why": "Epicenter и стан Sand King держат цель, Lina кладёт весь бурст."
+    },
+    {
+      "hero": "lion",
+      "why": "Двойной контроль и два ультимейта: цель умирает за одну связку."
+    }
+  ],
+  "lion": [
+    {
+      "hero": "lina",
+      "why": "Hex и два стана Lion дают Lina время на полный комбо-бурст."
+    },
+    {
+      "hero": "sven",
+      "why": "Lion держит цель, Sven убивает её двумя ударами."
+    }
+  ]
+}
