@@ -1458,3 +1458,80 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
 .di-bar { height: 4px; border-radius: 3px; background: rgba(255,255,255,0.08); margin-top: 8px; overflow: hidden; }
 .di-bar span { display: block; height: 100%; background: linear-gradient(90deg, #c8102e, #e63946); border-radius: 3px; }
 .di-pop { display: block; margin-top: 4px; font-size: 11.5px; color: var(--text-muted); }
+
+/* ===== поиск: только лупа, поле раскрывается по клику ===== */
+.topbar-search, .steam-form {
+  width: 46px; height: 44px;
+  padding: 0 !important;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  display: flex; align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: width 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  position: relative;
+}
+.topbar-search.is-open, .steam-form.is-open {
+  width: 360px; cursor: text;
+  border-color: rgba(200, 16, 46, 0.55);
+  background: var(--panel-2);
+}
+.search-trigger {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center;
+  background: none; border: 0; padding: 0;
+  color: var(--text-dim); cursor: pointer;
+}
+.topbar-search.is-open .search-trigger,
+.steam-form.is-open .search-trigger { color: var(--accent-2); }
+.topbar-search input, .steam-form input {
+  width: 0; opacity: 0; padding: 0; border: 0; background: transparent;
+  transition: opacity 0.16s ease, width 0.2s ease;
+  min-width: 0;
+}
+.topbar-search.is-open input, .steam-form.is-open input {
+  width: 100%; opacity: 1; padding-right: 12px;
+}
+.topbar-search .search-kbd { opacity: 0; transition: opacity 0.16s; }
+.topbar-search.is-open .search-kbd { opacity: 1; margin-right: 10px; }
+.steam-form .steam-hint { position: absolute; top: 100%; left: 0; }
+@media (max-width: 900px) {
+  .topbar-search.is-open, .steam-form.is-open { width: min(280px, 60vw); }
+}
+
+/* правки: лупa вместо широкого поля */
+.topbar-search, .steam-form {
+  flex: 0 0 46px; width: 46px; max-width: 46px; gap: 0;
+}
+.topbar-search.is-open, .steam-form.is-open {
+  flex: 0 0 360px; width: 360px; max-width: 360px;
+}
+.topbar-search .search-trigger,
+.steam-form .search-trigger {
+  background: none !important; border: 0 !important; border-radius: 0 !important;
+  width: 44px; height: 44px; color: var(--text-dim); box-shadow: none !important;
+  transform: none !important; filter: none !important;
+}
+.topbar-search.is-open .search-trigger,
+.steam-form.is-open .search-trigger { color: var(--accent-2); }
+.topbar-search .search-trigger .search-icon,
+.steam-form .search-trigger .search-icon { position: static; color: inherit; }
+.topbar-search input, .steam-form input {
+  border: 0 !important; border-radius: 0 !important; background: transparent !important;
+  box-shadow: none !important; padding: 0 !important;
+}
+.topbar-search.is-open input, .steam-form.is-open input { padding-right: 12px !important; }
+.topbar-search.is-open, .steam-form.is-open {
+  border: 1px solid rgba(200, 16, 46, 0.55); background: var(--panel-2);
+  padding: 0 !important;
+}
+.topbar-search { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; }
+.steam-form { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; }
+@media (max-width: 900px) {
+  .topbar-search.is-open, .steam-form.is-open { flex: 0 0 min(280px, 60vw); width: min(280px, 60vw); max-width: min(280px, 60vw); }
+}
+
+/* компактнее, чтобы не распирало шапку */
+.topbar-search.is-open { flex: 0 0 320px; width: 320px; max-width: 320px; }
+.steam-form.is-open { flex: 0 0 290px; width: 290px; max-width: 290px; }

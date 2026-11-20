@@ -188,6 +188,39 @@ function searchHeroes(query, limit = 8) {
   return scored.slice(0, limit).map((s) => s.hero);
 }
 
+function initCollapsibleSearch(wrapId, inputId, triggerId) {
+  const wrap = document.getElementById(wrapId);
+  const input = document.getElementById(inputId);
+  const trigger = document.getElementById(triggerId);
+  if (!wrap || !input) return;
+
+  const open = () => {
+    wrap.classList.add("is-open");
+    input.focus();
+  };
+  const closeIfEmpty = () => {
+    if (!input.value.trim()) wrap.classList.remove("is-open");
+  };
+
+  if (trigger) {
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (wrap.classList.contains("is-open")) input.focus();
+      else open();
+    });
+  }
+  input.addEventListener("focus", open);
+  input.addEventListener("blur", () => setTimeout(closeIfEmpty, 140));
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      input.value = "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      wrap.classList.remove("is-open");
+      input.blur();
+    }
+  });
+}
+
 function setupSearch(input, box, onSelect) {
   let items = [];
   let active = -1;
@@ -2194,6 +2227,9 @@ async function init() {
   grid.innerHTML = Array.from({ length: 18 }, () => '<div class="skeleton" style="height:86px"></div>').join("");
 
   setupSearch($("#searchInput"), $("#suggestions"));
+  initCollapsibleSearch("topbarSearchWrap", "searchInput", "searchTrigger");
+  initCollapsibleSearch("steamForm", "steamInput", "steamTrigger");
+
   setupSearch($("#bigSearchInput"), $("#bigSuggestions"));
   setupSteamSearch();
   document.querySelectorAll("#heroTabs button").forEach((btn) => {
