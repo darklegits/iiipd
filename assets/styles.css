@@ -1820,3 +1820,6 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
   color: #ff8a95;
 }
 #musicPlay:hover { background: rgba(200, 16, 46, 0.28); color: #fff; border-color: rgba(200, 16, 46, 0.8); }
+
+/* блок «Сейчас играет» больше не приглушается */
+#musicControls.is-idle, #musicControls { opacity: 1; }
