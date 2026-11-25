@@ -2209,33 +2209,120 @@ function heroHash(key) {
   return h;
 }
 
-/* Короткий «позывной» героя: детерминированная мелодия из пентатоники. */
+/* Ярко выраженные «мемные» герои получают свой характер звука. */
+const HERO_SFX = {
+  shadow_shaman: "flute",
+  witch_doctor: "flute",
+  pudge: "boing",
+  axe: "horn",
+  invoker: "coin",
+  phantom_assassin: "whoosh",
+  riki: "whoosh",
+  bounty_hunter: "coin",
+  techies: "pop",
+  meepo: "pop",
+  ogre_magi: "boing",
+  tinker: "laser",
+  sniper: "laser",
+  juggernaut: "sword",
+  legion_commander: "sword",
+  storm_spirit: "whoosh",
+  earthshaker: "horn",
+};
+
+const SFX_KINDS = ["boing", "pop", "laser", "coin", "horn", "whoosh", "flute", "sword"];
+
+function sfxKind(hero) {
+  return HERO_SFX[hero.key] || SFX_KINDS[heroHash(hero.key) % SFX_KINDS.length];
+}
+
+function env(ctx, start, dur, peak) {
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, peak), start + 0.012);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+  gain.connect(ctx.destination);
+  return gain;
+}
+
+function tone(ctx, type, from, to, start, dur, peak) {
+  const osc = ctx.createOscillator();
+  osc.type = type;
+  osc.frequency.setValueAtTime(from, start);
+  if (to && to !== from) osc.frequency.exponentialRampToValueAtTime(to, start + dur);
+  osc.connect(env(ctx, start, dur, peak));
+  osc.start(start);
+  osc.stop(start + dur + 0.02);
+}
+
+function noise(ctx, start, dur, peak, freq) {
+  const frames = Math.max(1, Math.floor(ctx.sampleRate * dur));
+  const buffer = ctx.createBuffer(1, frames, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < frames; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / frames);
+  const src = ctx.createBufferSource();
+  src.buffer = buffer;
+  const filter = ctx.createBiquadFilter();
+  filter.type = "bandpass";
+  filter.frequency.setValueAtTime(freq || 1200, start);
+  filter.frequency.exponentialRampToValueAtTime(Math.max(200, (freq || 1200) * 0.35), start + dur);
+  src.connect(filter).connect(env(ctx, start, dur, peak));
+  src.start(start);
+}
+
 function synthHeroSting(hero) {
   const ctx = memeCtx();
   if (!ctx) return;
-  const hash = heroHash(hero.key);
-  const roots = { str: 110, agi: 130.81, int: 146.83, all: 123.47 };
-  const base = roots[hero.attr] || 123.47;
-  const scale = [0, 3, 5, 7, 10, 12];
-  const waves = { Carry: "triangle", Support: "sine", Nuker: "square", Escape: "sawtooth" };
-  const wave = waves[hero.roles?.[0]] || "triangle";
-  const count = 3 + (hash % 3);
-  const now = ctx.currentTime + 0.04;
+  const vol = memeState.vol;
+  const t = ctx.currentTime + 0.03;
+  const kind = sfxKind(hero);
 
-  for (let i = 0; i < count; i++) {
-    const step = scale[(hash >> (i * 3)) % scale.length];
-    const freq = base * Math.pow(2, step / 12) * (i === count - 1 ? 1.5 : 1);
-    const start = now + i * 0.11;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = wave;
-    osc.frequency.setValueAtTime(freq, start);
-    gain.gain.setValueAtTime(0.0001, start);
-    gain.gain.exponentialRampToValueAtTime(0.22 * memeState.vol + 0.0001, start + 0.015);
-    gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
-    osc.connect(gain).connect(ctx.destination);
-    osc.start(start);
-    osc.stop(start + 0.18);
+  switch (kind) {
+    case "boing": {
+      tone(ctx, "sine", 520, 150, t, 0.26, 0.22 * vol);
+      tone(ctx, "triangle", 260, 90, t + 0.02, 0.3, 0.1 * vol);
+      break;
+    }
+    case "pop": {
+      tone(ctx, "sine", 880, 420, t, 0.09, 0.25 * vol);
+      noise(ctx, t, 0.06, 0.06 * vol, 2400);
+      break;
+    }
+    case "laser": {
+      tone(ctx, "sawtooth", 1400, 220, t, 0.18, 0.16 * vol);
+      tone(ctx, "square", 700, 140, t + 0.02, 0.16, 0.08 * vol);
+      break;
+    }
+    case "coin": {
+      tone(ctx, "square", 988, 988, t, 0.07, 0.16 * vol);
+      tone(ctx, "square", 1319, 1319, t + 0.07, 0.2, 0.16 * vol);
+      break;
+    }
+    case "horn": {
+      tone(ctx, "sawtooth", 150, 120, t, 0.34, 0.14 * vol);
+      tone(ctx, "square", 75, 60, t, 0.36, 0.08 * vol);
+      noise(ctx, t, 0.1, 0.05 * vol, 400);
+      break;
+    }
+    case "whoosh": {
+      noise(ctx, t, 0.28, 0.2 * vol, 2600);
+      tone(ctx, "sine", 300, 900, t + 0.05, 0.16, 0.05 * vol);
+      break;
+    }
+    case "flute": {
+      const notes = [523.25, 587.33, 659.25, 783.99];
+      notes.forEach((f, i) => {
+        tone(ctx, "sine", f, f * 1.005, t + i * 0.09, 0.12, 0.13 * vol);
+        tone(ctx, "triangle", f * 2, f * 2, t + i * 0.09, 0.08, 0.04 * vol);
+      });
+      break;
+    }
+    case "sword":
+    default: {
+      noise(ctx, t, 0.1, 0.16 * vol, 3200);
+      tone(ctx, "triangle", 660, 220, t + 0.03, 0.16, 0.12 * vol);
+      break;
+    }
   }
 }
 
