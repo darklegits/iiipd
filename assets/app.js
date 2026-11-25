@@ -473,6 +473,7 @@ function itemPills(keys) {
 }
 
 function renderTargetPanel(hero, counters, source) {
+  playHeroMeme(hero);
   const panel = $("#targetPanel");
   const items = targetItems(hero);
   const avgWr = counters.filter((c) => c.wr).length
@@ -2177,7 +2178,113 @@ function setMusic(on) {
   }
 }
 
+/* ------------------------------ мемы героев ------------------------------ */
+
+const MEMES_ON_KEY = "cp:memes";
+const MEME_VOL_KEY = "cp:memeVol";
+const memeState = { on: true, vol: 0.6, played: new Set(), ctx: null };
+
+function loadMemePrefs() {
+  try {
+    const on = localStorage.getItem(MEMES_ON_KEY);
+    const vol = Number(localStorage.getItem(MEME_VOL_KEY));
+    memeState.on = on === null ? true : on === "1";
+    if (!Number.isNaN(vol) && vol >= 0) memeState.vol = Math.min(1, vol);
+  } catch { /* ignore */ }
+}
+
+function memeCtx() {
+  if (!memeState.ctx) {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
+    memeState.ctx = new Ctx();
+  }
+  if (memeState.ctx.state === "suspended") memeState.ctx.resume().catch(() => {});
+  return memeState.ctx;
+}
+
+function heroHash(key) {
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) % 100000;
+  return h;
+}
+
+/* Короткий «позывной» героя: детерминированная мелодия из пентатоники. */
+function synthHeroSting(hero) {
+  const ctx = memeCtx();
+  if (!ctx) return;
+  const hash = heroHash(hero.key);
+  const roots = { str: 110, agi: 130.81, int: 146.83, all: 123.47 };
+  const base = roots[hero.attr] || 123.47;
+  const scale = [0, 3, 5, 7, 10, 12];
+  const waves = { Carry: "triangle", Support: "sine", Nuker: "square", Escape: "sawtooth" };
+  const wave = waves[hero.roles?.[0]] || "triangle";
+  const count = 3 + (hash % 3);
+  const now = ctx.currentTime + 0.04;
+
+  for (let i = 0; i < count; i++) {
+    const step = scale[(hash >> (i * 3)) % scale.length];
+    const freq = base * Math.pow(2, step / 12) * (i === count - 1 ? 1.5 : 1);
+    const start = now + i * 0.11;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = wave;
+    osc.frequency.setValueAtTime(freq, start);
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(0.22 * memeState.vol + 0.0001, start + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(start);
+    osc.stop(start + 0.18);
+  }
+}
+
+async function playHeroMeme(hero) {
+  if (!memeState.on || !hero) return;
+  if (memeState.played.has(hero.key)) return;
+  memeState.played.add(hero.key);
+
+  // 1) Если положили мем в media/memes/<hero>.mp3 — играем его.
+  const src = `media/memes/${hero.key}.mp3`;
+  try {
+    const head = await fetch(src, { method: "HEAD", cache: "no-store" });
+    if (head.ok) {
+      const audio = new Audio(src);
+      audio.volume = memeState.vol;
+      audio.play().catch(() => {});
+      return;
+    }
+  } catch { /* файла нет — идём дальше */ }
+
+  // 2) Иначе — короткий синтезированный позывной.
+  synthHeroSting(hero);
+}
+
+function initMemes() {
+  loadMemePrefs();
+  const toggle = $("#memesToggle");
+  const range = $("#memeVolume");
+  if (toggle) {
+    toggle.setAttribute("aria-pressed", String(memeState.on));
+    toggle.classList.toggle("is-on", memeState.on);
+    toggle.addEventListener("click", () => {
+      memeState.on = !memeState.on;
+      toggle.setAttribute("aria-pressed", String(memeState.on));
+      toggle.classList.toggle("is-on", memeState.on);
+      try { localStorage.setItem(MEMES_ON_KEY, memeState.on ? "1" : "0"); } catch { /* ignore */ }
+    });
+  }
+  if (range) {
+    range.value = String(Math.round(memeState.vol * 100));
+    range.addEventListener("input", (e) => {
+      memeState.vol = Math.min(1, Math.max(0, Number(e.target.value) / 100));
+      try { localStorage.setItem(MEME_VOL_KEY, String(memeState.vol)); } catch { /* ignore */ }
+    });
+  }
+}
+
 function initSettings() {
+  initMemes();
   let storedVolume = 0.5;
   let storedOn = false;
   try {

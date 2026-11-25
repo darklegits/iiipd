@@ -4,3 +4,4 @@
 .DS_Store
 data/.translate-cache.json
 *.tar.gz
+.tools/

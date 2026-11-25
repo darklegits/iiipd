@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Forum&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />  <link rel="preconnect" href="https://cdn.cloudflare.steamstatic.com" crossorigin />
-  <link rel="stylesheet" href="assets/styles.css?v=63" />
+  <link rel="stylesheet" href="assets/styles.css?v=64" />
 </head>
 <body>
   <header class="topbar">
@@ -232,6 +232,18 @@
           <input type="range" id="musicVolume" min="0" max="100" value="35" />
         </div>
 
+        <div class="settings-row">
+          <div>
+            <b>Мемы героев</b>
+            <p class="muted small">Позывной героя при открытии карточки</p>
+          </div>
+          <button type="button" class="switch" id="memesToggle" aria-pressed="true" aria-label="Включить мемы героев"><span></span></button>
+        </div>
+        <div class="settings-row">
+          <div><b>Громкость мемов</b></div>
+          <input type="range" id="memeVolume" min="0" max="100" value="60" />
+        </div>
+
         <div class="bee-note">
           <svg class="bee-icon" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">
             <ellipse cx="32" cy="38" rx="16" ry="12" fill="#e8b23a"/>
@@ -338,6 +350,6 @@
     </button>
   </template>
 
-  <script type="module" src="assets/app.js?v=63"></script>
+  <script type="module" src="assets/app.js?v=64"></script>
 </body>
 </html>
