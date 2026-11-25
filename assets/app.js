@@ -2121,37 +2121,19 @@ function showCabinet() {
 const MUSIC_ON_KEY = "cp:musicOn";
 const VOLUME_KEY = "cp:volume";
 
-/* Треки владельца сайта: играют по очереди, встроенным официальным плеером YouTube. */
-const MUSIC_TRACKS = ["mL_9r5RjbAY", "CDDYUY-HJVw"];
+/* Локальные треки владельца сайта: лежат на сервере в media/music */
+const MUSIC_TRACKS = [
+  { src: "media/music/track1.m4a", title: "Dota deadinside playlist" },
+  { src: "media/music/track2.m4a", title: "Dota 2 / CS — vibe tracks" },
+];
 
 const music = {
-  player: null,
-  ready: false,
+  audio: null,
   on: false,
-  volume: 0.35,
+  volume: 0.4,
   index: 0,
   pending: false,
-  apiPromise: null,
-  tick: null,
 };
-
-function loadYouTubeApi() {
-  if (window.YT && window.YT.Player) return Promise.resolve();
-  if (music.apiPromise) return music.apiPromise;
-  music.apiPromise = new Promise((resolve) => {
-    const prev = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => {
-      if (typeof prev === "function") prev();
-      resolve();
-    };
-    if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(tag);
-    }
-  });
-  return music.apiPromise;
-}
 
 function updateMusicUI() {
   const btn = $("#musicToggle");
@@ -2161,6 +2143,8 @@ function updateMusicUI() {
   }
   const wrap = $("#musicControls");
   if (wrap) wrap.classList.toggle("is-disabled", !music.on);
+  const name = $("#musicTrackName");
+  if (name) name.textContent = MUSIC_TRACKS[music.index].title;
 }
 
 function formatTime(sec) {
@@ -2170,114 +2154,75 @@ function formatTime(sec) {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-function startTicker() {
-  stopTicker();
-  music.tick = setInterval(() => {
-    if (!music.player || !music.ready) return;
-    const seek = $("#musicSeek");
-    const label = $("#musicTime");
-    try {
-      const dur = music.player.getDuration() || 0;
-      const cur = music.player.getCurrentTime() || 0;
-      if (seek && dur) seek.value = String(Math.round((cur / dur) * 1000));
-      if (label) label.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
-      const name = $("#musicTrackName");
-      const data = music.player.getVideoData && music.player.getVideoData();
-      if (name && data && data.title) name.textContent = data.title;
-    } catch { /* плеер ещё не готов */ }
-  }, 1000);
+function syncMusicProgress() {
+  const audio = music.audio;
+  if (!audio) return;
+  const seek = $("#musicSeek");
+  const label = $("#musicTime");
+  const dur = audio.duration || 0;
+  const cur = audio.currentTime || 0;
+  if (seek && dur) seek.value = String(Math.round((cur / dur) * 1000));
+  if (label) label.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
 }
 
-function stopTicker() {
-  if (music.tick) clearInterval(music.tick);
-  music.tick = null;
+function ensureAudio() {
+  if (music.audio) return music.audio;
+  const audio = new Audio();
+  audio.preload = "metadata";
+  audio.volume = music.volume;
+  audio.addEventListener("timeupdate", syncMusicProgress);
+  audio.addEventListener("loadedmetadata", syncMusicProgress);
+  audio.addEventListener("ended", () => nextTrack());
+  audio.addEventListener("play", () => { syncMusicProgress(); });
+  music.audio = audio;
+  return audio;
 }
 
-function ensurePlayer() {
-  if (music.player) return Promise.resolve();
-  if (music.pending) return music.apiPromise || Promise.resolve();
-  music.pending = true;
-  return loadYouTubeApi().then(() => new Promise((resolve) => {
-    let host = document.getElementById("ytPlayerHost");
-    if (!host) {
-      host = document.createElement("div");
-      host.id = "ytPlayerHost";
-      host.className = "yt-host";
-      document.body.appendChild(host);
-    }
-    music.player = new window.YT.Player("ytPlayerHost", {
-      height: "1",
-      width: "1",
-      videoId: MUSIC_TRACKS[music.index],
-      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, origin: location.origin },
-      events: {
-        onReady: () => {
-          music.ready = true;
-          music.pending = false;
-          music.player.setVolume(Math.round(music.volume * 100));
-          if (music.on) playTrack(music.index, true);
-          resolve();
-        },
-        onStateChange: (event) => {
-          if (event.data === 1) startTicker();
-          if (event.data === 2) stopTicker();
-          if (event.data === 0) playTrack((music.index + 1) % MUSIC_TRACKS.length);
-        },
-        onError: () => { /* трек недоступен для встраивания — остаёмся на текущем */ },
-      },
+function playTrack(index) {
+  music.index = (index + MUSIC_TRACKS.length) % MUSIC_TRACKS.length;
+  const audio = ensureAudio();
+  audio.src = MUSIC_TRACKS[music.index].src;
+  audio.volume = music.volume;
+  const p = audio.play();
+  if (p && p.catch) {
+    p.catch(() => {
+      // автозапуск заблокирован — включим после первого действия пользователя
+      if (music.pending) return;
+      music.pending = true;
+      const once = () => {
+        document.removeEventListener("pointerdown", once);
+        music.pending = false;
+        if (music.on) audio.play().catch(() => {});
+      };
+      document.addEventListener("pointerdown", once, { once: true });
     });
-    setTimeout(() => { music.pending = false; resolve(); }, 5000);
-  }));
-}
-
-function playTrack(index, keepPosition) {
-  music.index = index % MUSIC_TRACKS.length;
-  if (!music.ready || !music.player) {
-    ensurePlayer().then(() => { if (music.on) playTrack(music.index); });
-    return;
   }
-  music.player.setVolume(Math.round(music.volume * 100));
-  if (keepPosition && music.player.getPlayerState && music.player.getPlayerState() === 1) {
-    music.player.playVideo();
-    startTicker();
-    return;
-  }
-  music.player.loadVideoById(MUSIC_TRACKS[music.index]);
-  music.player.playVideo();
-  startTicker();
+  updateMusicUI();
+  syncMusicProgress();
 }
 
 function nextTrack() {
   music.on = true;
   try { localStorage.setItem(MUSIC_ON_KEY, "1"); } catch { /* ignore */ }
-  updateMusicUI();
-  playTrack((music.index + 1) % MUSIC_TRACKS.length);
+  playTrack(music.index + 1);
 }
 
 function prevTrack() {
   music.on = true;
   try { localStorage.setItem(MUSIC_ON_KEY, "1"); } catch { /* ignore */ }
-  updateMusicUI();
-  playTrack((music.index - 1 + MUSIC_TRACKS.length) % MUSIC_TRACKS.length);
+  playTrack(music.index - 1);
 }
 
 function stopMusic() {
-  stopTicker();
-  if (music.player && music.ready) music.player.pauseVideo();
+  if (music.audio) music.audio.pause();
 }
 
 function setMusic(on) {
   music.on = on;
   try { localStorage.setItem(MUSIC_ON_KEY, on ? "1" : "0"); } catch { /* ignore */ }
   updateMusicUI();
-  if (on) {
-    ensurePlayer().then(() => playTrack(music.index));
-    window.setTimeout(() => {
-      if (music.player && music.ready) playTrack(music.index, true);
-    }, 600);
-  } else {
-    stopMusic();
-  }
+  if (on) playTrack(music.index);
+  else stopMusic();
 }
 
 function initSettings() {
@@ -2315,9 +2260,9 @@ const nextBtn = $("#musicNext");
   if (seek) {
     seek.addEventListener("input", () => {
       if (!music.player || !music.ready) return;
-      const dur = music.player.getDuration() || 0;
-      if (!dur) return;
-      music.player.seekTo((Number(seek.value) / 1000) * dur, true);
+      const audio = music.audio;
+      if (!audio || !audio.duration) return;
+      audio.currentTime = (Number(seek.value) / 1000) * audio.duration;
     });
   }
 
@@ -2327,7 +2272,7 @@ const nextBtn = $("#musicNext");
     range.addEventListener("input", () => {
       music.volume = Number(range.value) / 100;
       try { localStorage.setItem(VOLUME_KEY, String(music.volume)); } catch { /* ignore */ }
-      if (music.player && music.ready) music.player.setVolume(Math.round(music.volume * 100));
+      if (music.audio) music.audio.volume = music.volume;
     });
   }
 
@@ -2337,7 +2282,7 @@ const nextBtn = $("#musicNext");
       document.removeEventListener("pointerdown", once);
       music.on = true;
       updateMusicUI();
-      ensurePlayer().then(() => playPlaylist(music.index));
+      playTrack(music.index);
     };
     document.addEventListener("pointerdown", once, { once: true });
   }
