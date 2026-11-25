@@ -2228,8 +2228,6 @@ async function init() {
   const grid = $("#heroGrid");
   grid.innerHTML = Array.from({ length: 18 }, () => '<div class="skeleton" style="height:86px"></div>').join("");
 
-  setupSearch($("#searchInput"), $("#suggestions"));
-  initCollapsibleSearch("topbarSearchWrap", "searchInput", "searchTrigger");
   initCollapsibleSearch("steamForm", "steamInput", "steamTrigger");
 
   setupSearch($("#bigSearchInput"), $("#bigSuggestions"));

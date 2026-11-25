@@ -1552,3 +1552,7 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
 }
 .tile-wr.is-good { color: #63d471; }
 .tile-wr.is-bad { color: #ef6b6b; }
+
+/* шапка без левого поиска: навигация ближе к логотипу, Dotabuff — справа */
+.topbar-nav { margin-left: 14px; margin-right: auto; }
+.steam-form { margin-left: 14px; }
