@@ -1807,3 +1807,8 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
 }
 .eq-presets button:hover { color: var(--text); border-color: rgba(200, 16, 46, 0.5); }
 .eq-presets button.is-active { color: #fff; background: rgba(200, 16, 46, 0.18); border-color: rgba(200, 16, 46, 0.6); }
+
+/* эквалайзер: скрыт по умолчанию и в цвете темы */
+.eq-panel[hidden] { display: none; }
+.eq-panel input[type="range"] { accent-color: #c8102e; }
+.settings-row input[type="range"], #musicVolume, #musicSeek { accent-color: #c8102e; }
