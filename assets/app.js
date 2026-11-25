@@ -2142,7 +2142,7 @@ function updateMusicUI() {
     btn.setAttribute("aria-pressed", String(music.on));
   }
   const wrap = $("#musicControls");
-  if (wrap) wrap.classList.toggle("is-disabled", !music.on);
+  if (wrap) wrap.classList.toggle("is-idle", !music.on);
   const name = $("#musicTrackName");
   if (name) name.textContent = MUSIC_TRACKS[music.index].title;
 }
@@ -2225,7 +2225,132 @@ function setMusic(on) {
   else stopMusic();
 }
 
+/* ------------------------------ эквалайзер ------------------------------ */
+
+const EQ_KEY = "cp:eq";
+const EQ_BANDS = [
+  { freq: 60, label: "60 Гц", type: "lowshelf" },
+  { freq: 250, label: "250 Гц", type: "peaking" },
+  { freq: 1000, label: "1 кГц", type: "peaking" },
+  { freq: 4000, label: "4 кГц", type: "peaking" },
+  { freq: 12000, label: "12 кГц", type: "highshelf" },
+];
+const EQ_PRESETS = {
+  flat: { label: "Плоский", gains: [0, 0, 0, 0, 0] },
+  bass: { label: "Бас", gains: [8, 5, 0, 0, 2] },
+  vocal: { label: "Вокал", gains: [-2, 1, 5, 4, 1] },
+  bright: { label: "Яркий", gains: [0, 1, 2, 5, 7] },
+};
+
+const eq = { ctx: null, source: null, filters: [], gains: [0, 0, 0, 0, 0], preset: "flat", ready: false };
+
+function loadEqPrefs() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(EQ_KEY) || "null");
+    if (raw && Array.isArray(raw.gains) && raw.gains.length === EQ_BANDS.length) {
+      eq.gains = raw.gains.map((g) => Math.max(-12, Math.min(12, Number(g) || 0)));
+      eq.preset = raw.preset || "custom";
+    }
+  } catch { /* ignore */ }
+}
+
+function saveEqPrefs() {
+  try { localStorage.setItem(EQ_KEY, JSON.stringify({ gains: eq.gains, preset: eq.preset })); } catch { /* ignore */ }
+}
+
+function ensureEq() {
+  const audio = music.audio;
+  if (!audio) return false;
+  if (eq.ready) return true;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) return false;
+  try {
+    eq.ctx = new Ctx();
+    eq.source = eq.ctx.createMediaElementSource(audio);
+    eq.filters = EQ_BANDS.map((band) => {
+      const filter = eq.ctx.createBiquadFilter();
+      filter.type = band.type;
+      filter.frequency.value = band.freq;
+      filter.Q.value = 1;
+      filter.gain.value = 0;
+      return filter;
+    });
+    eq.source.connect(eq.filters[0]);
+    for (let i = 0; i < eq.filters.length - 1; i++) eq.filters[i].connect(eq.filters[i + 1]);
+    eq.filters[eq.filters.length - 1].connect(eq.ctx.destination);
+    eq.ready = true;
+    applyEqGains();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function applyEqGains() {
+  if (!eq.ready) return;
+  if (eq.ctx.state === "suspended") eq.ctx.resume().catch(() => {});
+  eq.gains.forEach((gain, i) => {
+    if (eq.filters[i]) eq.filters[i].gain.value = gain;
+  });
+}
+
+function updateEqUI() {
+  document.querySelectorAll("input[data-eq-band]").forEach((input) => {
+    const i = Number(input.dataset.eqBand);
+    input.value = String(eq.gains[i] ?? 0);
+    const out = document.getElementById(`eqVal${i}`);
+    if (out) out.textContent = `${eq.gains[i] > 0 ? "+" : ""}${eq.gains[i]} dB`;
+  });
+  const label = $("#eqPresetLabel");
+  if (label) {
+    const preset = EQ_PRESETS[eq.preset];
+    label.textContent = preset ? preset.label : "Своя настройка";
+  }
+  document.querySelectorAll("[data-eq-preset]").forEach((btn) => {
+    btn.classList.toggle("is-active", btn.dataset.eqPreset === eq.preset);
+  });
+}
+
+function setEqBand(index, value) {
+  eq.gains[index] = Math.max(-12, Math.min(12, Number(value) || 0));
+  eq.preset = "custom";
+  applyEqGains();
+  updateEqUI();
+  saveEqPrefs();
+}
+
+function applyEqPreset(name) {
+  const preset = EQ_PRESETS[name];
+  if (!preset) return;
+  eq.gains = [...preset.gains];
+  eq.preset = name;
+  applyEqGains();
+  updateEqUI();
+  saveEqPrefs();
+}
+
+function initEq() {
+  loadEqPrefs();
+  const toggle = $("#eqToggle");
+  const panel = $("#eqPanel");
+  if (toggle && panel) {
+    toggle.addEventListener("click", () => {
+      panel.hidden = !panel.hidden;
+      toggle.textContent = panel.hidden ? "Настроить" : "Свернуть";
+      if (!panel.hidden) ensureEq();
+    });
+  }
+  document.querySelectorAll("input[data-eq-band]").forEach((input) => {
+    input.addEventListener("input", (e) => setEqBand(Number(e.target.dataset.eqBand), e.target.value));
+  });
+  document.querySelectorAll("[data-eq-preset]").forEach((btn) => {
+    btn.addEventListener("click", () => { ensureEq(); applyEqPreset(btn.dataset.eqPreset); });
+  });
+  updateEqUI();
+}
+
 function initSettings() {
+  initEq();
   let storedVolume = 0.5;
   let storedOn = false;
   try {
