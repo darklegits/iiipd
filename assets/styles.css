@@ -1601,3 +1601,54 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
   .topbar-badge { display: none; }
   .topbar-nav a { padding: 6px 8px; font-size: 12px; }
 }
+
+/* ===== ровная шапка: поиск всегда виден, всё выровнено по одной линии ===== */
+.topbar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 24px; min-height: 64px;
+}
+.brand { flex: none; }
+
+.steam-form {
+  width: 300px; height: 42px; flex: none;
+  display: flex; align-items: center; gap: 9px;
+  padding: 0 14px; margin: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.steam-form:focus-within {
+  border-color: rgba(200, 16, 46, 0.6);
+  background: var(--panel-2);
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.14);
+}
+.steam-form .search-icon { position: static; flex: none; color: var(--text-muted); }
+.steam-form:focus-within .search-icon { color: var(--accent-2); }
+.steam-form input {
+  flex: 1 1 auto; width: auto; min-width: 0; opacity: 1;
+  padding: 0; border: 0; background: transparent; box-shadow: none;
+  font-size: 13.5px; color: var(--text);
+}
+.steam-form input::placeholder { color: var(--text-muted); }
+.steam-form .steam-hint { position: absolute; top: calc(100% + 6px); left: 0; }
+
+.topbar-nav { margin-left: 2px; margin-right: auto; height: 42px; }
+.topbar-nav a { line-height: 1; }
+.account-link { height: 42px; padding: 0 18px; font-size: 13.5px; font-weight: 600; }
+.icon-btn#settingsBtn { width: 42px; height: 42px; flex: none; }
+.topbar-badge { height: 36px; display: inline-flex; align-items: center; }
+
+@media (max-width: 1280px) { .steam-form { width: 240px; } }
+@media (max-width: 1080px) { .steam-form { width: 200px; } .topbar { padding: 10px 16px; gap: 10px; } }
+@media (max-width: 900px) {
+  .steam-form { width: 44px; padding: 0 12px; }
+  .steam-form input { display: none; }
+  .topbar-badge { display: none; }
+}
+
+/* снимаем старое ограничение ширины (оно было от свёрнутой лупы) */
+.steam-form { max-width: 320px; }
+@media (max-width: 1280px) { .steam-form { max-width: 240px; } }
+@media (max-width: 1080px) { .steam-form { max-width: 200px; } }
+@media (max-width: 900px) { .steam-form { max-width: 44px; } }
