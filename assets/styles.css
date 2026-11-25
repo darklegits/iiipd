@@ -1759,3 +1759,17 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
 
 /* скрытый YouTube-плеер для фоновых плейлистов */
 .yt-host { position: fixed; left: -9999px; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+/* управление музыкой в настройках */
+.music-buttons { display: flex; gap: 8px; }
+.music-buttons button {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(255, 255, 255, 0.04);
+  color: var(--text-dim); font-size: 15px; cursor: pointer; line-height: 1;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.music-buttons button:hover { color: var(--text); border-color: rgba(200, 16, 46, 0.6); background: rgba(200, 16, 46, 0.1); }
+.settings-row-wide { flex-direction: column; align-items: stretch; gap: 8px; }
+.settings-row-wide input[type="range"] { width: 100%; }
+#musicTime { font-variant-numeric: tabular-nums; }
+#musicControls.is-disabled { opacity: 0.45; pointer-events: none; }

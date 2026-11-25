@@ -2121,9 +2121,8 @@ function showCabinet() {
 const MUSIC_ON_KEY = "cp:musicOn";
 const VOLUME_KEY = "cp:volume";
 
-/* Плейлисты владельца сайта: играют по очереди, один за другим, по кругу. */
-const YT_PLAYLISTS = ["RDmL_9r5RjbAY", "RDCDDYUY-HJVw"];
-const YT_FALLBACK_VIDEOS = ["mL_9r5RjbAY", "CDDYUY-HJVW"];
+/* Треки владельца сайта: играют по очереди, встроенным официальным плеером YouTube. */
+const MUSIC_TRACKS = ["mL_9r5RjbAY", "CDDYUY-HJVw"];
 
 const music = {
   player: null,
@@ -2133,6 +2132,7 @@ const music = {
   index: 0,
   pending: false,
   apiPromise: null,
+  tick: null,
 };
 
 function loadYouTubeApi() {
@@ -2153,8 +2153,49 @@ function loadYouTubeApi() {
   return music.apiPromise;
 }
 
+function updateMusicUI() {
+  const btn = $("#musicToggle");
+  if (btn) {
+    btn.classList.toggle("is-on", music.on);
+    btn.setAttribute("aria-pressed", String(music.on));
+  }
+  const wrap = $("#musicControls");
+  if (wrap) wrap.classList.toggle("is-disabled", !music.on);
+}
+
+function formatTime(sec) {
+  if (!Number.isFinite(sec) || sec < 0) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function startTicker() {
+  stopTicker();
+  music.tick = setInterval(() => {
+    if (!music.player || !music.ready) return;
+    const seek = $("#musicSeek");
+    const label = $("#musicTime");
+    try {
+      const dur = music.player.getDuration() || 0;
+      const cur = music.player.getCurrentTime() || 0;
+      if (seek && dur) seek.value = String(Math.round((cur / dur) * 1000));
+      if (label) label.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
+      const name = $("#musicTrackName");
+      const data = music.player.getVideoData && music.player.getVideoData();
+      if (name && data && data.title) name.textContent = data.title;
+    } catch { /* плеер ещё не готов */ }
+  }, 1000);
+}
+
+function stopTicker() {
+  if (music.tick) clearInterval(music.tick);
+  music.tick = null;
+}
+
 function ensurePlayer() {
-  if (music.player || music.pending) return Promise.resolve();
+  if (music.player) return Promise.resolve();
+  if (music.pending) return music.apiPromise || Promise.resolve();
   music.pending = true;
   return loadYouTubeApi().then(() => new Promise((resolve) => {
     let host = document.getElementById("ytPlayerHost");
@@ -2167,65 +2208,76 @@ function ensurePlayer() {
     music.player = new window.YT.Player("ytPlayerHost", {
       height: "1",
       width: "1",
+      videoId: MUSIC_TRACKS[music.index],
       playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, origin: location.origin },
       events: {
         onReady: () => {
           music.ready = true;
           music.pending = false;
           music.player.setVolume(Math.round(music.volume * 100));
-          if (music.on) playPlaylist(music.index);
+          if (music.on) playTrack(music.index, true);
           resolve();
         },
         onStateChange: (event) => {
-          if (event.data === 0) playPlaylist((music.index + 1) % YT_PLAYLISTS.length);
+          if (event.data === 1) startTicker();
+          if (event.data === 2) stopTicker();
+          if (event.data === 0) playTrack((music.index + 1) % MUSIC_TRACKS.length);
         },
-        onError: () => {
-          const video = YT_FALLBACK_VIDEOS[music.index % YT_FALLBACK_VIDEOS.length];
-          if (music.player && video) {
-            music.player.loadVideoById(video);
-            music.player.setVolume(Math.round(music.volume * 100));
-            music.player.playVideo();
-          }
-        },
+        onError: () => { /* трек недоступен для встраивания — остаёмся на текущем */ },
       },
     });
-    setTimeout(resolve, 4000);
+    setTimeout(() => { music.pending = false; resolve(); }, 5000);
   }));
 }
 
-function playPlaylist(index) {
-  music.index = index;
+function playTrack(index, keepPosition) {
+  music.index = index % MUSIC_TRACKS.length;
   if (!music.ready || !music.player) {
-    music.on = true;
-    ensurePlayer().then(() => {
-      if (music.on) playPlaylist(music.index);
-    });
+    ensurePlayer().then(() => { if (music.on) playTrack(music.index); });
     return;
   }
-  const list = YT_PLAYLISTS[index];
   music.player.setVolume(Math.round(music.volume * 100));
-  music.player.loadPlaylist({ list, listType: "playlist", index: 0, startSeconds: 0 });
+  if (keepPosition && music.player.getPlayerState && music.player.getPlayerState() === 1) {
+    music.player.playVideo();
+    startTicker();
+    return;
+  }
+  music.player.loadVideoById(MUSIC_TRACKS[music.index]);
   music.player.playVideo();
+  startTicker();
+}
+
+function nextTrack() {
+  music.on = true;
+  try { localStorage.setItem(MUSIC_ON_KEY, "1"); } catch { /* ignore */ }
+  updateMusicUI();
+  playTrack((music.index + 1) % MUSIC_TRACKS.length);
+}
+
+function prevTrack() {
+  music.on = true;
+  try { localStorage.setItem(MUSIC_ON_KEY, "1"); } catch { /* ignore */ }
+  updateMusicUI();
+  playTrack((music.index - 1 + MUSIC_TRACKS.length) % MUSIC_TRACKS.length);
 }
 
 function stopMusic() {
+  stopTicker();
   if (music.player && music.ready) music.player.pauseVideo();
-}
-
-function updateMusicUI() {
-  const btn = $("#musicToggle");
-  if (btn) {
-    btn.classList.toggle("is-on", music.on);
-    btn.setAttribute("aria-pressed", String(music.on));
-  }
 }
 
 function setMusic(on) {
   music.on = on;
   try { localStorage.setItem(MUSIC_ON_KEY, on ? "1" : "0"); } catch { /* ignore */ }
   updateMusicUI();
-  if (on) playPlaylist(music.index);
-  else stopMusic();
+  if (on) {
+    ensurePlayer().then(() => playTrack(music.index));
+    window.setTimeout(() => {
+      if (music.player && music.ready) playTrack(music.index, true);
+    }, 600);
+  } else {
+    stopMusic();
+  }
 }
 
 function initSettings() {
@@ -2254,6 +2306,20 @@ function initSettings() {
   document.querySelectorAll("[data-settings-close]").forEach((el) => el.addEventListener("click", close));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
   if (location.hash === "#settings") open();
+
+const nextBtn = $("#musicNext");
+  const prevBtn = $("#musicPrev");
+  const seek = $("#musicSeek");
+  if (nextBtn) nextBtn.addEventListener("click", nextTrack);
+  if (prevBtn) prevBtn.addEventListener("click", prevTrack);
+  if (seek) {
+    seek.addEventListener("input", () => {
+      if (!music.player || !music.ready) return;
+      const dur = music.player.getDuration() || 0;
+      if (!dur) return;
+      music.player.seekTo((Number(seek.value) / 1000) * dur, true);
+    });
+  }
 
   if (toggle) toggle.addEventListener("click", () => setMusic(!music.on));
 

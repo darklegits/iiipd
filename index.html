@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Forum&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />  <link rel="preconnect" href="https://cdn.cloudflare.steamstatic.com" crossorigin />
-  <link rel="stylesheet" href="assets/styles.css?v=72" />
+  <link rel="stylesheet" href="assets/styles.css?v=73" />
 </head>
 <body>
   <header class="topbar">
@@ -236,6 +236,22 @@
           <input type="range" id="musicVolume" min="0" max="100" value="35" />
         </div>
 
+        <div class="settings-row" id="musicControls">
+          <div>
+            <b>Сейчас играет</b>
+            <p class="muted small" id="musicTrackName">—</p>
+          </div>
+          <div class="music-buttons">
+            <button type="button" id="musicPrev" aria-label="Предыдущий трек" title="Предыдущий">⏮</button>
+            <button type="button" id="musicNext" aria-label="Следующий трек" title="Следующий">⏭</button>
+          </div>
+        </div>
+
+        <div class="settings-row settings-row-wide" id="musicSeekRow">
+          <input type="range" id="musicSeek" min="0" max="1000" value="0" aria-label="Позиция трека" />
+          <span class="muted small" id="musicTime">0:00 / 0:00</span>
+        </div>
+
 
 
 
@@ -333,6 +349,6 @@
     </button>
   </template>
 
-  <script type="module" src="assets/app.js?v=72"></script>
+  <script type="module" src="assets/app.js?v=73"></script>
 </body>
 </html>
