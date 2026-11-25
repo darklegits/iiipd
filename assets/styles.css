@@ -1812,3 +1812,11 @@ p, li, .muted, .small, .item-desc, .counter-why, .combo-why, .ability-body p { f
 .eq-panel[hidden] { display: none; }
 .eq-panel input[type="range"] { accent-color: #c8102e; }
 .settings-row input[type="range"], #musicVolume, #musicSeek { accent-color: #c8102e; }
+
+/* кнопка play/pause — акцентная */
+#musicPlay {
+  background: rgba(200, 16, 46, 0.16);
+  border-color: rgba(200, 16, 46, 0.5);
+  color: #ff8a95;
+}
+#musicPlay:hover { background: rgba(200, 16, 46, 0.28); color: #fff; border-color: rgba(200, 16, 46, 0.8); }

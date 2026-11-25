@@ -2135,6 +2135,38 @@ const music = {
   pending: false,
 };
 
+const ICON_PLAY = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>';
+const ICON_PAUSE = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5h3.2v14H8zM12.8 5H16v14h-3.2z" fill="currentColor"/></svg>';
+
+function updatePlayIcon() {
+  const btn = $("#musicPlay");
+  if (!btn) return;
+  const paused = !music.audio || music.audio.paused;
+  btn.innerHTML = paused ? ICON_PLAY : ICON_PAUSE;
+  btn.setAttribute("aria-label", paused ? "Воспроизвести" : "Пауза");
+  btn.setAttribute("title", paused ? "Воспроизвести" : "Пауза");
+}
+
+function togglePlayPause() {
+  const audio = ensureAudio();
+  if (!audio.src) {
+    music.on = true;
+    playTrack(music.index);
+    return;
+  }
+  if (audio.paused) {
+    audio.play().catch(() => {});
+    music.on = true;
+    try { localStorage.setItem(MUSIC_ON_KEY, "1"); } catch { /* ignore */ }
+  } else {
+    audio.pause();
+    music.on = false;
+    try { localStorage.setItem(MUSIC_ON_KEY, "0"); } catch { /* ignore */ }
+  }
+  updateMusicUI();
+  updatePlayIcon();
+}
+
 function updateMusicUI() {
   const btn = $("#musicToggle");
   if (btn) {
@@ -2145,6 +2177,7 @@ function updateMusicUI() {
   if (wrap) wrap.classList.toggle("is-idle", !music.on);
   const name = $("#musicTrackName");
   if (name) name.textContent = MUSIC_TRACKS[music.index].title;
+  if (typeof updatePlayIcon === "function") updatePlayIcon();
 }
 
 function formatTime(sec) {
@@ -2173,7 +2206,8 @@ function ensureAudio() {
   audio.addEventListener("timeupdate", syncMusicProgress);
   audio.addEventListener("loadedmetadata", syncMusicProgress);
   audio.addEventListener("ended", () => nextTrack());
-  audio.addEventListener("play", () => { syncMusicProgress(); });
+  audio.addEventListener("play", () => { syncMusicProgress(); updatePlayIcon(); });
+  audio.addEventListener("pause", () => { updatePlayIcon(); });
   music.audio = audio;
   return audio;
 }
@@ -2380,11 +2414,15 @@ function initSettings() {
 const nextBtn = $("#musicNext");
   const prevBtn = $("#musicPrev");
   const seek = $("#musicSeek");
+  const playBtn = $("#musicPlay");
+  if (playBtn) {
+    playBtn.innerHTML = ICON_PLAY;
+    playBtn.addEventListener("click", togglePlayPause);
+  }
   if (nextBtn) nextBtn.addEventListener("click", nextTrack);
   if (prevBtn) prevBtn.addEventListener("click", prevTrack);
   if (seek) {
     seek.addEventListener("input", () => {
-      if (!music.player || !music.ready) return;
       const audio = music.audio;
       if (!audio || !audio.duration) return;
       audio.currentTime = (Number(seek.value) / 1000) * audio.duration;
