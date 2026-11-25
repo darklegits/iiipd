@@ -2120,26 +2120,96 @@ function showCabinet() {
 
 const MUSIC_ON_KEY = "cp:musicOn";
 const VOLUME_KEY = "cp:volume";
-const TRACK_SRC = "media/bee.mp3";
+
+/* Плейлисты владельца сайта: играют по очереди, один за другим, по кругу. */
+const YT_PLAYLISTS = ["RDmL_9r5RjbAY", "RDCDDYUY-HJVw"];
+const YT_FALLBACK_VIDEOS = ["mL_9r5RjbAY", "CDDYUY-HJVW"];
 
 const music = {
-  el: null,
+  player: null,
+  ready: false,
   on: false,
-  volume: 0.5,
-  started: false,
+  volume: 0.35,
+  index: 0,
+  pending: false,
+  apiPromise: null,
 };
 
-function ensureTrack() {
-  if (music.el) return music.el;
-  const el = new Audio(TRACK_SRC);
-  el.loop = true;
-  el.preload = "auto";
-  el.volume = music.volume;
-  el.addEventListener("error", () => {
-    console.warn("Не удалось загрузить трек", TRACK_SRC);
+function loadYouTubeApi() {
+  if (window.YT && window.YT.Player) return Promise.resolve();
+  if (music.apiPromise) return music.apiPromise;
+  music.apiPromise = new Promise((resolve) => {
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => {
+      if (typeof prev === "function") prev();
+      resolve();
+    };
+    if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+    }
   });
-  music.el = el;
-  return el;
+  return music.apiPromise;
+}
+
+function ensurePlayer() {
+  if (music.player || music.pending) return Promise.resolve();
+  music.pending = true;
+  return loadYouTubeApi().then(() => new Promise((resolve) => {
+    let host = document.getElementById("ytPlayerHost");
+    if (!host) {
+      host = document.createElement("div");
+      host.id = "ytPlayerHost";
+      host.className = "yt-host";
+      document.body.appendChild(host);
+    }
+    music.player = new window.YT.Player("ytPlayerHost", {
+      height: "1",
+      width: "1",
+      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, origin: location.origin },
+      events: {
+        onReady: () => {
+          music.ready = true;
+          music.pending = false;
+          music.player.setVolume(Math.round(music.volume * 100));
+          if (music.on) playPlaylist(music.index);
+          resolve();
+        },
+        onStateChange: (event) => {
+          if (event.data === 0) playPlaylist((music.index + 1) % YT_PLAYLISTS.length);
+        },
+        onError: () => {
+          const video = YT_FALLBACK_VIDEOS[music.index % YT_FALLBACK_VIDEOS.length];
+          if (music.player && video) {
+            music.player.loadVideoById(video);
+            music.player.setVolume(Math.round(music.volume * 100));
+            music.player.playVideo();
+          }
+        },
+      },
+    });
+    setTimeout(resolve, 4000);
+  }));
+}
+
+function playPlaylist(index) {
+  music.index = index;
+  if (!music.ready || !music.player) {
+    music.on = true;
+    ensurePlayer().then(() => {
+      if (music.on) playPlaylist(music.index);
+    });
+    return;
+  }
+  const list = YT_PLAYLISTS[index];
+  music.player.setVolume(Math.round(music.volume * 100));
+  music.player.loadPlaylist({ list, listType: "playlist", index: 0, startSeconds: 0 });
+  music.player.playVideo();
+}
+
+function stopMusic() {
+  if (music.player && music.ready) music.player.pauseVideo();
 }
 
 function updateMusicUI() {
@@ -2150,34 +2220,13 @@ function updateMusicUI() {
   }
 }
 
-async function playMusic() {
-  const el = ensureTrack();
-  try {
-    await el.play();
-    music.started = true;
-  } catch {
-    // автозапуск запрещён — попробуем после первого действия пользователя
-    const once = () => {
-      document.removeEventListener("pointerdown", once);
-      el.play().catch(() => {});
-    };
-    document.addEventListener("pointerdown", once, { once: true });
-  }
-}
-
 function setMusic(on) {
   music.on = on;
   try { localStorage.setItem(MUSIC_ON_KEY, on ? "1" : "0"); } catch { /* ignore */ }
   updateMusicUI();
-  const el = ensureTrack();
-  if (on) {
-    playMusic();
-  } else {
-    el.pause();
-  }
+  if (on) playPlaylist(music.index);
+  else stopMusic();
 }
-
-/* ------------------------------ мемы героев ------------------------------ */
 
 function initSettings() {
   let storedVolume = 0.5;
@@ -2212,7 +2261,7 @@ function initSettings() {
     range.addEventListener("input", () => {
       music.volume = Number(range.value) / 100;
       try { localStorage.setItem(VOLUME_KEY, String(music.volume)); } catch { /* ignore */ }
-      if (music.el) music.el.volume = music.volume;
+      if (music.player && music.ready) music.player.setVolume(Math.round(music.volume * 100));
     });
   }
 
@@ -2220,7 +2269,9 @@ function initSettings() {
   if (storedOn) {
     const once = () => {
       document.removeEventListener("pointerdown", once);
-      playMusic();
+      music.on = true;
+      updateMusicUI();
+      ensurePlayer().then(() => playPlaylist(music.index));
     };
     document.addEventListener("pointerdown", once, { once: true });
   }
