@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Forum&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />  <link rel="preconnect" href="https://cdn.cloudflare.steamstatic.com" crossorigin />
-  <link rel="stylesheet" href="assets/styles.css?v=70" />
+  <link rel="stylesheet" href="assets/styles.css?v=71" />
 </head>
 <body>
   <header class="topbar">
@@ -76,6 +76,13 @@
         </div>
 
         <div class="quick-picks" id="quickPicks" aria-label="Популярные герои"></div>
+
+        <div class="landing-stats">
+          <div class="landing-stat"><b id="statHeroes">127</b><span>героев</span></div>
+          <div class="landing-stat"><b id="statItems">229</b><span>предметов</span></div>
+          <div class="landing-stat"><b id="statAbilities">126</b><span>наборов способностей</span></div>
+          <div class="landing-stat"><b>7.42</b><span>актуальный патч</span></div>
+        </div>
         <p class="landing-hint">Данные: курируемая подборка + живая статистика матчапов OpenDota.</p>
       </div>
     </section>
@@ -336,6 +343,6 @@
     </button>
   </template>
 
-  <script type="module" src="assets/app.js?v=70"></script>
+  <script type="module" src="assets/app.js?v=71"></script>
 </body>
 </html>

@@ -2260,6 +2260,15 @@ async function init() {
   try {
     await loadData();
     renderQuickPicks();
+  const statHeroes = $("#statHeroes");
+  if (statHeroes) statHeroes.textContent = String(state.heroes.length);
+  const statItems = $("#statItems");
+  if (statItems) {
+    const count = Object.keys(state.itemCatalog || {}).filter((k) => !k.startsWith("__")).length;
+    if (count) statItems.textContent = String(count);
+  }
+  const statAbilities = $("#statAbilities");
+  if (statAbilities) statAbilities.textContent = String(Object.keys(state.abilities || {}).filter((k) => !k.startsWith("__")).length);
     renderHeroGrid();
     window.addEventListener("hashchange", route);
     route();
